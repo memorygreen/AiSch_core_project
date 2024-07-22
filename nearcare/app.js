@@ -3,8 +3,8 @@ const app = express();
 const port = 3098;
 const nunjucks = require('nunjucks');
 const bp = require('body-parser');
-const mainRouter = require('./routes/main');
-const careRecvRegRouter = require('./routes/careRecvReg');
+const mainRouter = require('./routes/mainRouter');
+const careRecvRegRouter = require('./routes/careRecvRegRouter');
 const path = require('path');
 
 // 정적 파일요청 폴더 등록

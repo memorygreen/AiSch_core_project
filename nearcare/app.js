@@ -6,6 +6,7 @@ const bp = require('body-parser');
 const mainRouter = require('./routes/mainRouter');
 const careRecvRegRouter = require('./routes/careRecvRegRouter');
 const chattingRouter = require('./routes/chattingRouter');
+const matchingRouter = require('./routes/matchingRouter');
 const path = require('path');
 
 // 정적 파일요청 폴더 등록
@@ -18,6 +19,7 @@ app.use(bp.urlencoded({extended : true}));
 app.use('/', mainRouter);
 app.use('/careRecvReg', careRecvRegRouter);
 app.use('/chatting', chattingRouter);
+app.use('/matching', matchingRouter);
 
 
 // 넌적스 셋팅

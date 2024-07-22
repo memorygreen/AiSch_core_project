@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block content %}
+<div id="u_list_wrap">
+    <div id="u_list_div">
+        {% for i in arr %}
+        <div class="inner_u_list_div1">
+            <div class="inner_u_list_div2">
+                <!-- <img src="../3.png" alt="img"> -->
+            </div>
+            <div class="inner_u_list_div3">
+                <p>{{i.matchIdx}}</p>
+                <p>{{i.careReceiverId}}</p>
+                <p>{{i.matchMatchedAt}}</p>
+                <p>{{i.matchStatus}}</p>
+            </div>
+            <div class="inner_u_list_div4"><a id="user_detl" href="/careRecvReg/careRecvDetail">상세보기</a></div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

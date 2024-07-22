@@ -1,20 +1,29 @@
 const express = require('express');
 const app = express();
-const mainRouter = require('./routes/mainRouter');
+const port = 3098;
 const nunjucks = require('nunjucks');
+const bp = require('body-parser');
+const mainRouter = require('./routes/main');
+const careRecvRegRouter = require('./routes/careRecvReg');
 const path = require('path');
 
-// public 파일
+// 정적 파일요청 폴더 등록
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 라우터
-app.use('/', mainRouter);
+// post 데이터 처리 등록
+app.use(bp.urlencoded({extended : true}));
 
-// nunjucks
-app.set("view engine", "html");
-nunjucks.configure("views", {
-    express: app,
-    watch: true
+// 메인 라우터 등록
+app.use('/', mainRouter);
+app.use('/careRecvReg', careRecvRegRouter);
+
+
+// 넌적스 셋팅
+app.set('view engine', 'html');
+nunjucks.configure('views', {
+    
+    express : app,
+    watch : true
 });
 
-app.listen(3000)
+app.listen(port);

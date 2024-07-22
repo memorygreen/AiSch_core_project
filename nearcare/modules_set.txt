@@ -1,0 +1,11 @@
+npm i express
+npm i nunjucks 
+npm i nunjucks chokidar
+npm i express mysql
+npm i mysql2
+npm i dotenv
+npm i helmet
+npm i passport
+npm i -s passport-local
+npm i moment 날짜 포멧
+npm i moment-timezone 한글패치

@@ -3,55 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles.css">
-    <style>
-        /* Additional styles for positioning control-panel */
-        .content {
-            position: relative;
-        }
-        .control-panel {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            transform: translateY(50%);
-        }
-    </style>
+    <title>따숨</title>
+    <link rel="stylesheet" href="/css/careRecvList.css">
+    <link rel="stylesheet" href="/css/careRecvReg.css">
+    <link rel="stylesheet" href="/css/mainStyle.css">
+    <link rel="stylesheet" href="/css/careRecvDetail.css">
 </head>
-<body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <div class="content">
-        <div class="text-section">
-            <h2>Welcome to Our Website</h2>
-            <p>This is a simple example of a section with text and an image.</p>
-        </div>
-        <div class="image-section">
-            <img src="/img/main.png" alt="Example Image">
-        </div>
-        
-        <!-- control-panel 위치 조정 -->
-        <div class="control-panel">
-            <button class="large-button">Large Button</button>
-            <div class="right-panel">
-                <div class="small-buttons">
-                    <button>Button 1</button>
-                    <button>Button 2</button>
-                    <button>Button 3</button>
-                    <button>Button 4</button>
-                </div>
-                <div class="search-container">
-                    <input type="text" placeholder="Search...">
-                    <button>Search</button>
-                </div>
-            </div>
-        </div>
+<header>
+    <div id="header_div_wrap">
+        <div id="header_menu_div1"><a href="">요양시설찾기</a></div>
+        <div id="header_menu_div2"><a href="/careRecvReg/careRecvList">요양대상자찾기</a></div>
+        <div id="header_menu_div2"><a href="/careRecvReg/careRecvRegconfrm">요양대상자등록</a></div>
+        <div id="header_menu_div3"><a href="">고객문의</a></div>
+        <div id="header_menu_div4"><a href="">정책정보</a></div>
+        <div id="header_menu_div5"><a href="">로그인</a></div>
+        <div id="header_menu_div6"><a href="">회원가입</a></div>
+        <div id="header_menu_div7"><a href="">기관서비스</a></div>
     </div>
+</header>
+<body>
+    <div id="index_container_wrap">
+    {% block content %}
+    {% endblock %}
+    </div>
+        
+    
 </body>
 </html>

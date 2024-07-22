@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div id="u_list_wrap">
+        <div id="u_list_div">
+            {% for i in arrDate %}
+            <div class="inner_u_list_div1">
+                <!-- 나중에 이미지 넣기 -->
+                <div class="inner_u_list_div2">
+                    <img src="../3.png" alt="img">
+                </div>
+                <div class="inner_u_list_div3">
+                    <p>이름 : {{i.userName}}</p>
+                    <p>생년월일 : {{i.userBirth}}</p>
+                    {% set gender = i.gender %}
+                    <p>성별 : {% if gender == 'M' %}
+                        남성
+                    {% elif gender == 'F' %}
+                        여성
+                    {% else %}
+                        성별 err
+                    {% endif %} </p>
+                    <p>연락처 : {{i.phone}}</p>
+                </div>
+                    <div class="inner_u_list_div4"><a id="user_detl" href="/careRecvReg/careRecvDetail">상세보기</a></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

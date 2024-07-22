@@ -164,221 +164,70 @@ a {
 
 /*하단 푸터 */
 footer {
-	width: 100%;
+	width: 60%;
 	bottom: 0px;
-	position: absolute;
+	justify-content: center;
+	position: fixed;
 }
-.div_wrap{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    font-size: 15px;
-    position: relative;
-}
-
 
 .footer_all {
-    width: 661px;
+    width: 100%;
     height: 76px;
     background: rgba(244,113,118,1);
-    opacity: 1;
-    position: absolute;
-    top: 861px;
+    /* opacity: 1; */
+    /* position: absolute; */
+    
+    position: relative;
+    /* position: relative; */
+    /* top: 861px; */
+    flex-wrap: wrap;
+    overflow: hidden;
+    justify-content: space-between;
+    /* justify-items: center; */
+    /* align-items: center; */
+    /* font-size: 15px; */
+    display: flex;
+  }
 
-    overflow: hidden;
+  .footer_group {
+    width: 20%;
+    height: 95%;
+    position: relative;
+    display: flex;
+    align-content:  center;
+    
+    /* overflow: hidden; */
+    /* justify-content: center; */
+  }
+  .footer_div_img{
+    /* overflow: hidden; */
+    top: 10%;
+    height: 50%;
+    width: 100%;
+    display: flex;
     justify-content: center;
-  }
-  .footer_home_group {
-    width: 46px;
-    height: 58px;
-    background: url("../images/v132_57.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
+    align-items:  center;
     position: absolute;
-    top: 873px;
-    left: 308px;
-    overflow: hidden;
+
   }
-  .footer_home_img {
-    width: 32px;
-    height: 32px;
-    background: url("../images/home_img.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 7px;
-    overflow: hidden;
+  .footer_img{
+    max-width: 100%;
+    max-height:100%;
+    /* height: 50%; */
+    /* overflow: hidden; */
+    /* position: relative; */
+    display:flex;
   }
-  .footer_home_text {
-    width: 46px;
+
+  .footer_text {
+    width: 100%;
     color: rgba(255,255,255,1);
     position: absolute;
-    top: 37px;
-    left: 0px;
+    bottom: 0;
     font-family: Pretendard;
     font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
+    font-size: 15px;
     text-align: center;
   }
-  .footer_finding_center_group {
-    width: 63px;
-    height: 60px;
-    background: url("../images/v132_54.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 873px;
-    left: 419px;
-    overflow: hidden;
-  }
-  .footer_finding_center_text {
-    width: 63px;
-    color: rgba(255,255,255,1);
-    position: absolute;
-    top: 39px;
-    left: 0px;
-    font-family: Pretendard;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: center;
-  }
-  .footer_finding_center_img {
-    width: 35px;
-    height: 35px;
-    background: url("../images/finding_center_img.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 14px;
-    overflow: hidden;
-  }
-  .footer_finding_calculation_group {
-    width: 91px;
-    height: 60px;
-    background: url("../images/v132_55.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 871px;
-    left: 537px;
-    overflow: hidden;
-  }
-  .footer_finding_calculation_text {
-    width: 91px;
-    color: rgba(255,255,255,1);
-    position: absolute;
-    top: 39px;
-    left: 0px;
-    font-family: Pretendard;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: center;
-  }
-  .footer_finding_calculation_img {
-    width: 38px;
-    height: 38px;
-    background: url("../images/finding_calculation_img.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 25px;
-    overflow: hidden;
-  }
-  .footer_finding_receiver_group {
-    width: 106px;
-    height: 57px;
-    background: url("../images/v132_58.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 874px;
-    left: 26px;
-    overflow: hidden;
-  }
-  .footer_finding_receiver_text {
-    width: 106px;
-    color: rgba(255,255,255,1);
-    position: absolute;
-    top: 36px;
-    left: 0px;
-    font-family: Pretendard;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: center;
-  }
-  .footer_finding_receiver_img {
-    width: 32px;
-    height: 32px;
-    background: url("../images/finding_receiver_img.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 37px;
-    overflow: hidden;
-  }
-  .footer_finding_ai_chatbot_group {
-    width: 46px;
-    height: 60px;
-    background: url("../images/v132_56.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 871px;
-    left: 187px;
-    overflow: hidden;
-  }
-  .footer_finding_ai_chatbot_text {
-    width: 46px;
-    color: rgba(255,255,255,1);
-    position: absolute;
-    top: 39px;
-    left: 0px;
-    font-family: Pretendard;
-    font-weight: Regular;
-    font-size: 16px;
-    opacity: 1;
-    text-align: center;
-  }
-  .footer_finding_ai_chatbot_img {
-    width: 35px;
-    height: 35px;
-    background: url("../images/chatbot_img.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 0px;
-    left: 7px;
-    overflow: hidden;
-  }
-  
+
+

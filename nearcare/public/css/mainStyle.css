@@ -157,3 +157,228 @@ a {
 .header_menu_div:nth-of-type(4) {
     margin-right: 70px; /* 고객문의, 요양대상자관리 간격*/
 }
+
+
+
+/*자영 푸터 css 추가*/
+
+/*하단 푸터 */
+footer {
+	width: 100%;
+	bottom: 0px;
+	position: absolute;
+}
+.div_wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    font-size: 15px;
+    position: relative;
+}
+
+
+.footer_all {
+    width: 661px;
+    height: 76px;
+    background: rgba(244,113,118,1);
+    opacity: 1;
+    position: absolute;
+    top: 861px;
+
+    overflow: hidden;
+    justify-content: center;
+  }
+  .footer_home_group {
+    width: 46px;
+    height: 58px;
+    background: url("../images/v132_57.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 873px;
+    left: 308px;
+    overflow: hidden;
+  }
+  .footer_home_img {
+    width: 32px;
+    height: 32px;
+    background: url("../images/home_img.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 7px;
+    overflow: hidden;
+  }
+  .footer_home_text {
+    width: 46px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 37px;
+    left: 0px;
+    font-family: Pretendard;
+    font-weight: Regular;
+    font-size: 16px;
+    opacity: 1;
+    text-align: center;
+  }
+  .footer_finding_center_group {
+    width: 63px;
+    height: 60px;
+    background: url("../images/v132_54.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 873px;
+    left: 419px;
+    overflow: hidden;
+  }
+  .footer_finding_center_text {
+    width: 63px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 39px;
+    left: 0px;
+    font-family: Pretendard;
+    font-weight: Regular;
+    font-size: 16px;
+    opacity: 1;
+    text-align: center;
+  }
+  .footer_finding_center_img {
+    width: 35px;
+    height: 35px;
+    background: url("../images/finding_center_img.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 14px;
+    overflow: hidden;
+  }
+  .footer_finding_calculation_group {
+    width: 91px;
+    height: 60px;
+    background: url("../images/v132_55.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 871px;
+    left: 537px;
+    overflow: hidden;
+  }
+  .footer_finding_calculation_text {
+    width: 91px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 39px;
+    left: 0px;
+    font-family: Pretendard;
+    font-weight: Regular;
+    font-size: 16px;
+    opacity: 1;
+    text-align: center;
+  }
+  .footer_finding_calculation_img {
+    width: 38px;
+    height: 38px;
+    background: url("../images/finding_calculation_img.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 25px;
+    overflow: hidden;
+  }
+  .footer_finding_receiver_group {
+    width: 106px;
+    height: 57px;
+    background: url("../images/v132_58.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 874px;
+    left: 26px;
+    overflow: hidden;
+  }
+  .footer_finding_receiver_text {
+    width: 106px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 36px;
+    left: 0px;
+    font-family: Pretendard;
+    font-weight: Regular;
+    font-size: 16px;
+    opacity: 1;
+    text-align: center;
+  }
+  .footer_finding_receiver_img {
+    width: 32px;
+    height: 32px;
+    background: url("../images/finding_receiver_img.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 37px;
+    overflow: hidden;
+  }
+  .footer_finding_ai_chatbot_group {
+    width: 46px;
+    height: 60px;
+    background: url("../images/v132_56.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 871px;
+    left: 187px;
+    overflow: hidden;
+  }
+  .footer_finding_ai_chatbot_text {
+    width: 46px;
+    color: rgba(255,255,255,1);
+    position: absolute;
+    top: 39px;
+    left: 0px;
+    font-family: Pretendard;
+    font-weight: Regular;
+    font-size: 16px;
+    opacity: 1;
+    text-align: center;
+  }
+  .footer_finding_ai_chatbot_img {
+    width: 35px;
+    height: 35px;
+    background: url("../images/chatbot_img.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 7px;
+    overflow: hidden;
+  }
+  

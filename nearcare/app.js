@@ -5,6 +5,7 @@ const nunjucks = require('nunjucks');
 const bp = require('body-parser');
 const mainRouter = require('./routes/mainRouter');
 const careRecvRegRouter = require('./routes/careRecvRegRouter');
+const chattingRouter = require('./routes/chattingRouter');
 const path = require('path');
 
 // 정적 파일요청 폴더 등록
@@ -16,6 +17,7 @@ app.use(bp.urlencoded({extended : true}));
 // 메인 라우터 등록
 app.use('/', mainRouter);
 app.use('/careRecvReg', careRecvRegRouter);
+app.use('/chatting', chattingRouter);
 
 
 // 넌적스 셋팅

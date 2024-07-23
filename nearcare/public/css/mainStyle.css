@@ -14,7 +14,7 @@ body {
 }
 
 #centered_content_wrap {
-    width: 60%; 
+    width: 35%; 
     background-color: #ffffff; 
     display: flex;
     justify-content: center;
@@ -38,7 +38,7 @@ header {
 }
 
 #header_inner_wrap {
-    width: 60%; 
+    width: 35%; 
     background-color: #ffffff; 
     display: flex;
     justify-content: center;
@@ -158,13 +158,18 @@ a {
     margin-right: 70px; /* 고객문의, 요양대상자관리 간격*/
 }
 
+#logo {
+    width: 75px;
+    height: 75px;
+}
+
 
 
 /*자영 푸터 css 추가*/
 
 /*하단 푸터 */
 footer {
-	width: 60%;
+	width: 35%;
 	bottom: 0px;
 	justify-content: center;
 	position: fixed;

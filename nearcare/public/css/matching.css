@@ -1,0 +1,64 @@
+#matchinglist {
+    margin-top: -20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 300%;
+    height: 300%;
+    background-color: #FFFFFF;
+}
+
+#mlist {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.inner_mlist1 {
+    width: 20%;
+    height: auto; /* 변경: 내용에 따라 높이 조정 */
+    margin: 2.5%;
+    border: 1px solid #F47176;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    cursor: pointer; /* 추가: 클릭 가능하도록 표시 */
+}
+
+.inner_mlist2 {
+    width: 85%;
+    height: auto; /* 변경: 내용에 따라 높이 조정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner_mlist3 {
+    width: 80%;
+    height: auto; /* 변경: 내용에 따라 높이 조정 */
+    font-size: 11px;
+}
+
+.inner_mlist4 {
+    width: 70%;
+    height: auto; /* 변경: 내용에 따라 높이 조정 */
+    border: 1px solid #F47176;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 25px;
+}
+
+#detail_info {
+    margin-top: 20px; /* 하단 위치 조정 */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}

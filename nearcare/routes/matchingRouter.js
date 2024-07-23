@@ -18,8 +18,21 @@ router.get("/", (req, res) => {
             matchStatus: row.MATCH_STATUS,
         }));
 
-        // 모든 데이터 처리가 완료된 후, 한 번만 render 호출
         res.render('matching', { arr });
+    });
+});
+
+router.get("/detail", (req, res) => {
+    let sql = "SELECT * FROM TB_CARE_RECEIVER WHERE CARE_RECEIVER_ID = ?";
+    const careReceiverId = req.query.careReceiverId;
+    conn.query(sql, [careReceiverId], (err, rows) => {
+        if (err) {
+            console.error('Database query error:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        else {
+            res.json(rows[0]);
+        }
     });
 });
 

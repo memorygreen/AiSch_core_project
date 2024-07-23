@@ -1,0 +1,30 @@
+#cs-list {
+    width: 100%;
+}
+
+.cs-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #F47176;
+}
+
+#titletype {
+    flex: 1;
+    text-align: left;
+    font-weight: 600;
+}
+
+#titlename {
+    flex: 2;
+    text-align: left;
+    margin-left: 1px;
+    font-weight: 600;
+}
+
+#titledate {
+    flex: 1;
+    text-align: right;
+    font-weight: 600;
+}

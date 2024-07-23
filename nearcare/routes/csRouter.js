@@ -22,11 +22,11 @@ router.get("/", (req, res) => {
                 csCreatedAt: formatDate(row.CS_CREATED_AT),
             });
         });
-
+        res.render('cs', {arr});
+        
         console.log(arr);
         
     });
-    res.render('cs');
 });
 
 module.exports = router;

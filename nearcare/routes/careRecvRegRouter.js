@@ -45,11 +45,11 @@ router.get('/careRecvList', (req, res)=>{
                 careLevel : rows[i].receive_care_level,
                 userAdd : rows[i].receive_care_add,
             });
-            console.log('arrDate',arrDate);
+            // console.log('arrDate',arrDate);
         };
         // console.log('rows',rows);
-        console.log('userarr',userArr.length);
-        console.log('arrDate[0].userName', arrDate[0].userName);
+        // console.log('userarr',userArr.length);
+        // console.log('arrDate[0].userName', arrDate[0].userName);
         res.render('careRecvList',{arrDate});
         
     });

@@ -1,30 +1,43 @@
 {% extends 'index.html' %}
 {% block content %}
-    <div id="u_list_wrap">
-        <div id="u_list_div">
-            {% for i in arrDate %}
-            <div class="inner_u_list_div1">
-                <!-- 나중에 이미지 넣기 -->
-                <div class="inner_u_list_div2">
-                    <img src="../3.png" alt="img">
-                </div>
-                <div class="inner_u_list_div3">
-                    <p>이름 : {{i.userName}}</p>
-                    <p>생년월일 : {{i.userBirth}}</p>
-                    {% set gender = i.gender %}
-                    <p>성별 : {% if gender == 'M' %}
-                        남성
+<div id="u_list_wrap">
+    <div id="u_list_div">
+        {% for i in arrDate %}
+        <div class="inner_u_list_div1">
+            <!-- 나중에 이미지 넣기 -->
+            <div class="inner_u_list_div2">
+                <img src="/images/profile_img.png" alt="img">
+            </div>
+            <div class="inner_u_list_div3">
+                <p>이름 : {{i.userName}}</p>
+                <p>생년월일 : {{i.userBirth}}</p>
+                {% set gender = i.gender %}
+                <p>성별 : {% if gender == 'M' %}
+                    남성
                     {% elif gender == 'F' %}
-                        여성
+                    여성
                     {% else %}
-                        성별 err
+                    성별 err
                     {% endif %} </p>
-                    <p>연락처 : {{i.phone}}</p>
-                </div>
-                    <div class="inner_u_list_div4"><a id="user_detl" href="/careRecvReg/careRecvDetail">상세보기</a></div>
+                <p>연락처 : {{i.phone}}</p>
             </div>
             {% endfor %}
+            {% set j = 0 %}
+            {% for i in arrDate %}
+            <div class="inner_u_list_div4"><a {{% class="user_det"%}}>상세보기</a></div>        <!-- /careRecvReg/careRecvDetail -->
+            {% set j += 1 %}
+            {% endfor %}
         </div>
+        <!-- modal -->
+        
     </div>
+</div>
+<div id="modalWrap"> <!-- 모달 창을 감싸는 div -->
+    <div id="modalBody">
+        <span id="closeBtn">&times;</span> <!-- 모달을 닫는 X 버튼 -->
+        <p>모달창 내용!</p> <!-- 모달 창 내용 -->
+    </div>
+</div>
 
+<script src="/js/careRecv.js"></script>
 {% endblock %}

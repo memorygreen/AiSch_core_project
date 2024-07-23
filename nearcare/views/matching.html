@@ -1,19 +1,40 @@
 {% extends 'index.html' %}
 {% block content %}
 <div id="matchinglist">
-    <div id="title"><p>요양대상자관리</p></div>
+    <div id="title">
+        <p>요양대상자관리</p>
+    </div>
     <div id="mlist">
         {% for i in arr %}
         <div class="inner_mlist1" data-id="{{i.careReceiverId}}">
             <div class="inner_mlist3">
-                <p>{{i.matchIdx}}</p>
-                <p>{{i.careReceiverId}}</p>
-                <p>{{i.matchMatchedAt}}</p>
-                <p>{{i.matchStatus}}</p>
+                <p>{{i.careReceiverName}}</p>
+                <p>결제일자 : {{i.matchMatchedAt}}</p>
+                <p>상태 :
+                    {% set status=i.matchStatus %}
+                    {% if status == 1 %}
+                    기관연계중
+                    {% elif status == 0 %}
+                    연계x
+                    {% endif %}
+                </p>
             </div>
-            <div class="inner_u_list_div4"><a class="user_det" href="/matching/detail?careReceiverId={{i.careReceiverId}}">상세보기</a></div> 
+
+            <a class="user_det" href="/matching/detail?careReceiverId={{i.careReceiverId}}">
+                <div class="inner_button_div4">상세보기</div>
+            </a>
+            <br>
+
+            <a href="/matching/update-status?careReceiverId={{i.careReceiverId}}&newStatus={{i.matchStatus}}">
+                <div class="inner_button_div4">
+                    {% if status == 1 %}
+                    연계종료
+                    {% elif status == 0 %}
+                    연계시작
+                    {% endif %}
+                </div>
+            </a>
         </div>
-        
         {% endfor %}
     </div>
 </div>

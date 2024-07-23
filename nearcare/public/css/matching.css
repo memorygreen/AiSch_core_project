@@ -1,5 +1,6 @@
+
 #matchinglist {
-    margin-top: 0px; /* 상단 여백 조정 */
+    margin-top: -20px; /* 상단 여백 조정 */
     display: flex;
     flex-direction: column; /* 세로 방향으로 나열 */
     align-items: center; /* 가로 중앙 정렬 */
@@ -18,6 +19,11 @@
     color: #FFFFFF;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    
+}
+#title p{
+    font-weight: 600;
+    font-size: 20px;
 }
 #mlist {
     display: flex;
@@ -30,7 +36,7 @@
 }
 
 .inner_mlist1 {
-    width: 265px; /* 너비 설정 */
+    width: 100%; /* 너비 설정 */
     height: auto; /* 높이 자동 조정 */
     margin: 10px; /* 여백 설정 */
     border: 2px solid #F47176; /* 핑크색 테두리 추가 */
@@ -44,15 +50,15 @@
 }
 
 .inner_mlist1:hover {
-    background-color: #F47176; /* 마우스 오버 시 배경색 변경 */
-    color: #FFFFFF; /* 텍스트 색상 변경 */
+    background-color: #FFFFFF; /* 마우스 오버 시 배경색 변경 */
     border-color: #E94F6C; /* 테두리 색상 변경 */
 }
 
 .inner_mlist3 {
     width: 100%;
-    font-size: 11px;
+    font-size: 18px;
     text-align: center;
+    font-weight: 600;
 }
 
 #detail_info {
@@ -61,4 +67,28 @@
     border: 2px solid #F47176;
     border-radius: 8px; /* 테두리 둥글게 설정 */
     background-color: #f9f9f9;
+}
+
+.inner_button_div4{
+    width: 100%;
+    height: 30%;
+    border: 1px solid #F47176;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 25px;
+    margin-right: 100px;
+    font-weight: 600;
+}
+
+.inner_button_div4:hover, #mbtn:hover{
+    background-color: #F47176;
+    color: #FFFFFF;
+}
+
+#mbtn {
+    display: block;
+    font-size: 13px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 }

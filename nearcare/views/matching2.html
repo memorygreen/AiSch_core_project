@@ -1,15 +1,15 @@
 {% extends 'index.html' %}
 {% block content %}
 <div id="matchinglist">
-    <div id="title"><p>요양대상자관리</p></div>
     <div id="mlist">
         {% for i in arr %}
         <div class="inner_mlist1" data-id="{{i.careReceiverId}}">
             <div class="inner_mlist3">
-                <p>{{i.matchIdx}}</p>
-                <p>{{i.careReceiverId}}</p>
-                <p>{{i.matchMatchedAt}}</p>
-                <p>{{i.matchStatus}}</p>
+                <p>{{i.careReceiverName}}</p>
+                <p>{{i.careReceiverBirth}}</p>
+                <p>{{i.careReceiverGenter}}</p>
+                <p>{{i.careReceiverPhone}}</p>
+                <p>{{i.careReceiverDays}}</p>
             </div>
             <div class="inner_u_list_div4"><a class="user_det" href="/matching/detail?careReceiverId={{i.careReceiverId}}">상세보기</a></div> 
         </div>

@@ -1,10 +1,10 @@
 {% extends 'index.html' %}
 {% block content %}
-<div id="matchinglist" style="margin-top: 0px">
+<div id="matchinglist">
     <div id="mlist">
         {% for i in arr %}
-        <div class="mlist1" data-id="{{i.careReceiverId}}">
-            <div class="mlist3">
+        <div class="inner_mlist1" data-id="{{i.careReceiverId}}">
+            <div class="inner_mlist3">
                 <p>{{i.matchIdx}}</p>
                 <p>{{i.matchMatchedAt}}</p>
                 <p>{{i.matchStatus}}</p>
@@ -13,45 +13,5 @@
         {% endfor %}
     </div>
 </div>
-
-<!-- 하단에 자세한 정보를 표시할 div 추가 -->
-<div id="detail_info" style="display: none;">
-    <h2>자세한 정보</h2>
-    <div id="detail_content"></div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("mlist").addEventListener("click", (event) => {
-        const target = event.target.closest(".inner_mlist1");
-        if (target) {
-            event.preventDefault();
-            const careReceiverId = target.getAttribute("data-id");
-            console.log("클릭된 ID:", careReceiverId); // 콘솔에 careReceiverId를 출력
-
-            fetch(`/detail?careReceiverId=${careReceiverId}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const detailContent = `
-                        <p>이름: ${data.receive_care_name}</p>
-                        <p>생년월일: ${data.receive_care_birth}</p>
-                        <p>성별: ${data.receive_care_gender}</p>
-                        <p>연락처: ${data.receive_care_phone}</p>
-                        <p>요양 등급: ${data.receive_care_level}</p>
-                        <p>주소: ${data.receive_care_add}</p>
-                    `;
-                    document.getElementById("detail_content").innerHTML = detailContent;
-                    document.getElementById("detail_info").style.display = "block";
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    });
-});
-</script>
 
 {% endblock %}

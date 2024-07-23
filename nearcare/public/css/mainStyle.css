@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #fff8f7; 
+    background-color: #fff8f7;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,13 +10,13 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: #fff8f7; 
-    
+    background-color: #fff8f7;
+
 }
 
 #centered_content_wrap {
-    width: 35%; 
-    background-color: #ffffff; 
+    width: 35%;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -29,21 +29,21 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff8f7; 
+    background-color: #fff8f7;
 }
 
 #header_outer_wrap {
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: #fff8f7; 
+    background-color: #fff8f7;
     position: fixed;
     margin-top: 57px;
 }
 
 #header_inner_wrap {
-    width: 35%; 
-    background-color: #ffffff; 
+    width: 35%;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +58,7 @@ header {
     align-items: center;
 }
 
-#header_div_wrap > div {
+#header_div_wrap>div {
     width: 150px;
     height: 40px;
     text-align: center;
@@ -114,40 +114,6 @@ a {
     margin: 3%;
 }
 
-#center_wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 65%;
-    height: 70%;
-    background-color: azure;
-    border: 1px solid cadetblue;
-    align-items: center;
-}
-
-.img1 {
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.img2 {
-    width: 50%;
-    height: 1%;
-    object-fit: cover;
-}
-
-.img_div1 {
-    width: 100%;
-    height: 70%;
-}
-
-.img_div2 {
-    width: 100%;
-    height: 30%;
-    object-fit: cover;
-}
-
 #footer_wrap {
     display: flex;
     flex-direction: row;
@@ -160,7 +126,8 @@ a {
 }
 
 .header_menu_div:nth-of-type(4) {
-    margin-right: 70px; /* 고객문의, 요양대상자관리 간격*/
+    margin-right: 70px;
+    /* 고객문의, 요양대상자관리 간격*/
 }
 
 #logo {
@@ -174,19 +141,19 @@ a {
 
 /*하단 푸터 */
 footer {
-	width: 35%;
-	bottom: 0px;
-	justify-content: center;
-	position: fixed;
+    width: 35%;
+    bottom: 0px;
+    justify-content: center;
+    position: fixed;
 }
 
 .footer_all {
     width: 100%;
     height: 76px;
-    background: rgba(244,113,118,1);
+    background: rgba(244, 113, 118, 1);
     /* opacity: 1; */
     /* position: absolute; */
-    
+
     position: relative;
     /* position: relative; */
     /* top: 861px; */
@@ -197,50 +164,52 @@ footer {
     /* align-items: center; */
     /* font-size: 15px; */
     display: flex;
-  }
+}
 
-  .footer_group {
+.footer_group {
     width: 20%;
     height: 95%;
     position: relative;
     display: flex;
-    align-content:  center;
-    
+    align-content: center;
+
     /* overflow: hidden; */
     /* justify-content: center; */
-  }
-  .footer_div_img{
+}
+
+.footer_div_img {
     /* overflow: hidden; */
     top: 10%;
     height: 50%;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items:  center;
+    align-items: center;
     position: absolute;
 
-  }
-  .footer_img{
+}
+
+.footer_img {
     max-width: 100%;
-    max-height:100%;
+    max-height: 100%;
     /* height: 50%; */
     /* overflow: hidden; */
     /* position: relative; */
-    display:flex;
-  }
+    display: flex;
+}
 
-  .footer_text {
+.footer_text {
     width: 100%;
-    color: rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
     position: absolute;
     bottom: 0;
     font-family: Pretendard;
     font-weight: Regular;
     font-size: 15px;
     text-align: center;
-  }
+}
 
-  .header_menu_div1:hover{
+.header_menu_div1:hover {
     background-color: #F47176;
     color: #FFFFFF;
 }

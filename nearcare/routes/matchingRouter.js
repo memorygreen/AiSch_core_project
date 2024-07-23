@@ -1,17 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const conn = require("../config/db");
+const formatDate = require("../public/js/formatDate");
 
-// 날짜 형식을 YYYY-MM-DD로 변환하는 함수
-function formatDate(timestamp) {
-    const date = new Date(timestamp);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더합니다
-    const day = String(date.getDate()).padStart(2, '0'); // 날짜를 두 자리 숫자로 포맷합니다
-    return `${year}-${month}-${day}`;
-}
-
-// 매칭 리스트 페이지
+// 매칭페이지 기본
 router.get("/", (req, res) => {
     let sql = "SELECT B.CARE_RECEIVER_NAME, A.MATCH_IDX, A.USER_ID, A.CARE_RECEIVER_ID, A.MATCH_MATCHED_AT, A.MATCH_STATUS FROM TB_MATCHING AS A JOIN TB_CARE_RECEIVER AS B ON A.CARE_RECEIVER_ID = B.CARE_RECEIVER_ID";
     conn.query(sql, (err, rows) => {
@@ -20,28 +12,25 @@ router.get("/", (req, res) => {
             return res.status(500).send('Internal Server Error');
         }
 
-        // 배열 생성
         let arr = [];
 
-        // 각 row를 배열에 추가
         rows.forEach(row => {
             arr.push({
                 careReceiverName: row.CARE_RECEIVER_NAME,
                 matchIdx: row.MATCH_IDX,
                 userId: row.USER_ID,
                 careReceiverId: row.CARE_RECEIVER_ID,
-                matchMatchedAt: formatDate(row.MATCH_MATCHED_AT), // 날짜 형식 변환
+                matchMatchedAt: formatDate(row.MATCH_MATCHED_AT),
                 matchStatus: row.MATCH_STATUS,
             });
         });
 
         console.log(arr);
-        // 배열을 템플릿에 전달
         res.render('matching', { arr });
     });
 });
 
-// 상세 정보 페이지
+// 매칭페이지 상세보기
 router.get("/detail", (req, res) => {
     let sql = "SELECT * FROM TB_CARE_RECEIVER WHERE CARE_RECEIVER_ID = ?";
     const careReceiverId = req.query.careReceiverId;
@@ -58,7 +47,7 @@ router.get("/detail", (req, res) => {
         rows.forEach(row => {
             arr.push({
                 careReceiverName: row.CARE_RECEIVER_NAME,
-                careReceiverBirth: row.CARE_RECEIVER_BIRTH,
+                careReceiverBirth: formatDate(row.CARE_RECEIVER_BIRTH),
                 careReceiverGender: row.CARE_RECEIVER_GENDER,
                 careReceiverPhone: row.CARE_RECEIVER_PHONE,
                 careReceiverDays: row.CARE_RECEIVER_DAYS,
@@ -66,14 +55,14 @@ router.get("/detail", (req, res) => {
         });
         console.log(arr)
 
-        // 배열을 템플릿에 전달
         res.render('matching2', { arr });
     });
 });
 
+// 매칭 상태 바꾸기
 router.get("/update-status", (req, res) => {
     const careReceiverId = req.query.careReceiverId;
-    const newStatus = req.query.newStatus === '1' ? 0 : 1; // 현재 상태의 반대값으로 설정
+    const newStatus = req.query.newStatus === '1' ? 0 : 1;
 
     let sql = "UPDATE TB_MATCHING SET MATCH_STATUS = ? WHERE CARE_RECEIVER_ID = ?";
     conn.query(sql, [newStatus, careReceiverId], (err) => {
@@ -81,7 +70,7 @@ router.get("/update-status", (req, res) => {
             console.error('Database update error:', err);
             return res.status(500).send('Internal Server Error');
         }
-        res.redirect('/matching'); // 상태 업데이트 후 매칭 리스트 페이지로 리다이렉트
+        res.redirect('/matching');
     });
 });
 

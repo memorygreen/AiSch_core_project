@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% block content %}
     <div id="wrap">
-        <div id="container_wrap">
+        <div id="reg_container_wrap">
             <div id="care_receive_reg_title">
                 <h1>요양정보 등록</h1>
             </div>
@@ -16,13 +16,13 @@
                     <div><span>환자상태</span></div>
                 </div>
                 <div class="care_receive_reg_right_div">
-                    <div>{{dbData.receive_care_name}}</div>
-                    <div>{{date}}</div>
-                    <div>{{dbData.receive_care_phone}}</div>
-                    <div>{{dbData.receive_care_add}}</div>
+                    <div>{{dbData.CARE_RECEIVER_NAME}}</div>
+                    <div>{{btDay}}</div>
+                    <div>{{dbData.CARE_RECEIVER_PHONE}}</div>
+                    <div>{{dbData.CARE_RECEIVER_ADD}}</div>
                     
                     <div>
-                        {% set email = dbData.user_email %}
+                        {% set email = dbData.USER_EMAIL %}
                         {% if email %}
                             {{email}}
                         {% else %}
@@ -30,7 +30,7 @@
                         {% endif %}
                     </div>
                     <div>
-                        {% set gender = dbData.receive_care_gender %}
+                        {% set gender = dbData.CARE_RECEIVER_GENDER %}
                         {% if gender == 'M' %}
                             남성
                         {% elif gender == 'F' %}
@@ -38,13 +38,15 @@
                         {% endif %}
                     </div>
                     <div>
-                        {% set condition = dbData.receive_care_level %}
+                        {% set condition = dbData.CARE_RECEIVER_LEVEL %}
                         {% if condition == 1 %}
-                            상
+                            최하
                         {% elif condition == 2 %}
-                            중
-                        {% elif condition == 3 %}    
                             하
+                        {% elif condition == 3 %}    
+                            중
+                        {% elif condition == 4 %}    
+                            상
                         {% endif %}    
                     </div>
                 </div>
@@ -65,13 +67,13 @@
                     </div>
                     
                     <div id="care_week_div">
-                        <div><button class="week_btns" href="">일요일</button></div>
-                        <div><button class="week_btns" href="">월요일</button></div>
-                        <div><button class="week_btns" href="">화요일</button></div>
-                        <div><button class="week_btns" href="">수요일</button></div>
-                        <div><button class="week_btns" href="">목요일</button></div>
-                        <div><button class="week_btns" href="">금요일</button></div>
-                        <div><button class="week_btns" href="">토요일</button></div>
+                        <button class="week_btns" href="">일</button>
+                        <div><button class="week_btns" href="">월</button></div>
+                        <div><button class="week_btns" href="">화</button></div>
+                        <div><button class="week_btns" href="">수</button></div>
+                        <div><button class="week_btns" href="">목</button></div>
+                        <div><button class="week_btns" href="">금</button></div>
+                        <div><button class="week_btns" href="">토</button></div>
                     </div>
                     <div id="care_time_div">
                         <select name="care_start_time" id="care_start_time">
@@ -122,7 +124,7 @@
             </div>
             <div class="care_receive_reg_div3">
                 <div class="care_receive_reg_left_div">비고</div>
-                <div class="care_receive_reg_right_div"><textarea name="" id="" cols="70" rows="9"></textarea></div>
+                <div class="care_receive_reg_right_div"><textarea name="text_area" ></textarea></div>
             </div>
             <!-- <div class="care_receive_reg_div"></div> -->
             <div class="care_receive_reg_div4">

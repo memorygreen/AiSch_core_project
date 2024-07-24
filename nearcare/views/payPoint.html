@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제</title>
+    <style>
+        #pay_modal_out_wrap{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            /* 화면에 고정 */
+            z-index: 1;
+            left: 0;
+            top: 0;
+            overflow: auto;
+            /* 반투명한 배경색 */
+            background-color: rgba(0, 0, 0, 0.7);
+            /* 초기에는 숨김 */
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+        #pay_modal_inner_wrap{
+            width: 20%;
+            height: 40%;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            border: 1px solid #F47176;;
+            border-radius: 20px;
+        }
+        .inline_div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+        .pay_text_div{
+            line-height: 20px;
+            display: flex;
+            align-items: baseline;
+        }
+        #pay_btn_wrap{
+            width: 100%;
+            height: 12%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        #point_pay_btn, #point_cencl_btn{
+            border: 1px solid #e9e9e9;
+            background-color: #fff8f7;
+            width: 20%;
+            margin: 1%;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!-- pay_modal -->
+<div id="pay_modal_out_wrap"> <!-- 모달 창을 감싸는 div -->
+    <div id="pay_modal_inner_wrap">
+        <div id="pay_modal_Body">
+            <div>결제정보</div>
+            <div class="inline_div">
+                <div class="pay_text_div">
+                <h1>500&nbsp</h1> 
+                포인트를 결제합니다.</div>
+                <div class="pay_text_div">잔여 포인트 : 
+                &nbsp500 </div>
+                <div class="pay_text_div">결제 포인트 : 
+                &nbsp500 </div>
+            </div>
+            <div class="inline_div">
+            </div>
+            
+            
+        </div>
+        
+        <div id="pay_btn_wrap">
+            <button id="point_pay_btn">결제</button>
+            <button id="point_cencl_btn">취소</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

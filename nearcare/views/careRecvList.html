@@ -2,7 +2,7 @@
 {% block content %}
 <div id="u_list_wrap">
     <div id="u_list_div">
-        {% for i in arrDate %}
+        {% for i in arrData %}
         <div class="inner_u_list_div1">
             <!-- 나중에 이미지 넣기 -->
             <div class="inner_u_list_div2">
@@ -13,27 +13,67 @@
                 <p>생년월일 : {{i.userBirth}}</p>
                 {% set gender = i.gender %}
                 <p>성별 : {% if gender == 'M' %}
-                    남성
+                    남성 
                     {% elif gender == 'F' %}
                     여성
+                    {% elif gender == '**' %}
+                    **
                     {% else %}
                     성별 err
                     {% endif %} </p>
                 <p>연락처 : {{i.phone}}</p>
             </div>
-            <div class="inner_u_list_div4"><a class="user_det" href="/careRecvReg/careRecvDetail/">상세보기</a></div>        <!-- /careRecvReg/careRecvDetail -->
+            
+            <div class="inner_u_list_div4">
+                <button class="user_det">상세보기</button>
+                <!-- <a class="user_det" href="/careRecvReg/careRecvDetail/">상세보기</a> -->
+            </div>        <!-- /careRecvReg/careRecvDetail -->
+            
         </div>
         {% endfor %}
-        <!-- modal -->
         
     </div>
 </div>
-<div id="modalWrap"> <!-- 모달 창을 감싸는 div -->
-    <div id="modalBody">
-        <span id="closeBtn">&times;</span> <!-- 모달을 닫는 X 버튼 -->
-        <p>모달창 내용!</p> <!-- 모달 창 내용 -->
+<!-- modal -->
+<div id="modal_out_wrap"> <!-- 모달 창을 감싸는 div -->
+    <div id="modal_inner_wrap">
+        <div id="modal_Body">
+            <p>자세한 정보 확인을 위해</p>
+                <p>포인트 결제가 이루어집니다.</p>
+                <p>결제하시겠습니까?</p>
+        </div>
+        
+        <div id="btn_wrap">
+            <button id="pay_btn">확인</button>
+            <button id="cencl_btn">취소</button>
+        </div>
     </div>
 </div>
-
+<!-- pay_modal -->
+<div id="pay_modal_out_wrap"> <!-- 모달 창을 감싸는 div -->
+    <div id="pay_modal_inner_wrap">
+        <div id="pay_modal_Body">
+            <div>결제정보</div>
+            <div class="inline_div">
+                <div class="pay_text_div">
+                <h1>500&nbsp</h1> 
+                포인트를 결제합니다.</div>
+                <div class="pay_text_div">잔여 포인트 : 
+                &nbsp500 </div>
+                <div class="pay_text_div">결제 포인트 : 
+                &nbsp500 </div>
+            </div>
+            <div class="inline_div">
+            </div>
+            
+            
+        </div>
+        
+        <div id="pay_btn_wrap">
+            <button class="point_pay_btn">결제</button>
+            <button class="point_cencl_btn">취소</button>
+        </div>
+    </div>
+</div>
 <script src="/js/careRecv.js"></script>
 {% endblock %}

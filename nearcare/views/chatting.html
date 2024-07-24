@@ -6,51 +6,51 @@
         </div>
         
 
-        <div id="div_chatting_page_content">
-            <div class="div1_chatting_space">
-                <div class="chat_bubble_group_all" id="chatbotMessages">
-                    <!--챗봇 프로필-->
-                    <div class="img_profile_chatbot">
-                        <div class="img_profile_chatbot_bg"></div>
-                        <div class="div_img_profile_chatbot_icon">
-                            <img src="/images/profile_chatbot_icon.png" class="img_profile_chatbot_icon">
-                        </div>
-                    </div>
+        <div id="div_chatting_page_content"><!--전체내용-->
 
-                    <!-- ai 말풍선 -->
+            <div class="div1_chatting_space" id="chatbotMessages"><!--채팅공간-->
                 
-                    <div class="chat_bubble_group">
-                        <div class="chat_bubble_big"></div>
-                        <span class="chatbot_text">안녕하세요. 따숨 챗봇입니다. 무엇을 도와드릴까요?</span>
+                <!--gpt 말풍선-->
+                <div class="div_chat_bubble_group_gpt" >
+                    <!--gpt 프로필-->
+                    <div class="div_img_profile_chatbot_bg">
+                            <img src="/images/profile_chatbot_icon.png" class="img_profile_chatbot_icon">
                     </div>
-                </div> <!-- ai 말풍선 끝-->
-
+                    
+                    <!-- ai 말풍선 -->
+                    <div class="div_chat_bubble_big_gpt">
+                        <span class="span_text_gpt">안녕하세요. 따숨 챗봇입니다. 무엇을 도와드릴까요?</span>
+                    </div>
+                </div> <!-- gpt 말풍선 끝-->
 
                 <!--사용자 말풍선-->
-                <div class="chat_bubble_group_all" id="userMessages">
-                    <div class="chat_bubble_group_user">
-                        <div class="chat_bubble_big_user"></div>
-                        <span class="user_text">뭐라뭐라</span>
+                <!-- <div class="div_chat_bubble_group_user">
+                    <div class="div_chat_bubble_big_user">
+                        <span class="span_chat_bubble_text_user">뭐라뭐라</span>
                     </div>
-                </div>
-
-
+                </div> -->
+               
+                
             </div>
-            
-
-        </div>
+        
+        
 
             <div class="div2_sending_space">
-                <form id="chatForm">
-                    <label for="input_chat"></label>
-                    <input class="input_chat" type="text" id="input_chat" name="userInputText">
-                    <button class="btn_chat" type="submit" id="btn_chat">
-                        <div class="btn_chat_bg"></div>
-                        <div class="btn_chat_airplane"></div>
-                    </button>
-                </form>
+                <div id="div_chat_all">
+                    <form id="chatForm">
+                        <label for="input_chat"></label>
+                        <input class="input_chat" type="text" id="input_chat" name="userInputText">
+                        <button class="btn_chat" type="submit" id="btn_chat">
+                            <!-- <div class="btn_chat_bg"></div> -->
+                            <img src = "../images/chat_airplane.png" class="btn_chat_airplane">
+                            
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
+
+    </div>
     </div>
 
 <script>
@@ -61,12 +61,15 @@
         if (userInput.trim() === '') return;
 
         // 사용자 입력을 화면에 표시
-        const userMessages = document.getElementById('userMessages');
+        const userMessages = document.getElementById('chatbotMessages');
         const userMessageDiv = document.createElement('div');
-        userMessageDiv.classList.add('chat_bubble_group_user');
-        userMessageDiv.innerHTML = `<div class="chat_bubble_big_user"></div>
-                                    <span class="user_text">${userInput}</span>`;
-        userMessages.appendChild(userMessageDiv);
+        userMessageDiv.classList.add('div_chat_bubble_group_user');
+        userMessageDiv.innerHTML = `
+            <div class="div_chat_bubble_big_user">
+                <span class="span_chat_bubble_text_user">${userInput}</span>
+            </div>
+        `;
+        chatbotMessages.appendChild(userMessageDiv);
 
         // 서버로 사용자 입력 전송
         try {
@@ -84,10 +87,15 @@
             if (data.gptResponse) {
                 // ChatGPT 응답을 화면에 표시
                 const chatbotMessageDiv = document.createElement('div');
-                chatbotMessageDiv.classList.add('chat_bubble_group');
-                chatbotMessageDiv.innerHTML = `<div class="chat_bubble_big"></div>
-                                               <div class="chat_bubble_small"></div>
-                                               <span class="chatbot_text">${data.gptResponse}</span>`;
+                chatbotMessageDiv.classList.add('div_chat_bubble_group_gpt');
+                chatbotMessageDiv.innerHTML = `
+                    <div class="div_img_profile_chatbot_bg">
+                        <img src="/images/profile_chatbot_icon.png" class="img_profile_chatbot_icon">
+                    </div>
+                    <div class="div_chat_bubble_big_gpt">
+                        <span class="span_text_gpt">${data.gptResponse}</span>
+                    </div>
+                `;
                 chatbotMessages.appendChild(chatbotMessageDiv);
             } else {
                 console.error('ChatGPT 응답 없음');

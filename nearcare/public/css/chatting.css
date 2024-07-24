@@ -1,39 +1,66 @@
 
 /*페이지 제목*/
-#chatting_form_title{
+/* #chatting_form_title{
     width: 100%;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     text-align: center;
-    /* border-color: #882547; */
+    border-color: #882547;
     background-color: #ffdfea;
     border-bottom: 1px solid #e9e9e9;
     font-size: 70%;
+} */
+
+#div_chatting_page_title {
+  background-color: #F47176;
+  width: 100%;
+  text-align: center;
+  color: #FFFFFF;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  position: relative;
+
+}
+#div_chatting_page_title p{
+  font-weight: 600;
+  font-size: 20px;
 }
 
 
+
 /*페이지 전체*/
-#container_wrap{
+#div_chatting_page_content_all{
+    margin-top: -20px; /* 상단 여백 조정 */
     display: flex;
     flex-direction: column;
+    width: 100%;
     align-items: center;
     margin: 5%;
     border: 1px solid #e9e9e9;
     border-radius: 20px;
-    width: 66%;
-    height: 750px;
+    height: 500%;
+    position: relative;
 }
+#div_chatting_page_content{
+  margin-top: 20px; /* 상단 여백 조정 */
 
+  width: 100%;
+  height: 600%;
+  background: rgb(255, 255, 255);
+}
 /*상단 채팅 부*/
 .div1_chatting_space{
+    
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 40%;
+    height: 80%;
     position: relative;
+    min-height: 60%;
 }
 
   .chat_bubble_group_all {
-    width: 70%;
+    width: 100%;
     height: 20%;
     position: absolute;
     /* background: url("../images/v126_17.png");
@@ -42,12 +69,13 @@
     /* background-size: cover; */
     /* opacity: 1; */
     top: 5%;
-    left: 15%;
+    /* left: 15%; */
     /* overflow: hidden;  */
   }
   .chat_bubble_group {
     width: 100%;
     height: 100%;
+    left: 15%;
     position: relative;
     align-items: center;
     justify-content: center;
@@ -62,7 +90,7 @@
   }
   
   .chat_bubble_big {
-    width: 100%;
+    width: 70%;
     height: 61px;
     background: rgba(199,199,199,1);
     opacity: 1;
@@ -71,7 +99,7 @@
     left: 0px;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
-    border-bottom-left-radius: 24px;
+    /* border-bottom-left-radius: 24px; */
     border-bottom-right-radius: 24px;
     overflow: hidden;
   }
@@ -83,6 +111,7 @@
     position: absolute;
     top: 29px;
     left: 0px;
+
   }
   .chatbot_text {
     width: 100%;
@@ -113,26 +142,27 @@
   
   /*chat bot 프로필*/
   .img_profile_chatbot {
-    position: absolute;
-    top: 10%;
-    /* left: 40px; */
-    overflow: hidden;
-    width: 10%;
+    /* left: 5px; */
+    position: relative;
+    /* top: 10%; */
+    /* overflow: hidden; */
+    width: 15%;
     height: 10%;
     /* background: url("../images/v126_26.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     opacity: 1; */
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
   }
+
   .img_profile_chatbot_bg {
     width: 100%;
     height: 100%;
     background: rgba(232,231,231,1);
     opacity: 1;
-    position: absolute;
+    position: relative;
     /* top: 0px; */
     /* left: 0px; */
     border-radius: 50%;
@@ -161,11 +191,9 @@
     /* display: flex; */
     width: 100%;
     height: 50%;
-    /* justify-content: center; */
-    justify-items: center;
-    align-items: center;
+    /* align-items: center; */
     position: relative;
-
+    align-content: space-around;
 
  }
   /* chat bot 메시지 입력창 */
@@ -177,9 +205,9 @@
     border: 1px solid rgba(148,146,146,1);
     border-radius: 25px;
     padding-left: 5%;
-    top: 5%;
-    /* left: 50p */
-    /* opacity: 1; */
+    /* top: 5%; */
+    align-items: center;
+    justify-items: center;
   }
   
   .btn_chat {
@@ -237,4 +265,57 @@
   
 
 
- 
+ /*사용자 생성 말풍선*/
+.user_chat_bubble_group_all{
+  width: 100%;
+  height: 20%;
+  position: relative;
+  top: 5%;
+  /* background-color: #F47176; */
+  /* background: url("../images/v126_17.png");
+  background-repeat: no-repeat;
+  background-position: center center; */
+  /* background-size: cover; */
+  /* opacity: 1; */
+  /* overflow: hidden;  */
+}
+ .chat_bubble_group_user{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* background-color: aqua; */
+  /* background: url("../images/v126_13.png"); */
+  /* background-repeat: no-repeat;
+  background-position: center center; */
+  /* background-size: cover; */
+  /* opacity: 1; */
+  /* top: 0px; */
+  /* left: 15%; */
+  /* overflow: hidden; */
+ }
+
+ .chat_bubble_big_user{
+    width: 70%;
+    height: 100%;
+    background: rgb(236, 234, 234);
+    /* opacity: 1; */
+    position: absolute;
+    top: 0px;
+    /* left: 30%; */
+    right: 3%;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+    /* border-bottom-right-radius: 24px; */
+    /* overflow: hidden; */
+    justify-content: center;
+  }
+  
+  
+  
+  .user_text{
+   text-align: center;
+
+ }

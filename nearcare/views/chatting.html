@@ -69,7 +69,7 @@
                 <span class="span_chat_bubble_text_user">${userInput}</span>
             </div>
         `;
-        chatbotMessages.appendChild(userMessageDiv);
+        userMessages.appendChild(userMessageDiv);
 
         // 서버로 사용자 입력 전송
         try {
@@ -93,10 +93,23 @@
                         <img src="/images/profile_chatbot_icon.png" class="img_profile_chatbot_icon">
                     </div>
                     <div class="div_chat_bubble_big_gpt">
-                        <span class="span_text_gpt">${data.gptResponse}</span>
+                        <span class="span_text_gpt"></span>
                     </div>
                 `;
                 chatbotMessages.appendChild(chatbotMessageDiv);
+                // 자영 타이핑 하는 효과 추가 
+                const textElement = chatbotMessageDiv.querySelector('.span_text_gpt');
+                let index = 0;
+
+                function typeWriter() {
+                    if (index < data.gptResponse.length) {
+                        textElement.innerHTML += data.gptResponse.charAt(index);
+                        index++;
+                        setTimeout(typeWriter, 30); // 타이핑 속도 조절 (밀리초 단위)
+                    }
+                }
+
+                typeWriter();
             } else {
                 console.error('ChatGPT 응답 없음');
             }

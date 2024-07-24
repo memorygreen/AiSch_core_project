@@ -167,7 +167,7 @@ button{
     color: #777;
     font-size: 25px;
 }
-#pay_btn, #cencl_btn{
+#check_btn, #cencl_btn{
     border: 1px solid #e9e9e9;
     background-color: #fff8f7;
     width: 20%;

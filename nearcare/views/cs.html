@@ -1,18 +1,30 @@
 {% extends 'index.html' %}
 {% block content %}
 <link rel="stylesheet" href="/css/cs.css">
-<div id="matchinglist">
+<div id="cslist">
     <div id="title">
         <p>고객센터</p>
     </div>
     <div id="cs-list">
         {% for i in arr %}
-        <div class="cs-item">
-            <span id="titletype">{{i.csType}}</span>
-            <span id="titlename">{{i.csTitle}}</span>
-            <span id="titledate">{{i.csCreatedAt}}</span>
-        </div>
+        <a class="cs-item-link" href="/cs/detail?csId={{i.csId}}">
+            <div class="cs-item">
+                <span class="titletype">{{i.csType}}</span>
+                <span class="titlename">
+                    {{i.csTitle}}
+                    {% if i.isAnswered %}
+                    <span class="answered">답변완료</span>
+                    {% endif %}
+                </span>
+                <span class="titledate">{{i.csCreatedAt}}</span>
+            </div>
+        </a>
         {% endfor %}
+    </div>
+    <div class="cs-actions">
+        <a class="user_det" href="/cs/create">
+            <div class="writebutton">글쓰기</div>
+        </a>
     </div>
 </div>
 {% endblock %}

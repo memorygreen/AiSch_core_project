@@ -20,23 +20,24 @@
                 </p>
             </div>
 
-            <a class="user_det" href="/matching/detail?careReceiverId={{i.careReceiverId}}">
-                <div class="inner_button_div4">상세보기</div>
-            </a>
-            <br>
-
-            <a href="/matching/update-status?careReceiverId={{i.careReceiverId}}&newStatus={{i.matchStatus}}">
-                <div class="inner_button_div4">
-                    {% if status == 1 %}
-                    연계종료
-                    {% elif status == 0 %}
-                    연계시작
-                    {% endif %}
-                </div>
-            </a>
+            <div class="button-group">
+                <a class="user_det" href="/matching/detail?careReceiverId={{i.careReceiverId}}">
+                    <div class="inner_button_div4">상세보기</div>
+                </a>
+                <a href="/matching/update-status?careReceiverId={{i.careReceiverId}}&newStatus={{i.matchStatus}}">
+                    <div class="inner_button_div4">
+                        {% if status == 1 %}
+                        연계종료
+                        {% elif status == 0 %}
+                        연계시작
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
         </div>
         {% endfor %}
     </div>
 </div>
+
 
 {% endblock %}

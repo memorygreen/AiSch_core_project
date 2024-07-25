@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% block content %}
+<link rel="stylesheet" href="/css/cs.css">
+<div id="cslist">
+    <div id="title">
+        <p>고객문의 수정</p>
+    </div>
+    <div class="create-cs-form">
+        <form action="/cs/update" method="POST">
+            <input type="hidden" name="csId" value="{{ csId }}">
+            <div class="form-section">
+                <label for="queryType">문의 종류:</label>
+                <select id="queryType" name="csType" required>
+                    <option value="계정문의" {% if csType == '계정문의' %}selected{% endif %}>계정문의</option>
+                    <option value="나문희" {% if csType == '나문희' %}selected{% endif %}>나문희</option>
+                    <option value="요양대상자문의" {% if csType == '요양대상자문의' %}selected{% endif %}>요양대상자문의</option>
+                    <option value="불만사항" {% if csType == '불만사항' %}selected{% endif %}>불만사항</option>
+                </select>
+            </div>
+            <div class="form-section">
+                <label for="queryTitle">제목:</label>
+                <input type="text" id="queryTitle" name="csTitle" value="{{ csTitle }}" required>
+            </div>
+            <div class="form-section">
+                <label for="queryContent">내용:</label>
+                <textarea id="queryContent" name="csContent" rows="10" required>{{ csContent }}</textarea>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="submit-btn">제출</button>
+                <a href="/cs" class="cancel-btn">취소</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

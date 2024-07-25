@@ -1,47 +1,65 @@
 const maskDatas = function maskDatas (rows){
-    // console.log('M_rows', typeof(rows[0].care_receiver_birth));
-    
-    // let btd_str = JSON.stringify(rows[0].care_receiver_birth);
-    // let btd_spl = btd_str.split('-');
-    // let btd_spl_d = btd_spl[2].split('T');
-    // let btd_data = btd_spl[0]+'년'+btd_spl[1]+'월'+btd_spl_d[0]+'일';
-    
-    let name_spl = '';
-    let name_date = '';
-    let phone_spl = '';
-    let phoneNum = '';
+    // console.log('rows', rows);
+    let nameSpl, nameData, phoneSpl, phoneNum, addSpl, addData, year, month, day, btdStr, btdSpl, btdSplDate, btdData, userPoint, userId = '';
     let userArr = rows;
     let arrData = [];
-    let add_spl = '';
-    let add_data = '';
-    for(let i = 0; i < userArr.length; i++){
-        // 마스킹 처리 하기
-        
-        btd_str = JSON.stringify(rows[i].care_receiver_birth)
-        btd_spl = btd_str.split('-');
-        btd_spl_d = btd_spl[2].split('T');
+    try {
+        // 조회된 데이터만큼 마스킹 처리 하기
+        for(let i = 0; i < userArr.length; i++){
+            
+            userId = rows[i].USER_ID;
+            // console.log('userId',userId);
 
-        // btd_data = btd_spl[0]+'년'+btd_spl[1]+'월'+btd_spl_d[0]+'일';
-        name_spl = rows[i].care_receiver_name.split('');
-        name_date = name_spl[0] + '**';
-        phone_spl = rows[i].care_receiver_phone.split('-');
-        phoneNum = phone_spl[0] + '-****-****';
-        add_spl = rows[i].care_receiver_add.split(' ');
-        // console.log('add_spl', add_spl);
-        add_data = add_spl[0] + '*****';
-        arrData.push({
-            userName : name_date,
-            userBirth : '****년 **월 **일',
-            gender : '**',
-            phone : phoneNum,
-            careLevel : '*',
-            userAdd : add_data,
-        });
-    };
-    // let userArrLength = arrData.length;
-    // console.log('arrData', arrData);
-    return arrData;
+            // btd_str = JSON.stringify(rows[i].care_receiver_birth)
+            // btd_spl = btd_str.split('T');
+            // btd_spl_date = btd_spl[0].split('-');
+            btdStr = JSON.stringify(rows[i].care_receiver_birth)
+            btdSpl = btdStr.split('T');
+            btdSplDate = btdSpl[0].split('-');
+            year = btdSplDate[0];
+            month = btdSplDate[1];
+            day = btdSplDate[2];
+            // btd_data = year + '년 ' + month + '월 ' + day + '일';
+            btdData = year + '년 ' + month + '월 ' + day + '일';
+            
+            nameSpl = rows[i].care_receiver_name.split('');
+            nameData = nameSpl[0] + '*' + nameSpl[2];
+            
+            phoneSpl = rows[i].care_receiver_phone.split('-');
+            phoneNum = phoneSpl[0] + '-****-****';
+            
+            addSpl = rows[i].care_receiver_add.split(' ');
+            addData = addSpl[0] + '*****';
+            
+            arrData.push({
+                userId : userId,
+                userName : nameData,
+                userBirth : '****년 **월 **일',
+                gender : '**',
+                phone : phoneNum,
+                careLevel : '*',
+                userAdd : addData,
+                userPoint : userPoint
+            });
+        };
+        return arrData;
+
+    } catch (e) {
+        console.log('maskDatas Error!!');
+    }
+};
+
+const pointInnerTxtRet = function pointInnerTxtRet () {
+    let pointInnerTxt = document.getElementById('point_inner_txt');
+    console.log('pointInnerTxt.innerText',(pointInnerTxt.innerText));
+    return pointInnerTxt;
+};
+const pointPayUpdate = function pointPayUpdate(){
+    // return pointInnerTxt.innerText;
+    pointInnerTxtRet();
+    // console.log('pointPayUpdate', pointInnerTxt);
 };
 
 
-module.exports = maskDatas;
+
+module.exports = {maskDatas, pointPayUpdate, pointInnerTxtRet};

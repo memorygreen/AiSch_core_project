@@ -1,16 +1,16 @@
 
 #matchinglist {
-    margin-top: -20px; /* 상단 여백 조정 */
+    margin-top: -20px;
     display: flex;
-    flex-direction: column; /* 세로 방향으로 나열 */
-    align-items: center; /* 가로 중앙 정렬 */
-    width: 100%; /* 너비 100% */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     background-color: #FFFFFF;
-    border: 2px solid #FFFFFF; /* 핑크색 테두리 추가 */
-    border-radius: 20px; /* 테두리 둥글게 설정 */
-    padding: 20px; /* 내부 여백 추가 */
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
     height: max-content;;
-    min-height: 600px;
+    min-height: 700px;
 }
 
 #title {
@@ -27,31 +27,31 @@
 }
 #mlist {
     display: flex;
-    flex-direction: row; /* 가로 방향으로 나열 */
-    flex-wrap: nowrap; /* 줄 바꿈 없음 */
-    justify-content: flex-start; /* 왼쪽 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
-    width: 100%; /* 너비 100% */
-    overflow-x: auto; /* 가로 스크롤 허용 */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
 }
 
 .inner_mlist1 {
-    width: 100%; /* 너비 설정 */
-    height: auto; /* 높이 자동 조정 */
-    margin: 10px; /* 여백 설정 */
-    border: 2px solid #F47176; /* 핑크색 테두리 추가 */
-    border-radius: 20px; /* 테두리 둥글게 설정 */
+    width: 100%;
+    height: auto;
+    margin: 10px;
+    border: 2px solid #F47176;
+    border-radius: 20px;
     display: flex;
-    flex-direction: column; /* 세로 방향으로 나열 */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px; /* 내부 여백 추가 */
-    transition: background-color 0.3s, border-color 0.3s; /* 부드러운 색상 전환 효과 */
+    padding: 10px;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .inner_mlist1:hover {
-    background-color: #FFFFFF; /* 마우스 오버 시 배경색 변경 */
-    border-color: #E94F6C; /* 테두리 색상 변경 */
+    background-color: #FFFFFF; 
+    border-color: #E94F6C; 
 }
 
 .inner_mlist3 {
@@ -65,20 +65,26 @@
     margin-top: 20px;
     padding: 20px;
     border: 2px solid #F47176;
-    border-radius: 8px; /* 테두리 둥글게 설정 */
+    border-radius: 8px; 
     background-color: #f9f9f9;
 }
 
-.inner_button_div4{
-    width: 100%;
-    height: 30%;
+
+.inner_button_div4 {
+    width: 200px;
+    height: 40px; 
     border: 1px solid #F47176;
     border-radius: 10px;
     text-align: center;
-    line-height: 25px;
-    margin-right: 100px;
+    line-height: 40px;
+    margin: 10px;
     font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 20px;
 }
+
+
 
 .inner_button_div4:hover, #mbtn:hover{
     background-color: #F47176;

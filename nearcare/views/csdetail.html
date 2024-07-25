@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+{% block content %}
+<link rel="stylesheet" href="/css/cs.css">
+<div id="cslist">
+    <div id="title">
+        <p>고객문의</p>
+    </div>
+    <div id="cs-detail">
+        <div class="cs-detail-item">
+            <div class="cs-header">
+                <span class="cs-title">{{ csTitle }}</span>
+                <span class="titledate">{{ csCreatedAt }}</span>
+            </div>
+            <div class="cs-content">
+                <p>{{ csContent }}</p>
+            </div>
+            {% set answer = csAnswer %}
+            {% if answer %}
+            <div class="cs-answer-header">
+                <span class="cs-title">관리자메세지</span>
+                <span class="titledate">{{ asCreatedAt }}</span>
+            </div>
+            <div class="cs-answer">
+                <p>{{ csAnswer }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="cs-actions">
+        <a class="writebutton" href="/cs/edit?csId={{ csId }}">수정</a>
+        <button class="deletebutton" onclick="openModal()">삭제</button>
+    </div>
+</div>
+
+<!-- 삭제 확인 모달 -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <p>정말로 삭제하시겠습니까?</p>
+        <form id="deleteForm" action="/cs/delete" method="POST">
+            <input type="hidden" name="csId" value="{{ csId }}">
+            <button type="submit" class="deletebutton">삭제</button>
+            <button type="button" class="writebutton" onclick="closeModal()">취소</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById("deleteModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("deleteModal").style.display = "none";
+    }
+
+    // 모달 외부 클릭 시 모달 닫기
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("deleteModal")) {
+            closeModal();
+        }
+    }
+</script>
+{% endblock %}

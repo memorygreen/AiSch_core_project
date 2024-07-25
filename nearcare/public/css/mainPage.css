@@ -1,13 +1,13 @@
 #whitebackground {
-    margin-top: -20px; /* 상단 여백 조정 */
+    margin-top: -20px;
     display: flex;
-    flex-direction: column; /* 세로 방향으로 나열 */
-    align-items: center; /* 가로 중앙 정렬 */
-    width: 100%; /* 너비 100% */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     background-color: #FFFFFF;
-    border: 2px solid #FFFFFF; /* 핑크색 테두리 추가 */
-    border-radius: 20px; /* 테두리 둥글게 설정 */
-    padding: 20px; /* 내부 여백 추가 */
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
     height: max-content;
 }
 

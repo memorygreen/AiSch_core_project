@@ -1,0 +1,173 @@
+/* 회원가입 css */
+/* 회원가입 스타일 */
+#join {
+    margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
+    height: max-content;
+    min-height: 700px;
+}
+
+#join-form {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 93%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.form-group select {
+    width: 100%;
+    height: 35px;
+    font-size: 18px;
+}
+
+.cs-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.joinbutton, .loginbutton {
+    width: 150px;
+    height: 50px;
+    border: 1px solid #F47176;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    color: #F47176;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 60px;
+}
+
+.joinbutton:hover, .loginbutton:hover {
+    background-color: #F47176;
+    color: #FFFFFF;
+}
+
+#userBirthdate {
+    font-family: 'Arial', sans-serif; 
+    font-size: 18px; 
+}
+
+
+
+
+
+
+/* 로그인 css */
+#login {
+    margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
+    height: max-content;
+    min-height: 700px;
+}
+
+#title {
+    background-color: #F47176;
+    width: 107%;
+    text-align: center;
+    color: #FFFFFF;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+#title p {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#login-form {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 93%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-actions {
+    text-align: center;
+}
+
+.login-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 75px;
+    width: 100%;
+    text-align: center; 
+}
+
+.loginbutton, .joinbutton {
+    width: 150px;
+    height: 50px;
+    border: 1px solid #F47176;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none; 
+    color: #F47176;
+    font-size: 16px;
+    margin-bottom: 60px;
+}
+
+.loginbutton:hover, .joinbutton:hover {
+    background-color: #F47176;
+    color: #FFFFFF;
+}
+
+select {
+    width: 101%;
+    height: 35px;
+    font-size: 20px;
+}

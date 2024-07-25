@@ -1,12 +1,14 @@
 {% extends 'index.html' %}
 {% block content %}
     <div id="wrap">
+        <div id="title">
+            <p>요양정보 등록</p>
+        </div>
         <div id="reg_container_wrap">
-            <div id="care_receive_reg_title">
-                <h1>요양정보 등록</h1>
-            </div>
+            
             <div class="care_receive_reg_div1">
                 <div class="care_receive_reg_left_div">
+                    
                     <div><span>이름</span></div>
                     <div><span>생년월일</span></div>
                     <div><span>연락처</span></div>
@@ -51,8 +53,14 @@
                     </div>
                 </div>
             </div>
+            
+            
+                <div class="care_receive_border1"></div>
+        
+            
             <div class="care_receive_reg_div2">
                 <div class="care_receive_reg_left_div">
+                    
                     <div>주요질환</div>
                     
                     <div>요일</div>
@@ -124,7 +132,7 @@
             </div>
             <div class="care_receive_reg_div3">
                 <div class="care_receive_reg_left_div">비고</div>
-                <div class="care_receive_reg_right_div"><textarea name="text_area" ></textarea></div>
+                <div class="care_receive_reg_right_div"><textarea id="receiver_textarea" name="text_area" ></textarea></div>
             </div>
             <!-- <div class="care_receive_reg_div"></div> -->
             <div class="care_receive_reg_div4">

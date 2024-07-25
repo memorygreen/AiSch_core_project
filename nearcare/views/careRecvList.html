@@ -1,6 +1,11 @@
 {% extends 'index.html' %}
 {% block content %}
+<div id="u_list">
+<div id="title">
+    <p>요양 대상 목록</p>
+</div>
 <div id="u_list_wrap">
+    
     <div id="u_list_div">
         {% for i in arrData %}
         <form action="/submit" method="post" >
@@ -34,8 +39,12 @@
             </div>
         </form>
         {% endfor %}
-        
+        <div class="u_list_bottom_blankspace">
+
+        </div>
     </div>
+    
+</div>
 </div>
 <!-- modal -->
 <div id="modal_out_wrap"> <!-- 모달 창을 감싸는 div -->

@@ -42,6 +42,7 @@ router.get('/careRecvList', (req, res)=>{
         if(err){
             console.error('careRecvList 에러');
         }
+        // console.log('요양대상자들 데이터', rows);
         // 마스킹 처리 함수
         let arrData = recvModule.maskDatas(rows);
         // 임시 포인트 조회를 위해 테스트 데이터 넣음 - 아인
@@ -142,7 +143,6 @@ router.get('/careRecvDetail', (req, res) => {
 
     conn.query(sql, (err, rows) => {
         let userArr = [];
-        console.log("select한 detail 데이터", rows[0]);
 
         let gender ='';
         if(rows[0].CARE_RECEIVER_GENDER == 'M'){

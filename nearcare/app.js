@@ -12,6 +12,7 @@ const csRouter = require('./routes/csRouter');
 const userRouter = require('./routes/userRouter');
 const path = require('path');
 const fs = require('fs');
+const mapRouter = require('./routes/mapRouter');
 
 const session = require('express-session');
 const fileStore = require('session-file-store')(session);
@@ -57,6 +58,7 @@ app.use('/chatting', chattingRouter);
 app.use('/matching', matchingRouter);
 app.use('/cs', csRouter);
 app.use('/user', userRouter);
+app.use('/map', mapRouter);
 
 // 넌적스 셋팅
 app.set('view engine', 'html');

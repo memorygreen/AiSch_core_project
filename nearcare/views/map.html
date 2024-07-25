@@ -1,36 +1,38 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{
-            margin: 0 auto;
-            width: 100%;
-            height: 100%;
-            background-color: #fbc2c2;
-            /* display: flex; */
-        };
-        #container_map{
-            display: flex;
-            border: 2px solid #000000;
-            width: 80%;
-            height: 90%;
-            background-color: #c2effb;
-            
-        }
-        #map_zone{
-            width: 80%;
-            height: 70%;
-            object-fit: contain;
-        }
-    </style>
-</head>
-<body>
-    <div id="container_map">
-        <img src="../images/dog.jpg" id="map_zone" alt="">
+{% extends 'index.html' %}
+{% block content %}
+<div id="out_container_map">
+    <div id="container_map_top_div">
+        <div id="search_input_div">
+            <input id="search_input" type="text">
+            <button id="search_button"></button>
+        </div>
     </div>
-</body>
-</html>
+
+    <div id="container_map_bottom_div">
+        <div id="map_content_div">
+            <div class="map_wrap">
+                <div id="map_top" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+                <div id="menu_wrap" class="bg_white">
+                    <div class="option">
+                        <div>
+                            <form onsubmit="searchPlaces(); return false;">
+                                키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
+                                <button type="submit">검색하기</button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                    <ul id="placesList"></ul>
+                    <div id="pagination"></div>
+                </div>
+            </div>
+
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
+<!-- <script src="/js/map.js"></script> -->
+<script type="text/javascript" src="/js/map.js"></script>
+
+{% endblock %}

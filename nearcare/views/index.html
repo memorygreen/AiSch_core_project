@@ -12,23 +12,25 @@
     <link rel="stylesheet" href="/css/chatting.css">
     <link rel="stylesheet" href="/css/matching.css">
 </head>
+
 <body>
     <header>
         <div id="header_outer_wrap">
             <div id="header_inner_wrap">
                 <div id="header_div_wrap">
-                    <a href="/"><img src="/images/logo.png" id="logo"></img></a>                  
-                    <!-- <div id="header_menu_div1"><a href="/careRecvReg/careRecvList">요양대상자찾기</a></div>
-                    <div id="header_menu_div2"><a href="">AI챗봇</a></div>
-                    <div id="header_menu_div4"><a href="">시설찾기</a></div> -->
+                    <a href="/"><img src="/images/logo.png" id="logo"></img></a>
                     <div class="header_menu_div"><a href="/matching">요양대상자관리</a></div>
                     <div class="header_menu_div"><a href="/cs">고객문의</a></div>
-                    <div class="header_menu_div"><a href="">로그인</a></div>
+                    {% if userId %}
+                        <div class="header_menu_div"><a href="/user/logout">로그아웃</a></div>
+                    {% else %}
+                        <div class="header_menu_div"><a href="/user/login">로그인</a></div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </header>
-    
+
     <div id="outer_wrap">
         <div id="centered_content_wrap">
             <div id="index_container_wrap">
@@ -38,66 +40,54 @@
         </div>
     </div>
 
-    <!-- 자영: 푸터 추가 -->
     <footer>
-        <!-- 하단 푸터 -->
-        <!-- <div id="footer_wrap"> -->
-            <div class="footer_all">
-
-                <div class="footer_group">
-                    <a href="/careRecvReg/careRecvList">
-                        <div class="footer_div_img">
-                            <img class="footer_img" src= "/images/finding_receiver_img.png">
-                        </div>
-                        <span class="footer_text">요양대상자 찾기</span>
-                    </a>
-                </div>
-
-                <div class="footer_group">
-                    <a href="/chatting">
-                        <div class="footer_div_img">
-                            <img class="footer_img" src= "/images/chatbot_img.png">
-                        </div>
-                        <span class="footer_text">AI 챗봇</span>
-                    </a>
-                </div>
-                
-                <div class="footer_group">
-                    <a href="/">
-                        <div class="footer_div_img">
-                            <img class="footer_img" src= "/images/home_img.png">
-
-                        </div>
-                        <span class="footer_text">홈</span>
-                    </a>
-                </div>
-
-                <div class="footer_group">
-                    <a href="">
-                        <div class="footer_div_img">
-                            <img class="footer_img" src= "/images/finding_center_img.png">
-                        </div>
-                        <span class="footer_text">시설 찾기</span>
-                    </a>
-                </div>
-
-                <div class="footer_group">
-                    <a href="">
+        <div class="footer_all">
+            <div class="footer_group">
+                <a href="/careRecvReg/careRecvList">
                     <div class="footer_div_img">
-                        <img class="footer_img" src= "/images/finding_calculation_img.png">
+                        <img class="footer_img" src="/images/finding_receiver_img.png">
+                    </div>
+                    <span class="footer_text">요양대상자 찾기</span>
+                </a>
+            </div>
+
+            <div class="footer_group">
+                <a href="/chatting">
+                    <div class="footer_div_img">
+                        <img class="footer_img" src="/images/chatbot_img.png">
+                    </div>
+                    <span class="footer_text">AI 챗봇</span>
+                </a>
+            </div>
+
+            <div class="footer_group">
+                <a href="/">
+                    <div class="footer_div_img">
+                        <img class="footer_img" src="/images/home_img.png">
+                    </div>
+                    <span class="footer_text">홈</span>
+                </a>
+            </div>
+
+            <div class="footer_group">
+                <a href="">
+                    <div class="footer_div_img">
+                        <img class="footer_img" src="/images/finding_center_img.png">
+                    </div>
+                    <span class="footer_text">시설 찾기</span>
+                </a>
+            </div>
+
+            <div class="footer_group">
+                <a href="">
+                    <div class="footer_div_img">
+                        <img class="footer_img" src="/images/finding_calculation_img.png">
                     </div>
                     <span class="footer_text">지원금계산기</span>
-                </div>
-            
-   
-
-
-
+                </a>
+            </div>
         </div>
-        <!-- 하단 푸터 종료-->
     </footer>
-    
 </body>
-
 
 </html>

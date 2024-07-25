@@ -30,6 +30,7 @@ router.get('/careRecvList', (req, res) => {
             console.error('careRecvList 에러');
         }
 
+
         // 마스킹 처리 함수
         let arrData = recvModule.maskDatas(rows);
         // 임시 포인트 조회를 위해 테스트 데이터 넣음 - 아인

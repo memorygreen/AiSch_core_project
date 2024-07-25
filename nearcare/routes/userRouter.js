@@ -1,7 +1,17 @@
 const express = require("express");
-const router = express.Router();
-const conn = require("../config/db");
+const session = require("express-session");
+const FileStore = require("session-file-store")(session);
 const crypto = require('crypto');
+const conn = require("../config/db");
+const router = express.Router();
+
+// 세션 설정
+router.use(session({
+    secret: 'secret', // 적절한 비밀 키를 설정하세요.
+    resave: false,
+    saveUninitialized: true,
+    store: new FileStore({}),
+}));
 
 // 회원가입 페이지
 router.get('/join', (req, res) => {
@@ -11,7 +21,7 @@ router.get('/join', (req, res) => {
 // 회원가입 처리
 router.post('/join', (req, res) => {
     const { userId, password, userName, userEmail, userPhone, userBirthdate, userCondition, userCenterCode, userCenterName, userCenterCate } = req.body;
-    
+
     try {
         // 비밀번호 암호화 (SHA-256)
         const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
@@ -69,12 +79,10 @@ router.get('/login', (req, res) => {
 
 // 로그인 처리
 router.post('/login', (req, res) => {
-    const { userId, userPw } = req.body; // `userPw`로 수정
+    const { userId, userPw } = req.body;
 
-    // 비밀번호 암호화 (SHA-256)
     const hashedPassword = crypto.createHash('sha256').update(userPw).digest('hex');
 
-    // 사용자 정보 조회
     const sql = 'SELECT * FROM TB_USER WHERE USER_ID = ? AND USER_PW = ?';
     conn.query(sql, [userId, hashedPassword], (err, results) => {
         if (err) {
@@ -87,10 +95,32 @@ router.post('/login', (req, res) => {
         }
 
         const user = results[0];
-        
-        // 로그인 성공, 세션 저장
+        console.log('User logged in:', user.USER_ID);
+        console.log('Session before save:', req.session);
+
         req.session.userId = user.USER_ID;
-        res.redirect('/'); // 로그인 후 메인 페이지로 이동
+        req.session.userType = user.USER_TYPE;
+        req.session.save((err) => {
+            if (err) {
+                console.error('Session save error:', err);
+                return res.status(500).send('Internal Server Error');
+            }
+            console.log('Session after save:', req.session);
+            res.redirect('/'); 
+        });
+    });
+});
+
+
+
+// 로그아웃 처리
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error during logout:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        res.redirect('/');
     });
 });
 

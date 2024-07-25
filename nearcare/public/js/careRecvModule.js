@@ -1,3 +1,5 @@
+const formatDate = require("./formatDate");
+
 const maskDatas = function maskDatas (rows){
     // console.log('rows', rows);
     let nameSpl, nameData, phoneSpl, phoneNum, addSpl, addData, year, month, day, btdStr, btdSpl, btdSplDate, btdData, userPoint, userId = '';
@@ -49,17 +51,28 @@ const maskDatas = function maskDatas (rows){
     }
 };
 
-const pointInnerTxtRet = function pointInnerTxtRet () {
-    let pointInnerTxt = document.getElementById('point_inner_txt');
-    console.log('pointInnerTxt.innerText',(pointInnerTxt.innerText));
-    return pointInnerTxt;
+const userInfo = function userInfo (rows) {
+    let birthDay = rows[0].CARE_RECEIVER_BIRTH;
+    let birthDayFormet = formatDate(birthDay);
+    let birthDaySplt = birthDayFormet.split('-');
+    let userBirth = birthDaySplt[0] + '년 ' + birthDaySplt[1] + '월 ' + birthDaySplt[2] + '일';
+    console.log('birthDayFormet',birthDayFormet);
+    console.log('birthDaySplt', birthDaySplt[0]);
+    let userInfo = {
+        userName : rows[0].CARE_RECEIVER_NAME,
+        gender : rows[0].CARE_RECEIVER_GENDER,
+        userBirth : userBirth,
+        phone: rows[0].CARE_RECEIVER_PHONE,
+        userAdd : rows[0].CARE_RECEIVER_ADD,
+        careLavel : rows[0].CARE_RECEIVER_LEVEL,
+        pay : rows[0].CARE_RECEIVER_PAY,
+        careDays : rows[0].CARE_RECEIVER_DAYS,
+        dementia: rows[0].CARE_RECEIVER_DEMENTIA,
+        behavior : rows[0].CARE_RECEIVER_BEHAVIOR,
+        dialusis : rows[0].CARE_RECEIVER_DIALYSIS,
+        etc : rows[0].CARE_RECEIVER_ETC
+    };
+    return userInfo;
 };
-const pointPayUpdate = function pointPayUpdate(){
-    // return pointInnerTxt.innerText;
-    pointInnerTxtRet();
-    // console.log('pointPayUpdate', pointInnerTxt);
-};
 
-
-
-module.exports = {maskDatas, pointPayUpdate, pointInnerTxtRet};
+module.exports = {maskDatas, userInfo};

@@ -10,7 +10,7 @@ const careRecvRegconfrm = function careRecvRegconfrm(){
 };
 
 const selectPoint = function selectPoint(userId){
-    let sql = `select USER_POINT from TB_USER where USER_ID = '${userId}'`;
+    let sql = `select USER_POINT from TB_USER where USER_ID = '${userId}'`
     return sql;
 };
 
@@ -20,4 +20,10 @@ const updateUserPointSql = function updateUserPointSql(userPoint,userId){
     
     return sql;
 };
-module.exports = {careRecvListSql, careRecvRegconfrm, selectPoint, updateUserPointSql};
+
+const careRecviInfo = function careRecviInfo(selUserId){
+    let sql = `select * from TB_CARE_RECEIVER where USER_ID = '${selUserId}'`;
+    return sql;
+};
+
+module.exports = {careRecvListSql, careRecvRegconfrm, selectPoint, updateUserPointSql, careRecviInfo};

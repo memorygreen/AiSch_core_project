@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const conn = require("../config/db");
 const formatDate = require("../public/js/formatDate");
+const { session } = require("passport");
 
 // 고객센터 목록 페이지
 router.get("/", (req, res) => {

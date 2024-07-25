@@ -1,30 +1,64 @@
 {% extends 'index.html' %}
+
 {% block content %}
-<link rel="stylesheet" href="/css/cs.css">
-<div id="cslist">
+<link rel="stylesheet" href="/css/user.css">
+
+<div id="join">
     <div id="title">
-        <p>고객센터</p>
+        <p>회원가입</p>
     </div>
-    <div id="cs-list">
-        {% for i in arr %}
-        <a class="cs-item-link" href="/cs/detail?csId={{i.csId}}">
-            <div class="cs-item">
-                <span class="titletype">{{i.csType}}</span>
-                <span class="titlename">
-                    {{i.csTitle}}
-                    {% if i.isAnswered %}
-                    <span class="answered">답변완료</span>
-                    {% endif %}
-                </span>
-                <span class="titledate">{{i.csCreatedAt}}</span>
+    <div id="join-form">
+        <form action="/user/join" method="post">
+            <div class="form-group">
+                <label for="userId">아이디:</label>
+                <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요" required>
             </div>
-        </a>
-        {% endfor %}
+            <div class="form-group">
+                <label for="password">비밀번호:</label>
+                <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="userName">이름:</label>
+                <input type="text" id="userName" name="userName" placeholder="이름을 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="userEmail">이메일:</label>
+                <input type="email" id="userEmail" name="userEmail" placeholder="이메일을 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="userPhone">전화번호:</label>
+                <input type="text" id="userPhone" name="userPhone" placeholder="전화번호를 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="userBirthdate">생년월일:</label>
+                <input type="date" id="userBirthdate" name="userBirthdate" required>
+            </div>
+            <div class="form-group">
+                <label for="userCondition">건강상태:</label>
+                <input type="text" id="userCondition" name="userCondition" placeholder="일반 사용자만 입력해주세요">
+            </div>
+            <div class="form-group">
+                <label for="userCenterCode">기관코드:</label>
+                <input type="text" id="userCenterCode" name="userCenterCode" placeholder="기관 사용자만 입력해주세요">
+            </div>
+            <div class="form-group">
+                <label for="userCenterName">기관명:</label>
+                <input type="text" id="userCenterName" name="userCenterName" placeholder="기관 사용자만 입력해주세요">
+            </div>
+            <div class="form-group">
+                <label for="userCenterCate">기관분류:</label>
+                <select id="userCenterCate" name="userCenterCate">
+                    <option value="">일반사용자</option>
+                    <option value="암">암전문</option>
+                    <option value="치매">치매전문</option>
+                    <option value="재활">재활전문</option>
+                    <option value="투석">투석전문</option>
+                </select>
+            </div>
+            <div class="cs-actions">
+                <button type="submit" class="joinbutton">회원가입</button>
+                <a class="loginbutton" href="/user/login">로그인</a>
+            </div>
+        </form>
     </div>
-    <div class="cs-actions">
-        <a class="user_det" href="/cs/create">
-            <div class="writebutton">글쓰기</div>
-        </a>
-    </div>
-</div>
 {% endblock %}

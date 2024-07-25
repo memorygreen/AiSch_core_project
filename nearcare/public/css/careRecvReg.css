@@ -63,6 +63,13 @@ span{
     align-items: baseline;
     margin-left: -10%;
 }
+
+.care_receive_reg_left_div, .care_receive_reg_right_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 .care_receive_reg_div3{
     display: flex;
     width: 100%;
@@ -84,12 +91,14 @@ span{
     margin-left: -5%;
     font-size: 95%;
     font-weight: 1000;
+
 }
 .care_receive_reg_right_div{
     width: 80%;
     text-align: left;
     padding-left: 10px;
     font-size: 95%;
+
 }
 #disease_type{
     display: flex;
@@ -117,12 +126,15 @@ span{
     line-height: 40px;
 }
 
+
 #care_week_div{
     display: flex;
     justify-content: flex-start;
     align-items: center;
     line-height: 27px;
     width: 100%;
+    margin-top: 10px;
+
 }
 #care_week_div > div{
     width: 50%;
@@ -135,6 +147,14 @@ span{
     margin-right: 1%;
 
 }
+
+#care_time_div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+}
+
 /* .week_btns:active{
     background-color: #F47176;
     color: #FFFFFF;
@@ -215,4 +235,8 @@ textarea{
 #receiver_textarea{
     width: 100%;
     height: 80%;
+}
+
+.care_receive_textarea-btn_blankspace{
+    height: 20px;
 }

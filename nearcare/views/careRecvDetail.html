@@ -7,43 +7,41 @@
         </div>
             <div id="detail_content">
                 <div class="detail_content_col detail_content_img">
-                    <div class="detail_blankspace1">
 
-                    </div>
                     <img src="../images/3.png">
                 </div>
                 <div class="detail_content_col detail_content_text">
-                    <div class="detail_blankspace1">
-
-                    </div>
                 <div>
-                    <p class="detail_p">이름:</p>
-                    <p class="detail_p">성별:</p>
-                    <p class="detail_p">생년월일:</p>
-                    <p class="detail_p">전화번호:</p>
-                    <p class="detail_p">주소:</p>
-                    
+                    <h3>기본정보</h3>
+                    <p class="detail_p">이름: {{data.CARE_RECEIVER_NAME}}</p>
+                    <p class="detail_p">성별: {{gender}}</p>
+                    <p class="detail_p">생년월일: {{birthDay}}</p>
+                    <p class="detail_p">전화번호: {{data.CARE_RECEIVER_PHONE}}</p>
+                    <p class="detail_p">주소: {{data.CARE_RECEIVER_ADD}}</p>
                 </div>
-                    
-                </div>
-                <div class="detail_bottom_text">
-                    <div class="detail_blankspace2">
-                        <div class="detail_border"></div>
-                    </div>
-                <p class="detail_p2">요양등급:</p>
-                    <p class="detail_p2">지불시급:</p>
-                    <p class="detail_p2">이용요일:</p>
-                    <p class="detail_p2">주요질환: 
-                        <span class="visible">치매</span>
-                        <span class="visible">식사가능</span>
-                        <span class="invisible">거동가능</span>
-                        <span class="invisible">투석</span>
-                    </p> 
-                    <p class="detail_p2">비고:</p>
-                    <div class="detail_blankspace3">
+                <div class="detail_blankspace1">
 
-                    </div>
                 </div>
+                <div>
+                    <h3>요양정보</h3>
+                    <p class="detail_p2">요양등급: {{data.CARE_RECEIVER_LEVEL}}</p>
+                    <p class="detail_p2">지불시급: {{data.CARE_RECEIVER_PAY}}</p>
+                    <p class="detail_p2">이용요일: {{data.CARE_RECEIVER_DAYS}}</p>
+                    <p class="detail_p2">주요질환: 
+
+                        
+                        
+
+                        <span class={{dementia}}>치매</span>
+                        <span class={{meal}}>식사가능</span>
+                        <span class={{behavior}}>거동가능</span>
+                        <span class={{dialysis}}>투석</span>
+                    </p> 
+                    <p class="detail_p2">비고: {{data.CARE_RECEIVER_ETC}}</p>
+                </div>
+                    
+                </div>
+                
                 
                 
             

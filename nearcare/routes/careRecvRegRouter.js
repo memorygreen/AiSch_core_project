@@ -2,45 +2,119 @@ const express = require('express');
 const router = express.Router();
 const conn = require('../config/db');
 const moment = require('moment');
-const maskDatas = require('../public/js/careRecvModule');
-const careRecvListSql = require('../public/js/careRecvSqlModule');
 // const momentKo = require("moment/locale/ko");
 
-// 요양정보등록 라우터
-router.get('/careRecvRegconfrm', (req, res)=>{
-    let sql = 'select * from TB_CARE_RECEIVER as r left outer join  TB_USER as u  on u.USER_ID = "?"and r.USER_ID = "?" ';
-    // sql 임시 정보 불러오기 위해 id 지정
-    // 추후 선택한 대상자 정보 불러와 넣을 예정-아인
-    let user_id = 'user001';
-    conn.query(sql, [user_id , user_id], (err, rows)=>{
+//body-parser등록
+
+router.get('/careRecvRegconfrm', (req, res) => {
+    let sql = 'select * from tb_user as u inner join tb_care_receiver as r where u.user_id = ? and r.user_id = ?';
+    let user_id = 'user_id 30';
+    conn.query(sql, [user_id, user_id], (err, rows) => {
         // 날짜 데이터 변환
-        let birthDay = moment(rows[0].care_receiver_birth);
+        let birthDay = moment(rows[0].receive_care_birth);
         let btd_set = birthDay.format('YYYY-MM-DD');
         let btd_split = btd_set.split('-');
-        let btDay = btd_split[0]+'년 '+btd_split[1] + '월 ' + btd_split[2] + '일';
+        let btDay = btd_split[0] + '년 ' + btd_split[1] + '월 ' + btd_split[2] + '일';
 
-        res.render('careReceiverReg', {dbData : rows[0], btDay : btDay});
+        res.render('careReceiverReg', { dbData: rows[0], date: btDay });
     });
 });
 
-// 요양 대상자 리스트 조회해와 마스킹 처리
-router.get('/careRecvList', (req, res)=>{
-    let sql = 'select care_receiver_name, care_receiver_birth, care_receiver_gender, care_receiver_phone, user_email, care_receiver_level, care_receiver_add from TB_USER as u inner join TB_CARE_RECEIVER as r where u.user_id = r.user_id';
-    // console.log('careRecvListSql', careRecvListSql());
-    conn.query(sql, (err, rows)=>{
-        // 마스킹 처리 함수
-        let arrData = maskDatas(rows);
-        // console.log('arrData : ', arrData[0].gender);
-        // 요양대상자 리스트 페이지 이동
-        res.render('careRecvList', {arrData});
+router.get('/careRecvList', (req, res) => {
+    let sql = 'select receive_care_name, receive_care_birth, receive_care_gender, receive_care_phone, user_email, receive_care_level, receive_care_add from tb_user as u inner join tb_care_receiver as r where u.user_id = r.user_id';
+    conn.query(sql, (err, rows) => {
+        let userArr = [];
+        userArr = rows
+        let arrDate = [];
+        let birthDay = '';
+        let btd_set = '';
+        let btd_split = '';
+        let btDay = '';
+        let gender = '';
+        for (let i = 0; i < userArr.length; i++) {
+            // 마스킹 처리 하기
+            birthDay = moment(rows[i].receive_care_birth);
+            btd_set = birthDay.format('YYYY-MM-DD');
+            btd_split = btd_set.split('-');
+            btDay = btd_split[0] + '년 ' + btd_split[1] + '월 ' + btd_split[2] + '일';
+
+            arrDate.push({
+                userName: rows[i].receive_care_name,
+                userBirth: btDay,
+                gender: rows[i].receive_care_gender,
+                phone: rows[i].receive_care_phone,
+                careLevel: rows[i].receive_care_level,
+                userAdd: rows[i].receive_care_add,
+            });
+            // console.log('arrDate',arrDate);
+        };
+        // console.log('rows',rows);
+        // console.log('userarr',userArr.length);
+        // console.log('arrDate[0].userName', arrDate[0].userName);
+        res.render('careRecvList', { arrDate });
+
     });
 });
 
-// 요양 대상자 상세 정보 페이지 이동
-router.get('/careRecvDetail', (req, res)=>{
-    res.render('careRecvDetail');
+router.get('/careRecvDetail', (req, res) => {
+    console.log("detail_request", req.params.id);
+    let careReceiverId = req.params.id;
+    let sql = 'SELECT CARE_RECEIVER_NAME, CARE_RECEIVER_BIRTH, CARE_RECEIVER_GENDER, CARE_RECEIVER_LEVEL, CARE_RECEIVER_PHONE, CARE_RECEIVER_ADD, CARE_RECEIVER_PAY, CARE_RECEIVER_DAYS, CARE_RECEIVER_DEMENTIA, CARE_RECEIVER, CARE_RECEIVER_BEHAVIOR, CARE_RECEIVER_DIALYSIS, CARE_RECEIVER_ETC FROM TB_CARE_RECEIVER WHERE CARE_RECEIVER_ID=1';
+
+
+    conn.query(sql, (err, rows) => {
+        let userArr = [];
+        console.log("select한 detail 데이터", rows[0]);
+
+        let gender ='';
+        if(rows[0].CARE_RECEIVER_GENDER == 'M'){
+            gender='남자';
+        }else{
+            gender='여자';
+        }
+
+        let birthDay = moment(rows[0].CARE_RECEIVER_BIRTH);
+        btd_set = birthDay.format('YYYY-MM-DD');
+        btd_split = btd_set.split('-');
+        btDay = btd_split[0] + '년 ' + btd_split[1] + '월 ' + btd_split[2] + '일';
+        console.log('birthday', btDay);
+
+        let dementia ='';
+        let meal = '';
+        let behavior = '';
+        let dialysis = '';
+        if(rows[0].CARE_RECEIVER_DEMENTIA == 'N'){
+            dementia = 'invisible';
+        }else{
+            dementia = 'visible';
+        }
+
+        if(rows[0].CARE_RECEIVER == 'N'){
+            meal = 'invisible';
+        }else{
+            meal = 'visible';
+        }
+
+        if(rows[0].CARE_RECEIVER_BEHAVIOR == 'N'){
+            behavior = 'invisible';
+        }else{
+            behavior = 'visible';
+        }
+
+        if(rows[0].CARE_RECEIVER_DIALYSIS == 'N'){
+            dialysis = 'invisible';
+        }else{
+            dialysis = 'visible';
+        }
+
+        
+
+        res.render('careRecvDetail', { data: rows[0],gender:gender, birthDay: btDay, dementia:dementia, meal:meal, behavior:behavior, dialysis:dialysis });
+
+    })
+
+
+
 });
-
-
 
 module.exports = router;

@@ -26,10 +26,22 @@
             {% endif %}
         </div>
     </div>
+    {% if userType == '3' %}
+    <div class="cs-comment-section">
+        <h3>관리자 답변 작성</h3>
+        <form id="commentForm" action="/cs/comment" method="POST">
+            <input type="hidden" name="csId" value="{{ csId }}">
+            <input type="hidden" name="userId" value="{{ userId }}">
+            <textarea name="content" required placeholder="댓글을 작성하세요..."></textarea>
+            <button type="submit">답변 제출</button>
+        </form>
+    </div>
+    {% endif %}
     <div class="cs-actions">
         <a class="writebutton" href="/cs/edit?csId={{ csId }}">수정</a>
         <button class="deletebutton" onclick="openModal()">삭제</button>
     </div>
+
 </div>
 
 <!-- 삭제 확인 모달 -->

@@ -151,6 +151,21 @@ router.post("/update", (req, res) => {
     });
 });
 
+// 고객문의 답변
+router.post("/comment", (req, res) => {
+    const { csId, userId, content } = req.body;
+    const createdAt = new Date();
+    console.log("답변req.body   "+req.body);
 
+    let sql = "INSERT INTO TB_AS (CS_IDX, AS_ADMIN_ID, AS_CONTENT, AS_CREATED_AT) VALUES (?, ?, ?, ?)";
+    conn.query(sql, [csId, userId, content, createdAt], (err, results) => {
+        if (err) {
+            console.error('Database query error:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.redirect(`/cs/detail?csId=${csId}`);
+    });
+});
 
 module.exports = router;

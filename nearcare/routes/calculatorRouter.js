@@ -12,6 +12,12 @@
 // 180분 54320
 // 210분 60530
 // 240분 66770
+const express = require('express');
 const router = express.Router();
+
+// 기본 방문요양 지원금 계산기 페이지
+router.get('/', (req, res) => {
+    res.render('calculator');
+});
 
 module.exports = router;

@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% block content %}
 <link rel="stylesheet" href="/css/calculator.css">
+<script src="/js/calculator.js" defer></script>
 
 <div id="cclist">
     <div id="title">
@@ -42,9 +43,6 @@
         <button id="calculate-button">계산하기</button>
         
         <div id="result">
-            <p id="support-amount">지원금: ₩0</p>
-            <p id="calculation-details"></p>
         </div>
     </div>
-    
 {% endblock %}

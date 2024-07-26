@@ -16,42 +16,54 @@
     width: 80%;
     margin: 0 auto;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    height: 80%;
 }
 
-#title p {
-    font-size: 24px;
+#title {
+    background-color: #F47176;
+    width: 107%;
     text-align: center;
-}
-
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 10px 0;
+    color: #FFFFFF;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
+    background-color: #FFFFFF; 
+    border: 2px solid #F47176; 
+    color: #F47176; 
+    padding: 10px 20px; /* 패딩 조정 */
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 5px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 20px; /* 적절한 line-height 설정 */
+    height: 40px; /* 버튼의 높이 설정 */
+    vertical-align: middle; /* 세로 정렬 조정 */
 }
 
 button.active {
-    background-color: #45a049;
+    background-color: #F47176; 
+    color: #FFFFFF; 
+}
+
+button:hover {
+    background-color: #F47176; 
+    color: #FFFFFF; 
 }
 
 #calculate-button {
-    background-color: #2196F3;
+    background-color: #e74a4f;
+    color: #ffffff;
     margin-top: 20px;
+    border: none; 
+    padding: 10px 20px; 
+    line-height: 20px; 
+    height: 40px; 
 }
 
 #result {

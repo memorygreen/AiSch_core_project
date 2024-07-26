@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% block content %}
+<link rel="stylesheet" href="/css/calculator.css">
+
+<div id="cclist">
+    <div id="title">
+        <p>방문요양 지원금 계산기</p>
+    </div>
+    
+    <div id="calculator-container">
+        <div id="grade-selection">
+            <p>등급:</p>
+            <div class="button-group">
+                <button class="grade-button" data-grade="1">1등급</button>
+                <button class="grade-button" data-grade="2">2등급</button>
+                <button class="grade-button" data-grade="3">3등급</button>
+                <button class="grade-button" data-grade="4">4등급</button>
+                <button class="grade-button" data-grade="5">5등급</button>
+            </div>
+        </div>
+        
+        <div id="time-selection">
+            <p>시간:</p>
+            <div class="button-group">
+                <button class="time-button" data-time="60">60분</button>
+                <button class="time-button" data-time="120">120분</button>
+                <button class="time-button" data-time="180">180분</button>
+                <button class="time-button" data-time="240">240분</button>
+            </div>
+        </div>
+        
+        <div id="cost-selection">
+            <p>급여비용:</p>
+            <div class="button-group">
+                <button class="cost-button" data-cost="15">15% (일반)</button>
+                <button class="cost-button" data-cost="9">9% (감경40%)</button>
+                <button class="cost-button" data-cost="6">6% (감경60%)</button>
+                <button class="cost-button" data-cost="0">0% (기초)</button>
+            </div>
+        </div>
+        
+        <button id="calculate-button">계산하기</button>
+        
+        <div id="result">
+            <p id="support-amount">지원금: ₩0</p>
+            <p id="calculation-details"></p>
+        </div>
+    </div>
+    
+{% endblock %}

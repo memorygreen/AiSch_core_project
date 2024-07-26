@@ -13,6 +13,8 @@ const userRouter = require('./routes/userRouter');
 const path = require('path');
 const fs = require('fs');
 const mapRouter = require('./routes/mapRouter');
+const calculatorRouter = require('./routes/calculatorRouter');
+
 
 const session = require('express-session');
 const fileStore = require('session-file-store')(session);
@@ -59,6 +61,7 @@ app.use('/matching', matchingRouter);
 app.use('/cs', csRouter);
 app.use('/user', userRouter);
 app.use('/map', mapRouter);
+app.use('/cal', calculatorRouter);
 
 // 넌적스 셋팅
 app.set('view engine', 'html');

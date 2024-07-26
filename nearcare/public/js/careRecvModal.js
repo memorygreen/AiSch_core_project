@@ -19,6 +19,11 @@ const payCanclBtn = document.getElementById('point_cencl_btn');
 // 세번째 모달창 요소
 const completePayModal = document.getElementById('complete_pay_modal_out_wrap');
 const completePayBtn = document.getElementById('complete_pay_btn');
+
+// 결제 실패 모달창
+const failModal = document.getElementById('fail_modal_out_wrap');
+const failBtn = document.getElementById('fail_btn');
+
 let selectedUserId = null;
 
 // 만들어진 상세보기버튼들 이벤트 걸어주기
@@ -47,8 +52,9 @@ for (let i = 0; i < btnLeng; i++) {
     
 };
 
-// 결제 후 회원 정보를 서버에 요청하기 위한 fetch 호출
+// 결제할 포인트 조회해온 후  fetch 호출
 checkBtn.addEventListener('click', (req, res) => {
+
     fetch('/careRecvReg/selPoint', {
         method: 'POST',  // HTTP 메서드를 POST로 설정
         headers: {
@@ -66,27 +72,30 @@ checkBtn.addEventListener('click', (req, res) => {
         return response.json();
     })
     .then(data => {
-        // 서버에서 반환한 데이터를 이용하여 결제 정보를 모달에 표시
-        // console.log('point:' ,data.userPoint );
-        // let innerTxtPoint = document.getElementById('point_inner_txt').innerText
-        // if (parseInt(innerTxtPoint) < 500){
-        //     modal.style.display = "none";
-        //     payModal.style.display = "none";
-        // }else if(parseInt(innerTxtPoint) >= 500){
-        //     innerTxtPoint.innerText = data.userPoint + ' P';    
-        //     modal.style.display = "none";
-        //     payModal.style.display = "flex";
-        // };
          // 서버에서 반환한 데이터를 이용하여 결제 정보를 모달에 표시
-        console.log('data.userPoint',data.userPoint);
+        if(data.userPoint < 500){
+            console.log('data.userPoint',data.userPoint);
+            failModal.style.display = 'flex';
+            payModal.style.display = "none";
+            modal.style.display = "none";
+            document.getElementById('fail_inner_txt').innerText = data.userPoint + ' P';
+        }else{
         document.getElementById('point_inner_txt').innerText = data.userPoint + ' P';
+        modal.style.display = "none";
+        payModal.style.display = "flex";
+        };
+
     })
     .catch(error => {
         // 에러 발생 시 에러 메시지를 콘솔에 출력
         console.error('selPoint 마지막단 에러 났어', error);
     });
-    modal.style.display = "none";
-    payModal.style.display = "flex";
+});
+
+// 결제 실패 모달 확인 버튼
+failBtn.addEventListener('click', ()=>{
+    failModal.style.display = 'none';
+    
 });
 
 // 결제 버튼 클릭했을 때
@@ -109,15 +118,20 @@ pointPayBtn.addEventListener('click',()=>{
     })
     .then(data => {
         // 서버에서 반환한 데이터를 이용하여 결제 정보를 모달에 표시
-        console.log('data.reUserPoint',data.reUserPoint);
-        document.getElementById('reUserPoint_inner_txt').innerText = data.reUserPoint+' P';
+        if(data.reUserPoint < 500){
+            console.log('data.reUserPoint',data.reUserPoint);
+
+        }else{
+            document.getElementById('reUserPoint_inner_txt').innerText = data.reUserPoint+' P';
+            payModal.style.display = "none";
+            completePayModal.style.display = "flex";
+
+        }
     })
     .catch(error => {
         // 에러 발생 시 에러 메시지를 콘솔에 출력
         console.error('pay 마지막단 에러 났어', error);
     });
-    payModal.style.display = "none";
-    completePayModal.style.display = "flex";
 });
 
 // 세번쩨 모달창 확인 버튼 클릭 시

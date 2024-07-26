@@ -57,9 +57,6 @@ button{
 button:hover{
     background-color: #F47176;
     color: #FFFFFF;
-    border-radius: 10px;
-    width: 90px;
-    height: 36px;
 }
 
 #header_outer_wrap {

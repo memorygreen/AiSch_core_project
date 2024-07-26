@@ -6,6 +6,12 @@
         <p>고객센터</p>
     </div>
     <div id="cs-list">
+    <div id="column-titles"  class="cs-item">
+        <span class="columntype titletype">구분</span>
+        <span class="columntitle titlename">내용</span>
+        <span class="columndate titledate">작성일</span>
+    </div>
+   
         {% for i in arr %}
         <a class="cs-item-link" href="/cs/detail?csId={{i.csId}}">
             <div class="cs-item">
@@ -23,7 +29,9 @@
     </div>
     <div class="cs-actions">
         <a class="user_det" href="/cs/create">
-            <div class="writebutton">글쓰기</div>
+            <div class="cs_write_button_space">
+                <button class="writebutton">글쓰기</button>
+            </div>
         </a>
     </div>
 </div>

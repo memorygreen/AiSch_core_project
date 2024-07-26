@@ -9,7 +9,7 @@
         <div class="cs-detail-item">
             <div class="cs-header">
                 <span class="cs-title">{{ csTitle }}</span>
-                <span class="titledate">{{ csCreatedAt }}</span>
+                <span class="csdetail_date">{{ csCreatedAt }}</span>
             </div>
             <div class="cs-content">
                 <p>{{ csContent }}</p>
@@ -17,17 +17,20 @@
             {% set answer = csAnswer %}
             {% if answer %}
             <div class="cs-answer-header">
-                <span class="cs-title">관리자메세지</span>
-                <span class="titledate">{{ asCreatedAt }}</span>
+                <img src="../images/logoprofile.png" style="width: 45px; height: 45px;">
+                <div class="cs-answer">
+                    <p id="cs_manager_text">관리자</p>
+                    <p id="cs_answer_content">{{ csAnswer }}</p>
+                </div>
+                <span class="cs-comment_date">{{ asCreatedAt }}</span>
+                
             </div>
-            <div class="cs-answer">
-                <p>{{ csAnswer }}</p>
-            </div>
+            
             {% endif %}
         </div>
     </div>
     <div class="cs-actions">
-        <a class="writebutton" href="/cs/edit?csId={{ csId }}">수정</a>
+        <a href="/cs/edit?csId={{ csId }}"><button class="writebutton" >수정</button></a>
         <button class="deletebutton" onclick="openModal()">삭제</button>
     </div>
 </div>

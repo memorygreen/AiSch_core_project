@@ -8,7 +8,7 @@
     <div class="create-cs-form">
         <form action="/cs/create" method="POST">
             <div class="form-section">
-                <label for="queryType">문의 종류:</label>
+                <label for="queryType" id="create_asktype_title">문의 종류</label>
                 <select id="queryType" name="csType" required>
                     <option value="계정문의">계정문의</option>
                     <option value="나문희">나문희</option>
@@ -17,16 +17,16 @@
                 </select>
             </div>
             <div class="form-section">
-                <label for="queryTitle">제목:</label>
+                <label for="queryTitle">제목</label>
                 <input type="text" id="queryTitle" name="csTitle" required>
             </div>
             <div class="form-section">
-                <label for="queryContent">내용:</label>
+                <label for="queryContent">내용</label>
                 <textarea id="queryContent" name="csContent" rows="10" required></textarea>
             </div>
             <div class="form-buttons">
                 <button type="submit" class="submit-btn">제출</button>
-                <a href="/cs" class="cancel-btn">취소</a>
+                <a href="/cs" class="cancel-btn"><button>취소</button></a>
             </div>
         </form>
     </div>

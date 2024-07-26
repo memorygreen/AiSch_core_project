@@ -6,6 +6,10 @@ body {
     align-items: center;
 }
 
+p{
+    font-size: 16px;
+}
+
 #outer_wrap {
     width: 100%;
     display: flex;
@@ -31,6 +35,31 @@ header {
     justify-content: center;
     align-items: center;
     background-color: #fff8f7;
+}
+
+button{
+    width: 90px;
+    height: 36px;
+    border: 1px solid #f4717557;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    line-height: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    text-decoration: none;
+    color: #F47176;
+    font-size: 16px;
+}
+
+button:hover{
+    background-color: #F47176;
+    color: #FFFFFF;
+    border-radius: 10px;
+    width: 90px;
+    height: 36px;
 }
 
 #header_outer_wrap {

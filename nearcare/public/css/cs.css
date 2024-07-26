@@ -1,3 +1,17 @@
+#cslist {
+    margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
+    height: max-content;
+    min-height: 700px;
+}
+
 #cs-list {
     width: 100%;
 }
@@ -7,7 +21,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #F47176;
+    border-bottom: 0.5px solid #F47176;
     transition: background-color 0.3s;
 }
 
@@ -39,6 +53,44 @@
     font-weight: 600;
 }
 
+.answered {
+    margin-left: 10px;
+    padding: 2px 5px;
+    background-color: #F47176;
+    color: #FFFFFF;
+    font-size: 0.8em;
+    border-radius: 5px;
+}
+
+.cs-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+#column-titles {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+    border-bottom: 2px solid #F47176;
+    align-items: center;
+    padding: 10px;
+    transition: background-color 0.3s;
+    box-sizing:border-box;
+}
+
+.columntype{
+    margin-left: 20px;
+}
+
+.columntitle{
+    margin-left: 120px;
+}
+
+.columndate{
+    margin-right: 30px;
+}
+
 #cslist {
     margin-top: -20px;
     display: flex;
@@ -53,7 +105,7 @@
     min-height: 700px;
 }
 
-.writebutton, .deletebutton {
+/* .writebutton, .deletebutton {
     width: 150px;
     height: 50px;
     border: 1px solid #F47176;
@@ -66,6 +118,18 @@
     text-decoration: none; 
     color: #F47176;
     font-size: 16px;
+} */
+
+.writebutton{
+    color: #F47176;
+}
+
+.cs_write_button_space{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 500px;
 }
 
 .writebutton:hover, .deletebutton:hover {
@@ -116,11 +180,24 @@
 }
 
 .cs-answer {
-    padding-top: 10px;
+    flex: 2;
+    margin-top: -10px;
+    margin-left: 20px;
 }
 
 .cs-answer h3 {
     margin-bottom: 10px;
+}
+
+#cs_manager_text{
+    margin-bottom: -10px;
+    font-weight: bold;
+}
+
+.cs-comment_date{
+    margin-top: -10px;
+    font-size: 14px;
+    color: #4d4d4d;
 }
 
 .cs-actions {
@@ -170,7 +247,8 @@
 }
 
 .create-cs-form {
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-left: 30px;
     width: 90%;
     max-width: 800px;
 }
@@ -181,24 +259,32 @@
 
 .form-section label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-weight: 600; 
     font-size: 18px; 
 }
+
+
 
 .form-section input,
 .form-section select,
 .form-section textarea {
     width: calc(100% - 22px); 
-    padding: 12px; 
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 16px;
 }
 
+.form-section select{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
 .form-section select {
-    height: 50px;
+    height: 27px;
+    width: 130px;
 }
 
 .form-section textarea {
@@ -211,23 +297,26 @@
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
+    margin-right: 25px;
 }
 
-.submit-btn,
+/* .submit-btn,
 .cancel-btn {
-    width: 150px;
-    height: 50px;
-    border: 1px solid #F47176;
+    width: 90px;
+    height: 36px;
+    border: 1px solid #f4717557;
     border-radius: 10px;
     text-align: center;
+    justify-content: center;
+    align-items: center;
     line-height: 50px;
     font-weight: 600;
     cursor: pointer;
-    display: inline-block;
+    display: flex;
     text-decoration: none;
     color: #F47176;
     font-size: 16px;
-}
+} */
 
 .submit-btn {
     background-color: #ffffff;
@@ -239,16 +328,22 @@
     color: #ffffff;
 }
 
-.cancel-btn {
+/* .cancel-btn {
     background-color: #ffffff;
     color: #F47176;
-}
+} */
 
-.cancel-btn:hover {
+/* .cancel-btn:hover {
     background-color: #F47176;
     color: #ffffff;
-}
+} */
 
+/*글 상세 페이지*/
+.csdetail_date{
+    font-size: 14px;
+    color: #4d4d4d;
+    margin-top: 33px;
+}
 
 
 

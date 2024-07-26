@@ -12,8 +12,8 @@
                 <span class="titletype">{{i.csType}}</span>
                 <span class="titlename">
                     {{i.csTitle}}
-                    {% if i.isAnswered %}
-                    <span class="answered">답변완료</span>
+                    {% if i.csAnswer %}
+                    <span class="answered">{{i.csAnswer}}</span>
                     {% endif %}
                 </span>
                 <span class="titledate">{{i.csCreatedAt}}</span>

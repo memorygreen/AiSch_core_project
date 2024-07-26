@@ -6,8 +6,23 @@ const { session } = require("passport");
 
 // 고객센터 목록 페이지
 router.get("/", (req, res) => {
-    let sql = "SELECT * FROM TB_CS ORDER BY CS_IDX DESC";
-    conn.query(sql, (err, rows) => {
+    // 로그인된 사용자의 userId를 가져옴
+    const userId = req.session.userId;
+
+    // userId가 없는 경우 로그인 페이지로 리다이렉트
+    if (!userId) {
+        return res.redirect('/user/login');
+    }
+
+    // SQL 쿼리에서 userId를 사용해 필터링
+    let sql = `
+        SELECT A.*, B.AS_CONTENT 
+        FROM TB_CS A
+        LEFT JOIN TB_AS B ON A.CS_IDX = B.CS_IDX
+        WHERE A.USER_ID = ?
+        ORDER BY A.CS_IDX DESC
+    `;
+    conn.query(sql, [userId], (err, rows) => {
         if (err) {
             console.error('Database query error:', err);
             return res.status(500).send('Internal Server Error');
@@ -17,7 +32,7 @@ router.get("/", (req, res) => {
             csId: row.CS_IDX,
             csType: row.CS_TYPE,
             csTitle: row.CS_TITLE,
-            csFile: row.FILE,
+            csFile: row.CS_FILE,
             csCreatedAt: formatDate(row.CS_CREATED_AT),
             csAnswer: row.AS_CONTENT ? "답변완료" : ""
         }));
@@ -63,9 +78,10 @@ router.get("/create", (req, res) => {
 router.post("/create", (req, res) => {
     const { csType, csTitle, csContent } = req.body;
     const createdAt = new Date();
-    
-    let sql = "INSERT INTO TB_CS (USER_ID ,CS_TYPE, CS_TITLE, CS_CONTENT, CS_CREATED_AT) VALUES ('user001', ?, ?, ?, ?)";
-    conn.query(sql, [csType, csTitle, csContent, createdAt], (err, results) => {
+    const userId = req.session.userId; // 세션에서 userId 가져오기
+
+    let sql = "INSERT INTO TB_CS (USER_ID, CS_TYPE, CS_TITLE, CS_CONTENT, CS_CREATED_AT) VALUES (?, ?, ?, ?, ?)";
+    conn.query(sql, [userId, csType, csTitle, csContent, createdAt], (err, results) => {
         if (err) {
             console.error('Database query error:', err);
             return res.status(500).send('Internal Server Error');
@@ -151,6 +167,20 @@ router.post("/update", (req, res) => {
     });
 });
 
+// 고객문의 답변
+router.post("/comment", (req, res) => {
+    const { csId, userId, content } = req.body;
+    const createdAt = new Date();
 
+    let sql = "INSERT INTO TB_AS (CS_IDX, AS_ADMIN_ID, AS_CONTENT, AS_CREATED_AT) VALUES (?, ?, ?, ?)";
+    conn.query(sql, [csId, userId, content, createdAt], (err, results) => {
+        if (err) {
+            console.error('Database query error:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        res.redirect(`/cs/detail?csId=${csId}`);
+    });
+});
 
 module.exports = router;

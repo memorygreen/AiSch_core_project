@@ -1,39 +1,44 @@
 {% extends 'index.html' %}
 {% block content %}
+<div id="u_list">
+<div id="title">
+    <p>요양 대상 목록</p>
+</div>
 <div id="u_list_wrap">
+    
     <div id="u_list_div">
         {% for i in arrData %}
-        <form action="/submit" method="post" >
-            <div class="inner_u_list_div1">
-                <!-- 나중에 이미지 넣기 -->
-                <div class="inner_u_list_div2">
-                    <img src="/images/profile_img.png" alt="img">
+        <div class="list_form_div_wrap">
+            <form action="/submit" method="post" class="care_list_form" >
+                <div class="inner_u_list_div1" data-user-id="{{i.userId}}">
+                    <!-- 나중에 이미지 넣기 -->
+                    <div class="inner_u_list_div2">
+                        <img class="care_list_img" src="/images/profile_img.png" alt="img">
+                    </div>
+                    <div class="inner_u_list_div3">
+                        <p>이름 : {{i.userName}}</p>
+                        <p>생년월일 : {{i.userBirth}}</p>
+                        {% set gender = i.gender %}
+                        <p>성별 : {% if gender == 'M' %}
+                            남성 
+                            {% elif gender == 'F' %}
+                            여성
+                            {% elif gender == '**' %}
+                            **
+                            {% else %}
+                            성별 err
+                            {% endif %} </p>
+                        <p>연락처 : {{i.phone}}</p>
+                    </div>
+                    
+                    <div class="inner_u_list_div4">
+                        <button type="button" class="user_det">상세보기</button>
+                    </div>
+                    
                 </div>
-                <div class="inner_u_list_div3">
-                    <p>이름 : {{i.userName}}</p>
-                    <input class="careIds" type="hidden" name="careIds" value="{{i.userId}}">
-                    <p>생년월일 : {{i.userBirth}}</p>
-                    {% set gender = i.gender %}
-                    <p>성별 : {% if gender == 'M' %}
-                        남성 
-                        {% elif gender == 'F' %}
-                        여성
-                        {% elif gender == '**' %}
-                        **
-                        {% else %}
-                        성별 err
-                        {% endif %} </p>
-                    <p>연락처 : {{i.phone}}</p>
-                </div>
-                
-                <div class="inner_u_list_div4">
-                    <button type="button" class="user_det">상세보기</button>
-                    <!-- <a class="user_det" href="/careRecvReg/careRecvDetail/">상세보기</a> -->
-                </div>        <!-- /careRecvReg/careRecvDetail -->
-                
-            </div>
-        </form>
-        {% endfor %}
+            </form>
+        </div>
+            {% endfor %}
         
     </div>
 </div>
@@ -59,13 +64,11 @@
             <div>결제정보</div>
             <div class="inline_div">
                 <div class="pay_text_div">
-                <h1>500&nbsp</h1> 
+                <h2>500&nbsp</h2> 
                 포인트를 결제합니다.</div>
-                {% set point = point %}
-                <div class="pay_text_div">잔여 포인트 : <p id="point_inner_txt">{{point}}</p>
-                &nbsp </div>
-                <div class="pay_text_div">결제 포인트 : 
-                &nbsp500 </div>
+                <div class="pay_text_div">잔여 포인트 :&nbsp<p id="point_inner_txt"> </p>
+                </div>
+                <div class="pay_text_div">결제 포인트 :&nbsp 500 P   </div>
             </div>
             <div class="inline_div">
             </div>
@@ -76,6 +79,27 @@
         <div id="pay_btn_wrap">
             <button id="point_pay_btn">결제</button>
             <button id="point_cencl_btn">취소</button>
+        </div>
+    </div>
+</div>
+
+<!-- 결제 후 잔여 포인트 보여주는 모달창 -->
+<div id="complete_pay_modal_out_wrap"> <!-- 모달 창을 감싸는 div -->
+    <div id="complete_pay_modal_inner_wrap">
+        <div id="complete_pay_modal_Body">
+            <div>잔여 포인트</div>
+            <div class="inline_div">
+                <div class="pay_text_div">결제 후 잔여 포인트 :&nbsp<p id="reUserPoint_inner_txt"></p>
+                </div>
+            </div>
+            <div class="inline_div">
+            </div>
+            
+            
+        </div>
+        
+        <div id="complete_pay_btn_wrap">
+            <button id="complete_pay_btn">확인</button>
         </div>
     </div>
 </div>

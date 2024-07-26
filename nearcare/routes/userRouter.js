@@ -101,17 +101,11 @@ router.post('/login', (req, res) => {
         req.session.userId = user.USER_ID;
         req.session.userType = user.USER_TYPE;
         req.session.save((err) => {
-            if (err) {
-                console.error('Session save error:', err);
-                return res.status(500).send('Internal Server Error');
-            }
-            console.log('Session after save:', req.session);
+            
             res.redirect('/'); 
         });
     });
 });
-
-
 
 // 로그아웃 처리
 router.get('/logout', (req, res) => {

@@ -5,8 +5,15 @@ const formatDate = require("../public/js/formatDate");
 
 // 매칭페이지 기본
 router.get("/", (req, res) => {
-    let sql = "SELECT B.CARE_RECEIVER_NAME, A.MATCH_IDX, A.USER_ID, A.CARE_RECEIVER_ID, A.MATCH_MATCHED_AT, A.MATCH_STATUS FROM TB_MATCHING AS A JOIN TB_CARE_RECEIVER AS B ON A.CARE_RECEIVER_ID = B.CARE_RECEIVER_ID";
-    conn.query(sql, (err, rows) => {
+    const userId = req.session.userId;
+
+    // userId가 없는 경우 로그인 페이지로 리다이렉트
+    if (!userId) {
+        return res.redirect('/user/login');
+    }
+
+    let sql = "SELECT B.CARE_RECEIVER_NAME, A.MATCH_IDX, A.USER_ID, A.CARE_RECEIVER_ID, A.MATCH_MATCHED_AT, A.MATCH_STATUS FROM TB_MATCHING AS A JOIN TB_CARE_RECEIVER AS B ON A.CARE_RECEIVER_ID = B.CARE_RECEIVER_ID WHERE A.USER_ID = ?";
+    conn.query(sql, [userId], (err, rows) => {
         if (err) {
             console.error('Database query error:', err);
             return res.status(500).send('Internal Server Error');

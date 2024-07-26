@@ -12,6 +12,9 @@ const csRouter = require('./routes/csRouter');
 const userRouter = require('./routes/userRouter');
 const path = require('path');
 const fs = require('fs');
+const mapRouter = require('./routes/mapRouter');
+const calculatorRouter = require('./routes/calculatorRouter');
+
 
 const session = require('express-session');
 const fileStore = require('session-file-store')(session);
@@ -33,8 +36,6 @@ app.use(session({
 app.use((req, res, next) => {
     res.locals.userId = req.session.userId || null;
     res.locals.userType = req.session.userType || null;
-    console.log("app.js - Session Data:", req.session);
-    console.log("app.js - Res.locals Data:", res.locals);
     next();
 });
 
@@ -43,8 +44,6 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     res.locals.userId = req.session.userId || null;
     res.locals.userType = req.session.userType || null;
-    console.log("app.js - Session Data:", req.session); // 세션 데이터 로그
-    console.log("app.js - Res.locals Data:", res.locals); // 템플릿 데이터 로그
     next();
 });
 // 정적 파일요청 폴더 등록
@@ -61,6 +60,8 @@ app.use('/chatting', chattingRouter);
 app.use('/matching', matchingRouter);
 app.use('/cs', csRouter);
 app.use('/user', userRouter);
+app.use('/map', mapRouter);
+app.use('/cal', calculatorRouter);
 
 // 넌적스 셋팅
 app.set('view engine', 'html');

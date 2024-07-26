@@ -1,5 +1,7 @@
 // const { response } = require("express");
 
+// import { response } from "express";
+
 // 상세보기 버튼
 const btns = document.getElementsByClassName("user_det");
 const userInfo = document.getElementsByClassName("inner_u_list_div3");
@@ -17,13 +19,30 @@ const payCanclBtn = document.getElementById('point_cencl_btn');
 // 세번째 모달창 요소
 const completePayModal = document.getElementById('complete_pay_modal_out_wrap');
 const completePayBtn = document.getElementById('complete_pay_btn');
-
+let selectedUserId = null;
 
 // 만들어진 상세보기버튼들 이벤트 걸어주기
 let btnLeng = btns.length;
 for (let i = 0; i < btnLeng; i++) {
     btns[i].addEventListener('click', (event) => {
-        modal.style.display = "flex"; // 버튼을 클릭하면 모달을 보이게 함
+        const form = event.target.closest('.inner_u_list_div1'); // 클릭한 버튼이 속한 div 태그 찾기
+        selectedUserId = form.dataset.userId;
+        fetch('/careRecvReg/setSelectedUid', {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'  // 요청 본문이 JSON 형식임을 
+            },
+            body : JSON.stringify({selectedUserId})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                modal.style.display = "flex"; // 버튼을 클릭하면 모달을 보이게 함
+            }
+        })
+        .catch(err =>{
+            console.error('setSelectedUid 에러났어..', err);
+        });
     });
     
 };
@@ -48,8 +67,19 @@ checkBtn.addEventListener('click', (req, res) => {
     })
     .then(data => {
         // 서버에서 반환한 데이터를 이용하여 결제 정보를 모달에 표시
+        // console.log('point:' ,data.userPoint );
+        // let innerTxtPoint = document.getElementById('point_inner_txt').innerText
+        // if (parseInt(innerTxtPoint) < 500){
+        //     modal.style.display = "none";
+        //     payModal.style.display = "none";
+        // }else if(parseInt(innerTxtPoint) >= 500){
+        //     innerTxtPoint.innerText = data.userPoint + ' P';    
+        //     modal.style.display = "none";
+        //     payModal.style.display = "flex";
+        // };
+         // 서버에서 반환한 데이터를 이용하여 결제 정보를 모달에 표시
         console.log('data.userPoint',data.userPoint);
-        document.getElementById('point_inner_txt').innerText = data.userPoint;
+        document.getElementById('point_inner_txt').innerText = data.userPoint + ' P';
     })
     .catch(error => {
         // 에러 발생 시 에러 메시지를 콘솔에 출력
@@ -80,7 +110,7 @@ pointPayBtn.addEventListener('click',()=>{
     .then(data => {
         // 서버에서 반환한 데이터를 이용하여 결제 정보를 모달에 표시
         console.log('data.reUserPoint',data.reUserPoint);
-        document.getElementById('reUserPoint_inner_txt').innerText = data.reUserPoint;
+        document.getElementById('reUserPoint_inner_txt').innerText = data.reUserPoint+' P';
     })
     .catch(error => {
         // 에러 발생 시 에러 메시지를 콘솔에 출력
@@ -99,7 +129,9 @@ completePayBtn.addEventListener('click', ()=>{
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none"; // 모달 외부를 클릭하면 모달을 숨김
-    } 
+    } else if(event.target == completePayModal){
+        completePayModal.style.display = "none"; // 모달 외부를 클릭하면 모달을 숨김
+    }
 };
 
 // 첫번째 모달창 취소 버튼

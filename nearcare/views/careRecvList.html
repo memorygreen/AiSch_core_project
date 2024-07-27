@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% block content %}
 <div id="u_list">
-<div id="title">
+<div id="u_list_title">
     <p>요양 대상 목록</p>
 </div>
 <div id="u_list_wrap">
@@ -16,10 +16,9 @@
                         <img class="care_list_img" src="/images/profile_img.png" alt="img">
                     </div>
                     <div class="inner_u_list_div3">
-                        <p>이름 : {{i.userName}}</p>
-                        <p>생년월일 : {{i.userBirth}}</p>
+                        <p class="inner_u_list_div3_p">이　　름 : {{i.userName}}</p>
                         {% set gender = i.gender %}
-                        <p>성별 : {% if gender == 'M' %}
+                        <p class="inner_u_list_div3_p">성　　별 : {% if gender == 'M' %}
                             남성 
                             {% elif gender == 'F' %}
                             여성
@@ -28,7 +27,8 @@
                             {% else %}
                             성별 err
                             {% endif %} </p>
-                        <p>연락처 : {{i.phone}}</p>
+                            <p class="inner_u_list_div3_p">생년월일 : {{i.userBirth}}</p>
+                        <p class="inner_u_list_div3_p">전화번호 : {{i.phone}}</p>
                     </div>
                     
                     <div class="inner_u_list_div4">

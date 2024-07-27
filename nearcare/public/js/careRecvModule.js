@@ -28,7 +28,7 @@ const maskDatas = function maskDatas (rows){
             nameData = nameSpl[0] + '*' + nameSpl[2];
             
             phoneSpl = rows[i].care_receiver_phone.split('-');
-            phoneNum = phoneSpl[0] + '-****-****';
+            phoneNum = phoneSpl[0] + '- **** - ****';
             
             addSpl = rows[i].care_receiver_add.split(' ');
             addData = addSpl[0] + '*****';

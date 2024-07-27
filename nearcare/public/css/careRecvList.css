@@ -236,14 +236,7 @@ button{
     border: 1px solid #F47176;;
     border-radius: 20px;
 }
-.inline_div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-}
+
 .pay_text_div{
     line-height: 20px;
     display: flex;
@@ -296,14 +289,7 @@ button{
     border: 1px solid #F47176;;
     border-radius: 20px;
 }
-.inline_div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-}
+
 .fail_text_div{
     line-height: 20px;
     display: flex;
@@ -361,16 +347,19 @@ button{
 }
 .inline_div {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     height: 100%;
+    align-items: center;
     flex-direction: column;
 }
 .pay_text_div{
     line-height: 20px;
     display: flex;
     align-items: baseline;
+}
+#point_inner_txt{
+    font-weight: 1000;
 }
 #complete_pay_btn_wrap{
     width: 100%;
@@ -387,4 +376,9 @@ button{
     margin: 1%;
     border-radius: 20px;
     cursor: pointer;
+}
+
+.care_btns:hover {
+    background-color: #F47176 !important;
+    color: #FFFFFF;
 }

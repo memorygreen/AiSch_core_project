@@ -47,13 +47,13 @@
     <div id="modal_inner_wrap">
         <div id="modal_Body">
             <p>자세한 정보 확인을 위해</p>
-                <p>포인트 결제가 이루어집니다.</p>
-                <p>결제하시겠습니까?</p>
+            <p>포인트 결제가 필요합니다.</p>
+            <p>결제창으로 이동하시겠습니까?</p>
         </div>
         
         <div id="btn_wrap">
-            <button id="check_btn">확인</button>
-            <button id="cencl_btn">취소</button>
+            <button id="check_btn" class="care_btns">확인</button>
+            <button id="cencl_btn" class="care_btns">취소</button>
         </div>
     </div>
 </div>
@@ -61,24 +61,17 @@
 <div id="pay_modal_out_wrap"> <!-- 모달 창을 감싸는 div -->
     <div id="pay_modal_inner_wrap">
         <div id="pay_modal_Body">
-            <div>결제정보</div>
+            <div><h2>결제정보</h2></div>
             <div class="inline_div">
-                <div class="pay_text_div">
-                <h2>500&nbsp</h2> 
-                포인트를 결제합니다.</div>
-                <div class="pay_text_div">잔여 포인트 :&nbsp<p id="point_inner_txt"> </p>
+                <div class="pay_text_div">회원님의 잔여 포인트 :&nbsp <p id="point_inner_txt"> </p>
                 </div>
                 <div class="pay_text_div">결제 포인트 :&nbsp 500 P   </div>
             </div>
-            <div class="inline_div">
-            </div>
-            
-            
         </div>
         
         <div id="pay_btn_wrap">
-            <button id="point_pay_btn">결제</button>
-            <button id="point_cencl_btn">취소</button>
+            <button id="point_cencl_btn" class="care_btns">취소</button>
+            <button id="point_pay_btn" class="care_btns">결제</button>
         </div>
     </div>
 </div>
@@ -100,7 +93,7 @@
         </div>
         
         <div id="fail_btn_wrap">
-            <button id="fail_btn">확인</button>
+            <button id="fail_btn" class="care_btns">확인</button>
         </div>
     </div>
 </div>
@@ -121,7 +114,7 @@
         </div>
         
         <div id="complete_pay_btn_wrap">
-            <button id="complete_pay_btn">확인</button>
+            <button id="complete_pay_btn" class="care_btns">확인</button>
         </div>
     </div>
 </div>

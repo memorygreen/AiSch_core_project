@@ -49,38 +49,52 @@
                         <p class="detail_p2">{{userInfo.pay}}원</p>
                         <p class="detail_p2">{{userInfo.careDays}}</p>
                         <p class="detail_p2">  
-                            {% if userInfo.dementia == Y %}
-                            <span class="visible">
-                                    치매
+                            {% if userInfo.dementia == 'Y' %}
+                            <span class="visible  {{active}}" style="display: '{{flex}}';">
+                                    치매O
                             </span>
-                            {% elif userInfo.dementia == N %}
+                            {% elif userInfo.dementia == 'N' %}
+                            <span class="invisible  {{active}}" style="display: '{{flex}}';">
+                                    치매X
+                            </span>
 
                             {% endif %}
-                            {% if userInfo.meal == Y %}
-                            <span class="visible">
+
+                            {% if userInfo.meal == 'Y' %}
+                            <span class="visible '{{styles.active}}'" style="display: '{{styles.flex}}';">
                             식사도움
                             </span>
-                            {% elif userInfo.meal == N %}
-
+                            {% elif userInfo.meal == 'N' %}
+                            <span class="visible " style="display: none;">
+                                식사도움
+                            </span>
+                            {% else %}
+                            <span class="invisible '{{styles.active}}'" style="display: '{{styles.flex}}';">
+                            식사가능
+                            </span>
+                            
                             {% endif %}
-                            {% if userInfo.behavior == A %}
-                            <span class="invisible">
+                            {% if userInfo.behavior == 'A' %}
+                            <span class="invisible {{active}}" style="display: '{{flex}}';">
                                 거동가능
                             </span>
-                            {% elif userInfo.behavior == B %}
-                            <span class="invisible">
+                            {% elif userInfo.behavior == 'B' %}
+                            <span class="visible {{active}}" style="display: '{{flex}}';">
                                 거동불편
                             </span>
-                            {% elif userInfo.behavior == C %}
-                            <span class="invisible">
+                            {% elif userInfo.behavior == 'C' %}
+                            <span class="visible {{active}}" style="display: '{{flex}}';">
                                 거동불가능
                             </span>
                             {% endif %}
-                            {% if userInfo.dialusis == Y %}
-                            <span class="invisible">
-                                투석
+                            {% if userInfo.dialusis == 'Y' %}
+                            <span class="visible {{active}}" style="display: '{{flex}}';">
+                                투석O
                             </span>
-                            {% elif userInfo.dialusis == N %}
+                            {% elif userInfo.dialusis == 'N' %}
+                            <span class="invisible {{active}}" style="display: '{{flex}}';">
+                                투석X
+                            </span>
                                 
                             {% endif %}
                         </p> 
@@ -92,6 +106,10 @@
                     </div>
                 </div>
                 
+                <div id="care_recv_detail_btn_div">
+                        <button type="submit" id="care_recv_detail_btn">확인</button>
+                        <button type="button" onclick="location.href='/careRecvReg/careRecvList'">취소</button>
+                </div>
             
         </div>
         

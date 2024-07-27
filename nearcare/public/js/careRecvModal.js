@@ -73,15 +73,17 @@ checkBtn.addEventListener('click', (req, res) => {
     })
     .then(data => {
          // 서버에서 반환한 데이터를 이용하여 결제 정보를 모달에 표시
-        if(data.userPoint < 500){
+        if(data.userPoint < 500){//조회해온 포인트가 결제할 500포인트보다 작으면
             console.log('data.userPoint',data.userPoint);
-            failModal.style.display = 'flex';
-            payModal.style.display = "none";
-            modal.style.display = "none";
-            document.getElementById('fail_inner_txt').innerText = data.userPoint + ' P';
+            failModal.style.display = 'flex';// 결제 실패 모달창 띄우고
+            payModal.style.display = "none";// 나머지 모달창 닫기
+            modal.style.display = "none";// 나머지 모달창 닫기
+            document.getElementById('fail_inner_txt').innerText = data.userPoint + ' P'; //잔여 포인트 페이지에 보여주기
         }else{
+        // 정상적으로 조회해온 포인트 페이지에 보여주기
         document.getElementById('point_inner_txt').innerText = data.userPoint + ' P';
         modal.style.display = "none";
+        // 결제 확인 모달창 표시
         payModal.style.display = "flex";
         };
 
@@ -111,7 +113,7 @@ pointPayBtn.addEventListener('click',()=>{
         // 응답 상태가 OK(200)인지 확인
         if (!response.ok) {
             // 상태 코드가 200이 아닌 경우 에러 발생
-            throw new Error('에러났대..');
+            throw new Error('careRecvReg/pay 에러났대..');
         }
         // 응답을 JSON 형태로 변환하여 반환
         return response.json();

@@ -63,7 +63,7 @@
     margin-right: 4%;
 }
 #detail_content_right{
-    width: 45%;
+    width: 62%;
 }
 .detail_p{
     margin-bottom: 15px;
@@ -87,13 +87,27 @@
     border-radius: 6px;
     border: 2px solid rgba(244,113,118,1);
     color: rgb(0, 0, 0);
+    margin-right: 1.5%;
+    text-align: center;
 }
 
 .invisible{
     border-radius: 6px;
     color:lightgray;
+    border: 1px solid rgba(244,113,118,1);
+    margin-right: 1.5%;
 }
 
 .detail_blankspace3{
     height: 40px;
+}
+
+#care_recv_detail_btn_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#care_recv_detail_btn{
+    
+    margin-right: 1.5%;
 }

@@ -56,8 +56,8 @@ const userInfo = function userInfo (rows) {
     let birthDayFormet = formatDate(birthDay);
     let birthDaySplt = birthDayFormet.split('-');
     let userBirth = birthDaySplt[0] + '년 ' + birthDaySplt[1] + '월 ' + birthDaySplt[2] + '일';
-    console.log('birthDayFormet',birthDayFormet);
-    console.log('birthDaySplt', birthDaySplt[0]);
+    // console.log('birthDayFormet',birthDayFormet);
+    // console.log('birthDaySplt', birthDaySplt[0]);
     let userInfo = {
         userName : rows[0].CARE_RECEIVER_NAME,
         gender : rows[0].CARE_RECEIVER_GENDER,
@@ -68,6 +68,7 @@ const userInfo = function userInfo (rows) {
         pay : rows[0].CARE_RECEIVER_PAY,
         careDays : rows[0].CARE_RECEIVER_DAYS,
         dementia: rows[0].CARE_RECEIVER_DEMENTIA,
+        meal : rows[0].CARE_RECEIVER,
         behavior : rows[0].CARE_RECEIVER_BEHAVIOR,
         dialusis : rows[0].CARE_RECEIVER_DIALYSIS,
         etc : rows[0].CARE_RECEIVER_ETC

@@ -8,15 +8,19 @@ const formetDate = require('../public/js/formatDate');
 
 // 요양정보등록 라우터
 router.get('/careRecvRegconfrm', (req, res) => {
-    let sql = sqlModule.careRecvRegconfrm();
+    let selectedUserId = req.session.selectedUserId
+    console.log('선택한 회원아이디',selectedUserId);
+    let sql = sqlModule.careRecvRegconfrm(selectedUserId);
     // 추후 선택한 대상자 정보 불러와 넣을 예정-아인
     conn.query(sql, (err, rows) => {
         if (err) {
             console.error('careRecvRegconfrm 에러');
         }
-        let birthDay = rows[0].CARE_RECEIVER_BIRTH;
-        let birthDayFormet = formetDate(birthDay);
-        res.render('careReceiverReg', { dbData: rows[0], birthDayFormet: birthDayFormet });
+        // let birthDay = rows[0].CARE_RECEIVER_BIRTH;
+        // let birthDayFormet = formetDate(birthDay);
+        let userData = recvModule.userInfo(rows);
+        console.log('넘어온 데이터',userData);
+        res.render('careReceiverReg', { dbData: userData});
     });
 
 });
@@ -53,23 +57,26 @@ router.get('/careRecvList', (req, res) => {
 router.get('/careRecvDetail', (req, res) => {
     // 선택한 대상정보를 저장한 세션에서 대상 아이디를 불러와 변수에 할당
     const selUserId = req.session.selectedUserId;
-    console.log('selUserId',selUserId);
-    console.log('selUserId typeof',typeof(selUserId));
+    // console.log('selUserId',selUserId);
+    // console.log('selUserId typeof',typeof(selUserId));
     //sql문 작성하는 함수
     const selUserInfSql = sqlModule.careRecviInfo(selUserId);
     // db실행
-    console.log('selUserInfSql',selUserInfSql);
+    // console.log('selUserInfSql',selUserInfSql);
     conn.query(selUserInfSql, (err, rows) => {
         if (err) {
             console.error('selUserInfSql 에러났어..',err);
             conn.end();
         };
-        console.log('rows', rows);
+        // console.log('rows', rows);
         // DB에서 넘어온 데이터를 userInfo()함수에 넣어 정제해서 userData에 할당
         let userData = recvModule.userInfo(rows);
-
+        const styles = {
+            flex : 'flex',
+            active : 'active'
+        };
         // 정제된 userData를 careRecvDetail 페이지에 넘겨줌
-        res.render('careRecvDetail', { userData });
+        res.render('careRecvDetail', { userData , styles});
         // const {userInfo} = rows[0];
     });
 });
@@ -113,14 +120,16 @@ router.post('/pay', (req, res) => {
     // 세션에 저장된 회원 포인트를 가져옴
     let userPoint = req.session.userPoint;
     // 로그인한 유저 (test로 넣어둠- careRecvList 부분 하단에 있음) 아인
-    var userId = req.session.userId;
-
+    // var userId = req.session.userId;
+    let userId = req.session.userId;
+    let selectedUserId = req.session.selectedUserId;
+    console.log('selectedUserId',selectedUserId);
     // updateSql
     const currentPointsSql = sqlModule.updateUserPointSql(userPoint, userId);
 
     conn.beginTransaction((err) => {
         if (err) {
-            return res.status(500).send('시작부터 장난...');
+            return res.status(500).send('pay conn.beginTransaction 에러...');
         };
         // 포인트 차감 쿼리
         conn.query(currentPointsSql, (err) => {
@@ -160,5 +169,11 @@ router.post('/pay', (req, res) => {
     
 });
 
+
+router.post('/careRecvRegiForm', (req,res)=>{
+    let selectedUserId2 = req.session.selectedUserId;
+    console.log('selectUserId2',selectedUserId2);
+    console.log('왔늬?');
+});
 
 module.exports = router;

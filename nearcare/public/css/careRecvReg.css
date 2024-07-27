@@ -2,48 +2,48 @@
 span{
     margin-top: 5%;
 }
-#wrap{
+#care_receive_reg_wrap{
     margin-top: -20px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     width: 100%;
     background-color: #FFFFFF;
     border: 2px solid #FFFFFF;
     border-radius: 20px;
-    padding: 20px;
-    height: max-content;
-    min-height: 700px;
+    /* padding: 20px; */
+    /* height: max-content; */
+    /* min-height: 700px; */
+    flex-direction: column;
 }
 #care_receive_reg_title{
+    background-color: #F47176;
     width: 100%;
-    height: 11%;
+    text-align: center;
+    color: #FFFFFF;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    text-align: center;
-    /* background-color: #ffdfea; */
-    border-bottom: 1px solid #e9e9e9;
     font-size: 67%;
 }
 #reg_container_wrap{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 5%;
+    /* margin: 5%; */
     margin-top: 0%;
-    border-radius: 20px;
-    width: 90%;
+    /* border-radius: 20px; */
+    width: 82%;
     height: 100%;
-
+    align-items: center;
+    justify-content: space-evenly;
 }
 .care_receive_reg_div1{
     display: flex;
     width: 100%;
-    height: 37%;
+    height: 50.5%;
     flex-direction: row;
-    /* align-items: baseline; */
+    align-items: flex-start;
     margin-top: 20px;
-    margin-left: -10%;
+    
+    /* margin-left: -10%;
 }
 
 
@@ -58,12 +58,35 @@ span{
 .care_receive_reg_div2{
     display: flex;
     width: 100%;
+    height: 37%;
+    flex-direction: row;
+    align-items: baseline;
+    margin-top: 20px;
+    /* margin-left: -10%;
+    /* display: flex;
+    width: 100%;
     height: 30%;
     flex-direction: row;
     align-items: baseline;
-    margin-left: -10%;
+    margin-left: -10%; */
 }
+.care_receive_reg_left_div{
+    width: 19%;
+    text-align: right;
+    padding-right: 10px;
+    padding-left: 5%;
+    margin-left: -5%;
+    font-size: 96%;
+    font-weight: 1000;
 
+}
+.care_receive_reg_right_div{
+    width: 77%;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 100%;
+
+}
 .care_receive_reg_left_div, .care_receive_reg_right_div {
     display: flex;
     flex-direction: column;
@@ -73,34 +96,22 @@ span{
 .care_receive_reg_div3{
     display: flex;
     width: 100%;
-    height: 20%;
-    margin-left: -10%;
-    margin-top: 15px;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.3%;
+}
+textarea:focus {
+    outline: none;
 }
 .care_receive_reg_div4{
     display: flex;
     width: 100%;
-    height: 10%;
-    justify-content: center;
-    align-items: center;
+    height: 20%;
+    margin-left: -10%;
+    margin-top: 15px;
 }
-.care_receive_reg_left_div{
-    width: 20%;
-    text-align: right;
-    padding-right: 10px;
-    padding-left: 5%;
-    margin-left: -5%;
-    font-size: 100%;
-    font-weight: 1000;
 
-}
-.care_receive_reg_right_div{
-    width: 80%;
-    text-align: left;
-    padding-left: 10px;
-    font-size: 100%;
-
-}
 #disease_type{
     display: flex;
     justify-content: flex-start;
@@ -123,8 +134,8 @@ span{
 }
 .care_receive_reg_left_div > div 
 , .care_receive_reg_right_div > div{
-    height: 13%; 
-    line-height: 40px;
+    height: 13%;
+    line-height: 38px;
 }
 
 
@@ -138,8 +149,8 @@ span{
 
 }
 #care_week_div > div{
-    width: 50%;
-    height: 68%;
+    width: 23%;
+    height: 61%;
     /* border: 1px solid #f8a5c2; */
     border: 1px solid #e9e9e9;
     /* background-color: #ffdfea; */
@@ -170,7 +181,7 @@ span{
     border: 0px;
     background-color: #fff8f7;
     font-size: 80%;
-    width: 50px;
+    width: 42px;
     height: 20px;
     border-radius: 20px;
 }
@@ -182,8 +193,8 @@ span{
 /* #care_time_div{
 
 } */
-select{
-    width: 15%;
+#care_start_time,#care_end_time{
+    width: 25%;
     height: 20px;
     text-align: center;
     /* border: 1px solid #f8a5c2; */
@@ -192,17 +203,19 @@ select{
     font-size: 80%;
 
 }
-textarea{
+#receiver_textarea{
     border: 1px solid #e9e9e9;
     resize: none;
     width: 90%;
     height: 20%;
+    border-radius: 10px;
+    margin-left: -4%;
 }
 
 #care_receive_confrm_btn_div{
     display: flex;
     width: 15%;
-    height: 60%;
+    height: 72%;
     /* width: 100%; */
     justify-content: center;
     align-items: center;
@@ -218,7 +231,7 @@ textarea{
 #care_receive_cencell_btn_div{
     display: flex;
     width: 15%;
-    height: 60%;
+    height: 72%;
     /* width: 100%; */
     justify-content: center;
     align-items: center;
@@ -230,12 +243,6 @@ textarea{
     border: 0px;
     
 }
-
-#receiver_textarea{
-    width: 100%;
-    height: 200px;
-}
-
 .care_receive_textarea-btn_blankspace{
     height: 20px;
 }

@@ -51,18 +51,18 @@
                         <p class="detail_p2">  
                             {% if userInfo.dementia == 'Y' %}
                             <span class="visible  {{active}}" style="display: '{{flex}}';">
-                                    치매O
+                                    치매
                             </span>
                             {% elif userInfo.dementia == 'N' %}
                             <span class="invisible  {{active}}" style="display: '{{flex}}';">
-                                    치매X
+                                    치매
                             </span>
 
                             {% endif %}
 
                             {% if userInfo.meal == 'Y' %}
                             <span class="visible '{{styles.active}}'" style="display: '{{styles.flex}}';">
-                            식사도움
+                                식사도움
                             </span>
                             {% elif userInfo.meal == 'N' %}
                             <span class="visible " style="display: none;">
@@ -70,30 +70,30 @@
                             </span>
                             {% else %}
                             <span class="invisible '{{styles.active}}'" style="display: '{{styles.flex}}';">
-                            식사가능
+                                식사도움
                             </span>
                             
                             {% endif %}
                             {% if userInfo.behavior == 'A' %}
                             <span class="invisible {{active}}" style="display: '{{flex}}';">
-                                거동가능
+                                거동도움
                             </span>
                             {% elif userInfo.behavior == 'B' %}
                             <span class="visible {{active}}" style="display: '{{flex}}';">
-                                거동불편
+                                거동도움
                             </span>
                             {% elif userInfo.behavior == 'C' %}
                             <span class="visible {{active}}" style="display: '{{flex}}';">
-                                거동불가능
+                                거동도움
                             </span>
                             {% endif %}
                             {% if userInfo.dialusis == 'Y' %}
                             <span class="visible {{active}}" style="display: '{{flex}}';">
-                                투석O
+                                투석
                             </span>
                             {% elif userInfo.dialusis == 'N' %}
                             <span class="invisible {{active}}" style="display: '{{flex}}';">
-                                투석X
+                                투석
                             </span>
                                 
                             {% endif %}

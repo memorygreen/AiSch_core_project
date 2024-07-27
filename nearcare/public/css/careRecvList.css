@@ -169,7 +169,7 @@ button{
 }
 #modal_Body {
     width: 100%;
-    height: 80%;
+    height: 70%;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -182,7 +182,7 @@ button{
 }
 #btn_wrap{
     width: 100%;
-    height: 12%;
+    height: 19%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -199,7 +199,7 @@ button{
     width: 23%;
     height: 100%;
     margin: 1%;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -254,7 +254,7 @@ button{
     background-color: #fff8f7;
     width: 20%;
     margin: 1%;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -307,7 +307,7 @@ button{
     background-color: #fff8f7;
     width: 20%;
     margin: 1%;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -358,12 +358,12 @@ button{
     display: flex;
     align-items: baseline;
 }
-#point_inner_txt{
+.inner_txt_font_weight{
     font-weight: 1000;
 }
 #complete_pay_btn_wrap{
     width: 100%;
-    height: 12%;
+    height: 19%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -374,7 +374,7 @@ button{
     width: 20%;
     height: 100%;
     margin: 1%;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
 }
 

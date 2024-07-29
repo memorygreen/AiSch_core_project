@@ -10,13 +10,9 @@ const fileStore = require('session-file-store')(session);
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
 const conn = require('./config/db'); // 데이터베이스 연결 모듈 추가
-const csrf = require('csurf'); // csrf 토큰 - 아인
-const cookieParser = require('cookie-parser');//토큰 저장을 위한 cookie-parser - 아인
+
 // 세션 파일 저장소 경로 설정
 const sessionDir = path.join(__dirname, 'sessions');
-
-// cookie-parser 미들웨어 -> 쿠키에 토큰 저장을 하기 위해 추가  - 아인
-app.use(cookieParser());
 
 app.use(session({
     httpOnly: true,
@@ -32,24 +28,6 @@ app.use(session({
 // Passport 초기화
 app.use(passport.initialize());
 app.use(passport.session());
-
-// CSRF 미들웨어 적용 - 아인
-const csrfProtection = csrf({ 
-    cookie : {
-        httpOnly : true,
-        secure : process.env.NODE_ENV === 'production',
-        sameSite : 'lax'
-    }
-});
-app.use(csrfProtection);// - 아인
-
-// 모든 요청에 CSRF 토큰 전달 - 아인
-app.use((req, res, next) => {
-    res.locals.userId = req.session.userId || null;
-    res.locals.userType = req.session.userType || null;
-    res.locals.csrfToken = req.csrfToken();
-    next();
-});
 
 passport.serializeUser((user, done) => {
     done(null, user);
@@ -81,6 +59,12 @@ passport.use(new KakaoStrategy({
     // 카카오 사용자 정보를 세션에 저장
     return done(null, { USER_ID: userId, USER_NAME: userNickname });
 }));
+
+app.use((req, res, next) => {
+    res.locals.userId = req.session.userId || null;
+    res.locals.userType = req.session.userType || null;
+    next();
+});
 
 // 정적 파일요청 폴더 등록
 app.use(express.static(path.join(__dirname, 'public')));

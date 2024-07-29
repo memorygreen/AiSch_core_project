@@ -25,4 +25,9 @@ const careRecviInfo = function careRecviInfo(selUserId){
     return sql;
 };
 
-module.exports = {careRecvListSql, careRecvRegconfrm, selectPoint, updateUserPointSql, careRecviInfo};
+const careRecviInfo2 = function careRecviInfo(selUserId){
+    let sql = `select * from TB_CARE_RECEIVER AS A, TB_MATCHING AS B where CARE_RECEIVER_ID = '${selUserId}'`;
+    return sql;
+};
+
+module.exports = {careRecvListSql, careRecvRegconfrm, selectPoint, updateUserPointSql, careRecviInfo, careRecviInfo2};

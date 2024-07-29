@@ -60,3 +60,17 @@ document.getElementById('care_recv_regi_form').addEventListener('submit', functi
         });
     
 });
+
+// 주소 인풋태그 포커스 됐을때 포커스 해제됐을때 코드
+document.addEventListener('DOMContentLoaded', (e) => {
+    const inputField = document.getElementById('care_receiver_user_add');
+    const originalPlaceholder = inputField.placeholder;
+
+    inputField.addEventListener('focus', () => {
+        inputField.placeholder = '';
+    });
+
+    inputField.addEventListener('blur', () => {
+        inputField.placeholder = originalPlaceholder;
+    });
+});

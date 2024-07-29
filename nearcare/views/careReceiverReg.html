@@ -19,7 +19,7 @@
                     </div>
                     <div class="care_receive_reg_right_div">
                         <div>
-                            <input type="text" name="user_name" value="{{dbData.userName}}">
+                            <input type="text" name="user_name" value="{{dbData.userName}}" readonly>
                         </div>
                         
                         <div>
@@ -28,13 +28,13 @@
                             
                         </div>
                         <div>
-                            <input type="text" name="user_birth" value="{{userBirth}}">
+                            <input type="text" name="user_birth" value="{{userBirth}}" readonly>
                         </div>
                         <div>
-                            <input type="text" name="user_phone" value="{{dbData.phone}}">
+                            <input type="text" name="user_phone" value="{{dbData.phone}}" readonly>
                         </div>
                         <div>
-                            <input type="text" name="care_receiver_user_add" id="care_receiver_user_add">
+                            <input type="text" name="care_receiver_user_add" placeholder="  주소를 입력해주세요" id="care_receiver_user_add">
                         </div>
                         <div>
                             <input type="radio" name="care_level" value="3">상</input>

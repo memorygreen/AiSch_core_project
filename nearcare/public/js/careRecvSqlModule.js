@@ -3,9 +3,8 @@ const careRecvListSql = function careRecvListSql(){
     let sql = 'select care_receiver_name, care_receiver_birth, care_receiver_gender, care_receiver_phone, user_email, care_receiver_level, care_receiver_add, user_point, u.USER_ID from TB_USER as u inner join TB_CARE_RECEIVER as r where u.user_id = r.user_id';
     return sql;
 };
-const careRecvRegconfrm = function careRecvRegconfrm(selectedUserId){
-    let userId = selectedUserId;
-    let sql = `select * from TB_CARE_RECEIVER as r inner join  TB_USER as u  on r.USER_ID = "${userId}" and u.USER_ID = "${userId}" `;
+const careRecvRegconfrm = function careRecvRegconfrm(loginUserId){
+    let sql = `select * from TB_USER where USER_ID = "${loginUserId}" `;
     return sql;
 };
 

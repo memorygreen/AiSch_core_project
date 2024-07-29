@@ -3,25 +3,50 @@ const router = express.Router();
 const conn = require('../config/db');
 const recvModule = require('../public/js/careRecvModule');
 const sqlModule = require('../public/js/careRecvSqlModule');
-const formetDate = require('../public/js/formatDate');
+const formatDate = require('../public/js/formatDate');
 
 
 // 요양정보등록 라우터
 router.get('/careRecvRegconfrm', (req, res) => {
-    let selectedUserId = req.session.selectedUserId
-    console.log('선택한 회원아이디',selectedUserId);
-    let sql = sqlModule.careRecvRegconfrm(selectedUserId);
+
+    let loginUserId = req.session.userId
+    console.log('선택한 회원아이디',loginUserId);
+    let sql = sqlModule.careRecvRegconfrm(loginUserId);
     // 추후 선택한 대상자 정보 불러와 넣을 예정-아인
     conn.query(sql, (err, rows) => {
+        console.log('rows',rows[0]);
         if (err) {
             console.error('careRecvRegconfrm 에러');
         }
-        // let birthDay = rows[0].CARE_RECEIVER_BIRTH;
-        // let birthDayFormet = formetDate(birthDay);
-        let userData = recvModule.userInfo(rows);
-        console.log('넘어온 데이터',userData);
-        res.render('careReceiverReg', { dbData: userData});
+        let birthDay = rows[0].USER_BIRTHDATE;
+        let birthDayFormat = formatDate(birthDay);
+        let birthDaySplt = birthDayFormat.split('-');
+        let userBirth = birthDaySplt[0] + '년 ' + birthDaySplt[1] + '월 ' + birthDaySplt[2] + '일';
+        let loginUserInfoData = recvModule.loginUserInfo(rows);
+        req.session.userName = rows[0].userName;
+        
+
+        console.log('넘어온 데이터',loginUserInfoData);
+        res.render('careReceiverReg', { dbData: loginUserInfoData, userBirth }); // test CSRF 토큰 전달
     });
+
+});
+
+//요양대상자 등록 후 이동
+router.post('/careRecvRegi', (req,res)=>{
+    // console.log('res', res);
+    console.log('req.body', req.body);
+    console.log('req.body', req.session.userId);
+    let userId = req.session.userId;
+    let userName = req.session.userName;
+    const diseaseTypes = JSON.parse(req.body.diseaseTypes);
+    const careWeeks = JSON.parse(req.body.careWeeks);
+    console.log('diseaseTypes', diseaseTypes);
+    console.log('careWeeks', careWeeks);
+    const careRecvInfoData = req.body;
+    // let careRecvInfoDataSql = careRecvInfoInsert(careRecvInfoData, userId, userName);
+    res.send({ success: true });
+    
 
 });
 

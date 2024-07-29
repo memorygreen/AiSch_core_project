@@ -1,148 +1,147 @@
 {% extends 'index.html' %}
 {% block content %}
-    <div id="wrap">
-        <div id="title">
+    <div id="care_receive_reg_wrap">
+        <div id="care_receive_reg_title">
             <p>요양정보 등록</p>
         </div>
         <div id="reg_container_wrap">
-            
-            <div class="care_receive_reg_div1">
-                <div class="care_receive_reg_left_div">
-                    
-                    <div><span>이름</span></div>
-                    <div><span>생년월일</span></div>
-                    <div><span>연락처</span></div>
-                    <div><span>주소</span></div>
-                    <div><span>이메일</span></div>
-                    <div><span>성별</span></div>
-                    <div><span>환자상태</span></div>
-                </div>
-                <div class="care_receive_reg_right_div">
-                    <div>{{dbData.CARE_RECEIVER_NAME}}</div>
-                    <div>{{birthDayFormet}}</div>
-                    <div>{{dbData.CARE_RECEIVER_PHONE}}</div>
-                    <div>{{dbData.CARE_RECEIVER_ADD}}</div>
-                    
-                    <div>
-                        {% set email = dbData.USER_EMAIL %}
-                        {% if email %}
-                            {{email}}
-                        {% else %}
-                            없음
-                        {% endif %}
+            <form action="/careRecvRegi" method="post" id="care_recv_regi_form">
+                
+                <div class="care_receive_reg_div1">
+                    <div class="care_receive_reg_left_div">
+                        
+                        <div><span>이　　름 :</span></div>
+                        <div><span>성　　별 :</span></div>
+                        <div><span>생년월일 :</span></div>
+                        <div><span>전화번호 :</span></div>
+                        <div><span>주　　소 :</span></div>
+                        <!-- <div><span>이메일 :</span></div> -->
+                        <div><span>환자상태 :</span></div>
                     </div>
-                    <div>
-                        {% set gender = dbData.CARE_RECEIVER_GENDER %}
-                        {% if gender == 'M' %}
-                            남성
-                        {% elif gender == 'F' %}
-                            여성
-                        {% endif %}
-                    </div>
-                    <div>
-                        {% set condition = dbData.CARE_RECEIVER_LEVEL %}
-                        {% if condition == 1 %}
-                            최하
-                        {% elif condition == 2 %}
-                            하
-                        {% elif condition == 3 %}    
-                            중
-                        {% elif condition == 4 %}    
-                            상
-                        {% endif %}    
+                    <div class="care_receive_reg_right_div">
+                        <div>
+                            <input type="text" name="user_name" value="{{dbData.userName}}">
+                        </div>
+                        
+                        <div>
+                            <input type="radio" name="care_receiver_gender" value="남성" >남성</input>
+                            <input type="radio" name="care_receiver_gender" value="여성">여성</input>
+                            
+                        </div>
+                        <div>
+                            <input type="text" name="user_birth" value="{{userBirth}}">
+                        </div>
+                        <div>
+                            <input type="text" name="user_phone" value="{{dbData.phone}}">
+                        </div>
+                        <div>
+                            <input type="text" name="care_receiver_user_add" id="care_receiver_user_add">
+                        </div>
+                        <div>
+                            <input type="radio" name="care_level" value="상">상</input>
+                            <input type="radio" name="care_level" value="중">중</input>
+                            <input type="radio" name="care_level" value="하">하</input>
+                        </div>
                     </div>
                 </div>
-            </div>
+                
+                
+                    <!-- <div class="care_receive_border1"></div> -->
             
-            
-                <div class="care_receive_border1"></div>
-        
-            
-            <div class="care_receive_reg_div2">
-                <div class="care_receive_reg_left_div">
-                    
-                    <div>주요질환</div>
-                    
-                    <div>요일</div>
-                    <div>시간</div>
+                
+                <div class="care_receive_reg_div2">
+                    <div class="care_receive_reg_left_div">
+                        
+                        <div>주요질환 :</div>
+                        
+                        <div>요　　일 :</div>
+                        <div>시　　간 :</div>
+                        <div>비　　고 :</div>
+                    </div>
+                    <div class="care_receive_reg_right_div">
+                        <div id="disease_type">
+                            
+                            <input type="checkbox" name="disease_type" value="치매"><span>치매</span></input>
+                            <input type="checkbox" name="disease_type" value="이동도움"><span>이동도움</span></input>
+                            <input type="checkbox" name="disease_type" value="침상생활"><span>침상생활</span></input>
+                            <input type="checkbox" name="disease_type" value="투석"><span>투석</span></input>
+                        </div>
+                        
+                        <div id="care_week_div">
+                            <input type="checkbox" name="care_week" value="일">일</input>
+                            <input type="checkbox" name="care_week" value="월">월</input>
+                            <input type="checkbox" name="care_week" value="화">화</input>
+                            <input type="checkbox" name="care_week" value="수">수</input>
+                            <input type="checkbox" name="care_week" value="목">목</input>
+                            <input type="checkbox" name="care_week" value="금">금</input>
+                            <input type="checkbox" name="care_week" value="토">토</input>
+                        </div>
+                        <div id="care_time_div">
+                            <select name="care_start_time" id="care_start_time">
+                                <option selected value="">시작시간</option>
+                                <option value="09:00">09:00</option>
+                                <option value="09:30">09:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="15:30">15:30</option>
+                                <option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option>
+                                <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option>
+                            </select>
+                            ~
+                            <select name="care_end_time" id="care_end_time">
+                                <option selected value="">종료시간</option>
+                                <option value="09:30">09:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="15:30">15:30</option>
+                                <option value="16:00">16:00</option>
+                                <option value="16:30">16:30</option>
+                                <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option>
+                                <option value="18:30">18:30</option>
+                            </select>
+                        </div>
+                        <div class="care_receive_reg_right_div"><textarea id="receiver_textarea" name="text_area" ></textarea></div>
+                    </div>
                 </div>
-                <div class="care_receive_reg_right_div">
-                    <div id="disease_type">
-                        <div id=""><span>치매</span></div>
-                        <div id="">이동도움</div>
-                        <div id="">침상생활</div>
-                        <div id="">투석</div>
-                    </div>
+                <div class="care_receive_reg_div3">
+                    <!-- <div class="care_receive_reg_left_div">
+                        
+                    </div> -->
+                    <div id="care_receive_confrm_btn_div"><button type="submit" id="care_receive_confrm_btn" >등록</button></div>
+                    <div id="care_receive_cencell_btn_div"><button type="button" onclick="location.href='/'" id="care_receive_cencell_btn">취소</button></div>
                     
-                    <div id="care_week_div">
-                        <div><button class="week_btns" href="">일</button></div>
-                        <div><button class="week_btns" href="">월</button></div>
-                        <div><button class="week_btns" href="">화</button></div>
-                        <div><button class="week_btns" href="">수</button></div>
-                        <div><button class="week_btns" href="">목</button></div>
-                        <div><button class="week_btns" href="">금</button></div>
-                        <div><button class="week_btns" href="">토</button></div>
-                    </div>
-                    <div id="care_time_div">
-                        <select name="care_start_time" id="care_start_time">
-                            <option value="">09:00</option>
-                            <option value="">09:30</option>
-                            <option value="">10:00</option>
-                            <option value="">10:30</option>
-                            <option value="">11:00</option>
-                            <option value="">11:30</option>
-                            <option value="">12:00</option>
-                            <option value="">12:30</option>
-                            <option value="">13:00</option>
-                            <option value="">13:30</option>
-                            <option value="">14:00</option>
-                            <option value="">14:30</option>
-                            <option value="">15:00</option>
-                            <option value="">15:30</option>
-                            <option value="">16:00</option>
-                            <option value="">16:30</option>
-                            <option value="">17:00</option>
-                            <option value="">17:30</option>
-                            <option value="">18:00</option>
-                        </select>
-                        ~
-                        <select name="care_end_time" id="care_end_time">
-                            <option value="">09:30</option>
-                            <option value="">10:00</option>
-                            <option value="">10:30</option>
-                            <option value="">11:00</option>
-                            <option value="">11:30</option>
-                            <option value="">12:00</option>
-                            <option value="">12:30</option>
-                            <option value="">13:00</option>
-                            <option value="">13:30</option>
-                            <option value="">14:00</option>
-                            <option value="">14:30</option>
-                            <option value="">15:00</option>
-                            <option value="">15:30</option>
-                            <option value="">16:00</option>
-                            <option value="">16:30</option>
-                            <option value="">17:00</option>
-                            <option value="">17:30</option>
-                            <option value="">18:00</option>
-                            <option value="">18:30</option>
-                        </select>
-                    </div>
                 </div>
-            </div>
-            <div class="care_receive_reg_div3">
-                <div class="care_receive_reg_left_div">비고</div>
-                <div class="care_receive_reg_right_div"><textarea id="receiver_textarea" name="text_area" ></textarea></div>
-            </div>
-            <div class="care_receive_textarea-btn_blankspace">
+            <!-- <div class="care_receive_textarea-btn_blankspace">
 
             </div>
-            <!-- <div class="care_receive_reg_div"></div> -->
             <div class="care_receive_reg_div4">
-                <div id="care_receive_confrm_btn_div"><button type="button" id="care_receive_confrm_btn"  onclick="location.href='/careReceiveConfrm'">등록</button></div>
-                <div id="care_receive_cencell_btn_div"><button type="button" id="care_receive_cencell_btn">취소</button></div>
-            </div>
+            </div> -->
+            <!-- <div class="care_receive_reg_div"></div> -->
+            </form>
         </div>
     </div>
-    
+    <script src="/js/careRecvReg.js"></script>
 {% endblock %}

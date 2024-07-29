@@ -87,15 +87,21 @@
     border-radius: 6px;
     border: 2px solid rgba(244,113,118,1);
     color: rgb(0, 0, 0);
-    margin-right: 1.5%;
+    margin-right: 0.7%;
+    margin-left: 0.7%;
     text-align: center;
 }
 
 .invisible{
     border-radius: 6px;
     color:lightgray;
-    border: 1px solid rgba(244,113,118,1);
-    margin-right: 1.5%;
+    border: 1px solid rgba(244, 113, 117, 0.521);
+    margin-right: 0.7%;
+    margin-left: 0.7%;
+    text-align: center;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom:2px;
 }
 
 .detail_blankspace3{

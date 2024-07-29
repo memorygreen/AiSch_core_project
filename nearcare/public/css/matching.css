@@ -14,7 +14,7 @@
 
 #title {
     background-color: #F47176;
-    width: 100%;
+    width: 107%;
     text-align: center;
     color: #FFFFFF;
     border-top-left-radius: 20px;
@@ -82,9 +82,9 @@
 
 .custom-button {
     display: inline-block;
-    width: 80%; /* 버튼 너비 조절 */
+    width: 200px; /* 버튼 너비 조절 */
+    height: 50px;
     margin: 5px 0;
-    padding: 10px 20px;
     font-size: 16px;
     font-weight: 600;
     text-align: center;
@@ -96,16 +96,21 @@
     border: 2px solid #F47176;
 }
 
-.custom-button:hover {
-    background-color: #F47176;
-    color: #FFFFFF;
-}
+/* .custom-button:hover {
+    background-color: #FFFF;
+    color: #F47176;
+} */
 
 .custom-button:focus {
     outline: none;
 }
 
-.custom-button a {
-    color: #fff;
+/* .custom-button a {
+    color: #F47176;
     text-decoration: none;
+} */
+
+.button-group{
+    align-content: center;
+    justify-content: center;
 }

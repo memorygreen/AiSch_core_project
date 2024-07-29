@@ -26,13 +26,15 @@
                         상세보기
                     </button>
                 </form>
-                <a href="/matching/update-status?careReceiverId={{i.careReceiverId}}&newStatus={{i.matchStatus}}" class="custom-button">
+                <a href="/matching/update-status?careReceiverId={{i.careReceiverId}}&newStatus={{i.matchStatus}}"><button class="custom-button">
                     {% if status == 1 %}
                     연계종료
                     {% elif status == 0 %}
                     연계시작
                     {% endif %}
+                </button>
                 </a>
+            
             </div>
         </div>
         {% endfor %}

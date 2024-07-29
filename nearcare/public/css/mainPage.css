@@ -9,11 +9,13 @@
     border-radius: 20px;
     padding: 20px;
     height: max-content;
+    box-sizing: border-box;
 }
 
 #banner {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
+
 }
 
 .button-container {

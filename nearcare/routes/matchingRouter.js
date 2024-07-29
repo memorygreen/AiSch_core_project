@@ -2,6 +2,18 @@ const express = require("express");
 const router = express.Router();
 const conn = require("../config/db");
 const formatDate = require("../public/js/formatDate");
+const sqlModule = require("../public/js/careRecvSqlModule");
+const recvModule = require("../public/js/careRecvModule");
+
+// 상세보기 버튼을 클릭한 후 선택한 사람의 ID를 세션에 저장
+router.post('/setSelectedUid', (req, res) => {
+    const { selectedUserId } = req.body;
+    req.session.selectedUserId = selectedUserId;
+    console.log('Session saved selectedUserId:', req.session.selectedUserId);  // 디버깅용 로그 추가
+    req.session.save(() => {
+        res.redirect('/careRecvReg/careRecvDetail');
+    });
+});
 
 // 매칭페이지 기본
 router.get("/", (req, res) => {
@@ -37,32 +49,36 @@ router.get("/", (req, res) => {
     });
 });
 
-// 매칭페이지 상세보기
-router.get("/detail", (req, res) => {
-    let sql = "SELECT * FROM TB_CARE_RECEIVER WHERE CARE_RECEIVER_ID = ?";
-    const careReceiverId = req.query.careReceiverId;
-    console.log("crid : " + careReceiverId);
-    conn.query(sql, [careReceiverId], (err, rows) => {
-        console.log(rows)
+// 요양 대상자 상세 정보 페이지 이동
+router.get('/careRecvDetail', (req, res) => {
+    const selUserId = req.session.selectedUserId;
+    console.log('Session retrieved selectedUserId:', selUserId);  // 디버깅용 로그 추가
+
+    if (!selUserId) {
+        return res.redirect('/matching');
+    }
+
+    //sql문 작성하는 함수
+    const selUserInfSql = sqlModule.careRecviInfo(selUserId);
+    // db실행
+    conn.query(selUserInfSql, (err, rows) => {
         if (err) {
-            console.error('Database query error:', err);
+            console.error('selUserInfSql 에러났어..', err);
             return res.status(500).send('Internal Server Error');
         }
 
-        let arr = [];
+        if (rows.length === 0) {
+            return res.status(404).send('No data found for the selected user');
+        }
 
-        rows.forEach(row => {
-            arr.push({
-                careReceiverName: row.CARE_RECEIVER_NAME,
-                careReceiverBirth: formatDate(row.CARE_RECEIVER_BIRTH),
-                careReceiverGender: row.CARE_RECEIVER_GENDER,
-                careReceiverPhone: row.CARE_RECEIVER_PHONE,
-                careReceiverDays: row.CARE_RECEIVER_DAYS,
-            });
-        });
-        console.log(arr)
-
-        res.render('matching2', { arr });
+        // DB에서 넘어온 데이터를 userInfo()함수에 넣어 정제해서 userData에 할당
+        let userData = recvModule.userInfo(rows);
+        const styles = {
+            flex: 'flex',
+            active: 'active'
+        };
+        // 정제된 userData를 careRecvDetail 페이지에 넘겨줌
+        res.render('careRecvDetail', { userData, styles });
     });
 });
 

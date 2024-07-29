@@ -51,13 +51,28 @@ const maskDatas = function maskDatas (rows){
     }
 };
 
+const loginUserInfo = function loginUserInfo(rows){
+    let birthDay = rows[0].USER_BIRTHDATE;
+    let birthDayFormet = formatDate(birthDay);
+    let birthDaySplt = birthDayFormet.split('-');
+    let userBirth = birthDaySplt[0] + '년 ' + birthDaySplt[1] + '월 ' + birthDaySplt[2] + '일';
+    console.log('birthDayFormet',birthDayFormet);
+    console.log('birthDaySplt', birthDaySplt[0]);
+    let loginUserInfoData = {
+        userName : rows[0].USER_NAME,
+        userBirth : userBirth,
+        phone: rows[0].USER_PHONE,
+    };
+    return loginUserInfoData;
+};
+
 const userInfo = function userInfo (rows) {
     let birthDay = rows[0].CARE_RECEIVER_BIRTH;
     let birthDayFormet = formatDate(birthDay);
     let birthDaySplt = birthDayFormet.split('-');
     let userBirth = birthDaySplt[0] + '년 ' + birthDaySplt[1] + '월 ' + birthDaySplt[2] + '일';
-    // console.log('birthDayFormet',birthDayFormet);
-    // console.log('birthDaySplt', birthDaySplt[0]);
+    console.log('birthDayFormet',birthDayFormet);
+    console.log('birthDaySplt', birthDaySplt[0]);
     let userInfo = {
         userName : rows[0].CARE_RECEIVER_NAME,
         gender : rows[0].CARE_RECEIVER_GENDER,
@@ -76,4 +91,4 @@ const userInfo = function userInfo (rows) {
     return userInfo;
 };
 
-module.exports = {maskDatas, userInfo};
+module.exports = {maskDatas, userInfo, loginUserInfo};

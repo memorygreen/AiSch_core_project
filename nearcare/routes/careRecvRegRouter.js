@@ -4,35 +4,49 @@ const conn = require('../config/db');
 const recvModule = require('../public/js/careRecvModule');
 const sqlModule = require('../public/js/careRecvSqlModule');
 const formatDate = require('../public/js/formatDate');
-const csrf = require('csurf');
-
-const csrfProtection = csrf({ 
-    cookie : {
-        httpOnly : true,
-        secure : process.env.NODE_ENV === 'production',
-        sameSite : 'lax'
-    }
-}); // 세션에 저장할때는 false
 
 
 // 요양정보등록 라우터
 router.get('/careRecvRegconfrm', (req, res) => {
-    let selectedUserId = req.session.selectedUserId
-    console.log('선택한 회원아이디',selectedUserId);
-    let sql = sqlModule.careRecvRegconfrm(selectedUserId);
+
+    let loginUserId = req.session.userId
+    console.log('선택한 회원아이디',loginUserId);
+    let sql = sqlModule.careRecvRegconfrm(loginUserId);
     // 추후 선택한 대상자 정보 불러와 넣을 예정-아인
     conn.query(sql, (err, rows) => {
+        console.log('rows',rows[0]);
         if (err) {
             console.error('careRecvRegconfrm 에러');
         }
-        let birthDay = rows[0].CARE_RECEIVER_BIRTH;
-        let birthDayFormet = formatDate(birthDay);
-        let birthDaySplt = birthDayFormet.split('-');
+        let birthDay = rows[0].USER_BIRTHDATE;
+        let birthDayFormat = formatDate(birthDay);
+        let birthDaySplt = birthDayFormat.split('-');
         let userBirth = birthDaySplt[0] + '년 ' + birthDaySplt[1] + '월 ' + birthDaySplt[2] + '일';
-        let userData = recvModule.userInfo(rows);
-        console.log('넘어온 데이터',userData);
-        res.render('careReceiverReg', { dbData: userData, userBirth, csrfToken: req.csrfToken() }); // test CSRF 토큰 전달
+        let loginUserInfoData = recvModule.loginUserInfo(rows);
+        req.session.userName = rows[0].userName;
+        
+
+        console.log('넘어온 데이터',loginUserInfoData);
+        res.render('careReceiverReg', { dbData: loginUserInfoData, userBirth }); // test CSRF 토큰 전달
     });
+
+});
+
+//요양대상자 등록 후 이동
+router.post('/careRecvRegi', (req,res)=>{
+    // console.log('res', res);
+    console.log('req.body', req.body);
+    console.log('req.body', req.session.userId);
+    let userId = req.session.userId;
+    let userName = req.session.userName;
+    const diseaseTypes = JSON.parse(req.body.diseaseTypes);
+    const careWeeks = JSON.parse(req.body.careWeeks);
+    console.log('diseaseTypes', diseaseTypes);
+    console.log('careWeeks', careWeeks);
+    const careRecvInfoData = req.body;
+    // let careRecvInfoDataSql = careRecvInfoInsert(careRecvInfoData, userId, userName);
+    res.send({ success: true });
+    
 
 });
 
@@ -54,7 +68,7 @@ router.get('/careRecvList', (req, res) => {
         // 임시 포인트 조회를 위해 테스트 데이터 넣음 - 아인
         let point = rows[2].user_point;
         // 요양대상자 리스트 페이지 이동
-        res.render('careRecvList', { arrData, point, csrfToken: req.csrfToken() });
+        res.render('careRecvList', { arrData, point });
 
     });
     //추후 로그인한 정보불러와 넣을 예정 - 아인
@@ -87,13 +101,13 @@ router.get('/careRecvDetail', (req, res) => {
             active : 'active'
         };
         // 정제된 userData를 careRecvDetail 페이지에 넘겨줌
-        res.render('careRecvDetail', { userData , styles, csrfToken: req.csrfToken() });
+        res.render('careRecvDetail', { userData , styles});
         // const {userInfo} = rows[0];
     });
 });
 
 // 상세보기 누른 회원의 아이디 정보를 불러와 세션에 저장
-router.post('/setSelectedUid', csrfProtection, (req, res) => {
+router.post('/setSelectedUid', (req, res) => {
     const { selectedUserId } = req.body;
     req.session.selectedUserId = selectedUserId;
     res.send({ success: true });
@@ -121,23 +135,19 @@ router.post('/selPoint', (req, res) => {
         };
         // 조회해온 회원 포인트
         req.session.userPoint = currentPoints;
-        req.session.userId = userId;
-        res.json({ success: true, userPoint: currentPoints, userId });
+        res.json({ success: true, userPoint: currentPoints });
     });
     
 });
 
 // 결제
-router.post('/pay', csrfProtection, (req, res) => {
+router.post('/pay', (req, res) => {
     // 세션에 저장된 회원 포인트를 가져옴
     let userPoint = req.session.userPoint;
     // 로그인한 유저 (test로 넣어둠- careRecvList 부분 하단에 있음) 아인
     // var userId = req.session.userId;
-    // let {userId} = req.body;
     let userId = req.session.userId;
-    console.log('req.session userId' , userId);
     let selectedUserId = req.session.selectedUserId;
-
     console.log('selectedUserId',selectedUserId);
     // updateSql
     const currentPointsSql = sqlModule.updateUserPointSql(userPoint, userId);
@@ -167,54 +177,17 @@ router.post('/pay', csrfProtection, (req, res) => {
                 // conn.end();
             });
             // 커밋 후 잔여 포인트 안내를 위해 다시 조회
-            console.log('커밋 후 userId', userId);
             let selectPointSql = sqlModule.selectPoint(userId);
             conn.query(selectPointSql, (err, results) => {
-                console.log('results  : ', results);
                 if (err) {
                     console.error('커밋 후 조회 실패!!');
                     conn.end();
                 };
-                if (results.length === 0) {
-                    console.log('포인트 조회 에러');
-                    return res.status(404).send('User not found');
-                }
                 // 차감 후 저장된 포인트
                 const reUserPoint = results[0].USER_POINT;
                 // 세션에 담아줌
-                req.session.userPoint =  reUserPoint;
-                let selectUserSql = sqlModule.selectUserInfo(selectedUserId);
-                conn.query(selectUserSql, (err, results)=>{
-                    if(err){
-                        console.error('유저 조회 실패!',err);
-                        conn.end();
-                    }
-                    // console.log('selectUserInfo results', results[0].CARE_RECEIVER_ID);
-                    // console.log('selectUserInfo results', results[0].USER_ID);
-                    let careRecvUserId = results[0].CARE_RECEIVER_ID;
-                    let tbCareRecerverUserId = results[0].USER_ID;
-                    const createDateTime = new Date();
-                    let paymentDateTime = formatDate(createDateTime);
-                    // console.log('paymentDateTime',paymentDateTime);
-                    const paymentInfo = {
-                    careRecvUserId : careRecvUserId,
-                    userId : tbCareRecerverUserId,
-                    payMethod : 'point',
-                    payAmount : 500,
-                    payStatus : 'Y',
-                    payEtc : 'N/A',
-                    payUnpaidAmount : 0,
-                    };
-                    // 걀제한 날짜 시간 db에 저장하기 위한 sql
-                    let paymentInsertSql = sqlModule.paymentInsert(paymentInfo);
-                    // 결제한 날짜 및 열람한 회원 id db에 저장
-                    conn.query(paymentInsertSql, (err)=>{
-                        if(err){
-                            console.log('결제내용 db저장 에러',err);
-                        };
-                    });
-                    res.json({ success: true, reUserPoint : reUserPoint});
-                });
+                req.session.userPoint = reUserPoint;
+                res.json({ success: true, reUserPoint: reUserPoint });
             });
         });
     });
@@ -222,15 +195,10 @@ router.post('/pay', csrfProtection, (req, res) => {
 });
 
 
-router.post('/carePayment', csrfProtection,  (req,res)=>{
-    let paymentInfo2 = req.body.paymentInfo;
-    console.log('paymentInfo'. paymentInfo2);
-    console.log('req_session',req.session.userId);
+router.post('/careRecvRegiForm', (req,res)=>{
     let selectedUserId2 = req.session.selectedUserId;
     console.log('selectUserId2',selectedUserId2);
-    
     console.log('왔늬?');
-    res.render('matching');
 });
 
 module.exports = router;

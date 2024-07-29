@@ -8,88 +8,108 @@
             <div id="detail_content">
                 {% set userInfo = userData %}
                 <div class="detail_content_col detail_content_img">
-                    <div class="detail_blankspace1">
-
-                    </div>
-                    <img id="user_img" src="/images/profile_img.png">
+                    <!-- <div class="detail_blankspace1"> -->
+                        <img id="user_img" src="/images/profile_img.png">
+                    <!-- </div> -->
                 </div>
-                <div class="detail_content_col detail_content_text">
-                    <div class="detail_blankspace1">
-
-                    </div>
-                <div>
-                    <p class="detail_p">이름: {{userInfo.userName}}</p>
-                    {% set gender = userInfo.gender %}
-                    <p class="detail_p">
-                        성별: 
-                        {% if gender == "M"%}
-                        남성
-                        {% elif gender == 'F' %}
-                        여성
-                        {% else %}
-                        성별 err
-
-                        {% endif %}
-                    </p>
-                    <p class="detail_p">생년월일: {{userInfo.userBirth}}</p>
-                    <p class="detail_p">전화번호: {{userInfo.phone}}</p>
-                    <p class="detail_p">주소: {{userInfo.userAdd}}</p>
-                    
-                </div>
-                    
-                </div>
-                <div class="detail_bottom_text">
-                    <div class="detail_blankspace2">
-                        <div class="detail_border"></div>
-                    </div>
-                <p class="detail_p2">요양등급: {{userInfo.careLavel}}</p>
-                    <p class="detail_p2">지불시급: {{userInfo.pay}}원</p>
-                    <p class="detail_p2">이용요일: {{userInfo.careDays}}</p>
-                    <p class="detail_p2">주요질환:  
+                <div id="detail_user_info">
+                    <div id="detail_content_left">
+                        <p class="detail_p">이　　름 : </p>
                         
-                        {% if userInfo.dementia == Y %}
-                        <span class="visible">
-                                치매
-                        </span>
-                        {% elif userInfo.dementia == N %}
-
-                        {% endif %}
-                        {% if userInfo.meal == Y %}
-                        <span class="visible">
-                        식사도움
-                        </span>
-                        {% elif userInfo.meal == N %}
-
-                        {% endif %}
-                        {% if userInfo.behavior == A %}
-                        <span class="invisible">
-                            거동가능
-                        </span>
-                        {% elif userInfo.behavior == B %}
-                        <span class="invisible">
-                            거동불편
-                        </span>
-                        {% elif userInfo.behavior == C %}
-                        <span class="invisible">
-                            거동불가능
-                        </span>
-                        {% endif %}
-                        {% if userInfo.dialusis == Y %}
-                        <span class="invisible">
-                            투석
-                        </span>
-                        {% elif userInfo.dialusis == N %}
+                        <p class="detail_p">성　　별 : </p>
+                        <p class="detail_p">생년월일 : </p>
+                        <p class="detail_p">전화번호 : </p>
+                        <p class="detail_p">지불시급 : </p>
+                        <p class="detail_p">이용요일 : </p>
+                        <p class="detail_p">주요질환 : </p>
+                        <p class="detail_p2">비　　고 : </p>
+                        <!-- <div class="detail_blankspace1">
+                        </div> -->
+                        
+                    </div>
+                    <div id="detail_content_right">
+                        <div class="detail_blankspace2">
+                            <div class="detail_border"></div>
+                        </div>
+                        <p class="detail_p2">{{userInfo.userName}}</p>
+                        {% set gender = userInfo.gender %}
+                        <p class="detail_p2">
                             
-                        {% endif %}
-                        
-                    </p> 
-                    <p class="detail_p2">비고: {{userInfo.etc}}</p>
-                    <div class="detail_blankspace3">
+                            {% if gender == "M"%}
+                            남성
+                            {% elif gender == 'F' %}
+                            여성
+                            {% else %}
+                            성별 err
 
+                            {% endif %}
+                        </p>
+                        <p class="detail_p2">{{userInfo.userBirth}}</p>
+                        <p class="detail_p2">{{userInfo.phone}}</p>
+                        <p class="detail_p2">{{userInfo.pay}}원</p>
+                        <p class="detail_p2">{{userInfo.careDays}}</p>
+                        <p class="detail_p2">  
+                            {% if userInfo.dementia == 'Y' %}
+                            <span class="visible  {{active}}" style="display: '{{flex}}';">
+                                    치매
+                            </span>
+                            {% elif userInfo.dementia == 'N' %}
+                            <span class="invisible  {{active}}" style="display: '{{flex}}';">
+                                    치매
+                            </span>
+
+                            {% endif %}
+
+                            {% if userInfo.meal == 'Y' %}
+                            <span class="visible '{{styles.active}}'" style="display: '{{styles.flex}}';">
+                                식사도움
+                            </span>
+                            {% elif userInfo.meal == 'N' %}
+                            <span class="invisible "  style="display: '{{styles.flex}}';">
+                                식사도움
+                            </span>
+                            {% else %}
+                            <span class="invisible '{{styles.active}}'" style="display: '{{styles.flex}}';">
+                                식사도움
+                            </span>
+                            
+                            {% endif %}
+                            {% if userInfo.behavior == 'A' %}
+                            <span class="invisible {{active}}" style="display: '{{flex}}';">
+                                거동도움
+                            </span>
+                            {% elif userInfo.behavior == 'B' %}
+                            <span class="visible {{active}}" style="display: '{{flex}}';">
+                                거동도움
+                            </span>
+                            {% elif userInfo.behavior == 'C' %}
+                            <span class="visible {{active}}" style="display: '{{flex}}';">
+                                거동도움
+                            </span>
+                            {% endif %}
+                            {% if userInfo.dialusis == 'Y' %}
+                            <span class="visible {{active}}" style="display: '{{flex}}';">
+                                투석
+                            </span>
+                            {% elif userInfo.dialusis == 'N' %}
+                            <span class="invisible {{active}}" style="display: '{{flex}}';">
+                                투석
+                            </span>
+                                
+                            {% endif %}
+                        </p> 
+                        
+                        <p class="detail_p2">{{userInfo.etc}}</p>
+                        <div class="detail_blankspace3">
+
+                        </div>
                     </div>
                 </div>
                 
-                
+                <div id="care_recv_detail_btn_div">
+                        <button type="submit" id="care_recv_detail_btn">확인</button>
+                        <button type="button" onclick="location.href='/careRecvReg/careRecvList'">취소</button>
+                </div>
             
         </div>
         

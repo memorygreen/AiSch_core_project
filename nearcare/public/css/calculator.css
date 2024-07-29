@@ -56,6 +56,14 @@ button:hover {
     color: #FFFFFF; 
 }
 
+button.cost-button{
+    height: 80px;
+}
+
+button#calculate-button{
+    width: 150px;
+}
+
 #calculate-button {
     background-color: #e74a4f;
     color: #ffffff;

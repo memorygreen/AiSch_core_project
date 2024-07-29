@@ -23,6 +23,8 @@ const completePayBtn = document.getElementById('complete_pay_btn');
 // 결제 실패 모달창
 const failModal = document.getElementById('fail_modal_out_wrap');
 const failBtn = document.getElementById('fail_btn');
+// 토큰 값
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
 let selectedUserId = null;
 
@@ -35,7 +37,8 @@ for (let i = 0; i < btnLeng; i++) {
         fetch('/careRecvReg/setSelectedUid', {
             method : 'POST',
             headers : {
-                'Content-Type' : 'application/json'  // 요청 본문이 JSON 형식임을 
+                'Content-Type' : 'application/json',  // 요청 본문이 JSON 형식임을 
+                'CSRF-Token' : csrfToken
             },
             body : JSON.stringify({selectedUserId})
         })
@@ -43,22 +46,22 @@ for (let i = 0; i < btnLeng; i++) {
         .then(data => {
             if(data.success){
                 modal.style.display = "flex"; // 버튼을 클릭하면 모달을 보이게 함
-            }
+            };
         })
         .catch(err =>{
             console.error('setSelectedUid 에러났어..', err);
         });
     });
-    
 };
 
 // 결제할 포인트 조회해온 후  fetch 호출
-checkBtn.addEventListener('click', (req, res) => {
+checkBtn.addEventListener('click', () => {
 
     fetch('/careRecvReg/selPoint', {
         method: 'POST',  // HTTP 메서드를 POST로 설정
         headers: {
-            'Content-Type': 'application/json'  // 요청 본문이 JSON 형식임을 명시
+            'Content-Type': 'application/json',  // 요청 본문이 JSON 형식임을 명시
+            'CSRF-Token' : csrfToken
         },
         // body : JSON.stringify({userId : userId})
     })
@@ -67,7 +70,7 @@ checkBtn.addEventListener('click', (req, res) => {
         if (!response.ok) {
             // 상태 코드가 200이 아닌 경우 에러 발생
             throw new Error('에러났대..');
-        }
+        };
         // 응답을 JSON 형태로 변환하여 반환
         return response.json();
     })
@@ -75,22 +78,16 @@ checkBtn.addEventListener('click', (req, res) => {
          // 서버에서 반환한 데이터를 이용하여 결제 정보를 모달에 표시
         if(data.userPoint < 500){//조회해온 포인트가 결제할 500포인트보다 작으면
             console.log('data.userPoint',data.userPoint);
+            failModal.style.display = 'flex';// 결제 실패 모달창 띄우고
             payModal.style.display = "none";// 나머지 모달창 닫기
             modal.style.display = "none";// 나머지 모달창 닫기
-            failModal.style.display = 'flex';// 결제 실패 모달창 띄우고
             document.getElementById('fail_inner_txt').innerText = data.userPoint + ' P'; //잔여 포인트 페이지에 보여주기
-        }else if(data.userPoint >= 500){
-            // 정상적으로 조회해온 포인트 페이지에 보여주기
-            document.getElementById('point_inner_txt').innerText = data.userPoint + ' P';
-            modal.style.display = "none";
-            // 결제 확인 모달창 표시
-            payModal.style.display = "flex";
         }else{
-            console.log('data.userPoint',data.userPoint);
-            payModal.style.display = "none";// 나머지 모달창 닫기
-            modal.style.display = "none";// 나머지 모달창 닫기
-            failModal.style.display = 'flex';// 결제 실패 모달창 띄우고
-            document.getElementById('fail_inner_txt').innerText = data.userPoint + ' P'; //잔여 포인트 페이지에 보여주기
+        // 정상적으로 조회해온 포인트 페이지에 보여주기
+        document.getElementById('point_inner_txt').innerText = data.userPoint + ' P';
+        modal.style.display = "none";
+        // 결제 확인 모달창 표시
+        payModal.style.display = "flex";
         };
 
     })
@@ -108,10 +105,12 @@ failBtn.addEventListener('click', ()=>{
 
 // 결제 버튼 클릭했을 때
 pointPayBtn.addEventListener('click',()=>{
+    console.log('결제 버튼 클릭됨');
     fetch('/careRecvReg/pay', {
         method: 'POST',  // HTTP 메서드를 POST로 설정
         headers: {
-            'Content-Type': 'application/json'  // 요청 본문이 JSON 형식임을 명시
+            'Content-Type': 'application/json',  // 요청 본문이 JSON 형식임을 명시
+            'CSRF-Token' : csrfToken
         },
         // body : JSON.stringify({userId : userId})
     })
@@ -120,21 +119,21 @@ pointPayBtn.addEventListener('click',()=>{
         if (!response.ok) {
             // 상태 코드가 200이 아닌 경우 에러 발생
             throw new Error('careRecvReg/pay 에러났대..');
-        }
+        };
         // 응답을 JSON 형태로 변환하여 반환
         return response.json();
     })
     .then(data => {
         // 서버에서 반환한 데이터를 이용하여 결제 정보를 모달에 표시
-        if(data.reUserPoint >= 0){
+        console.log('data:', data);
+        console.log('data.paymentInfo',data.paymentInfo);
+        if(data.reUserPoint < 500){
+            console.log('data.userPoint',data.reUserPoint);
+        }else{
             document.getElementById('reUserPoint_inner_txt').innerText = data.reUserPoint+' P';
             payModal.style.display = "none";
             completePayModal.style.display = "flex";
-            
-        }else{
-            console.log('data.reUserPoint',data.reUserPoint);
         };
-
     })
     .catch(error => {
         // 에러 발생 시 에러 메시지를 콘솔에 출력
@@ -153,7 +152,7 @@ window.onclick = function (event) {
         modal.style.display = "none"; // 모달 외부를 클릭하면 모달을 숨김
     } else if(event.target == completePayModal){
         completePayModal.style.display = "none"; // 모달 외부를 클릭하면 모달을 숨김
-    }
+    };
 };
 
 // 첫번째 모달창 취소 버튼

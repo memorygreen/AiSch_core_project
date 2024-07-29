@@ -31,10 +31,13 @@ p{
 
 header {
     width: 100%;
-    display: flex;
+    height: 16%;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     background-color: #fff8f7;
+    position: absolute;
+    
 }
 
 button{
@@ -61,11 +64,12 @@ button:hover{
 
 #header_outer_wrap {
     width: 100%;
+    height: 17%;
     display: flex;
     justify-content: center;
     background-color: #fff8f7;
     position: fixed;
-    margin-top: 57px;
+    /* margin-top: 57px;*/
 }
 
 #header_inner_wrap {
@@ -74,15 +78,15 @@ button:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    /* margin-top: 20px;*/
 }
 
 #header_div_wrap {
     width: 100%;
-    height: 100%;
+    height: 86%;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-end;
 }
 
 #header_div_wrap>div {

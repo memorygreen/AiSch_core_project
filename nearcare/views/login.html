@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<link rel="stylesheet" href="/css/user.css">
+
 
 <div id="login">
     <div id="title">
@@ -9,6 +9,8 @@
     </div>
     <div id="login-form">
         <form action="/user/login" method="post">
+            <!-- 토큰 전달위해 코드 추가 - 아인 -->
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}"> <!-- CSRF 토큰 포함 -->
             <div class="form-group">
                 <label for="userId">아이디:</label>
                 <input type="text" id="userId" name="userId" required>
@@ -31,4 +33,7 @@
         </a>
     </div>
 </div>
+<!-- 로그인 후 기능 구현 js파일 - 아인 -->
+<script src="/js/user.js"></script>
+
 {% endblock %}

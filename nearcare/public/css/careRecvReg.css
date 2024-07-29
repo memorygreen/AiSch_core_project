@@ -14,6 +14,7 @@ span{
     /* height: max-content; */
     /* min-height: 700px; */
     flex-direction: column;
+    margin-top: 1%;
 }
 #care_receive_reg_title{
     background-color: #F47176;

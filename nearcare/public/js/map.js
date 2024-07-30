@@ -3,6 +3,10 @@ let mapContainer, mapOption, map, geocoder, infowindow;
 let userLocation = null; // 사용자의 위치를 저장할 변수
 let userMarker = null; // 사용자의 위치를 표시할 마커
 
+// 마커 크기 정의
+const originalImageSize = new kakao.maps.Size(30, 30); // 원래 마커 이미지 크기
+const clickedImageSize = new kakao.maps.Size(45, 45); // 클릭 시 마커 이미지 크기
+
 // 페이지가 로드될 때 지도를 초기화하고 이벤트 리스너를 추가
 document.addEventListener('DOMContentLoaded', (event) => {
     initMap(); // 지도 초기화
@@ -56,7 +60,7 @@ function addUserMarker(position) {
 
     // 사용자 위치 마커 이미지 설정
     const userImageSrc = '/images/free-icon97.png'; // 사용자 마커 이미지 URL (사용자에 맞는 이미지로 변경)
-    const userImageSize = new kakao.maps.Size(30, 30); // 마커 이미지 크기
+    const userImageSize = new kakao.maps.Size(40, 40); // 마커 이미지 크기
     const userImageOption = { offset: new kakao.maps.Point(15, 30) }; // 마커 이미지의 좌표
     const userMarkerImage = new kakao.maps.MarkerImage(userImageSrc, userImageSize, userImageOption);
 
@@ -101,7 +105,7 @@ function geocodeAddress(address, name, facilityType) {
 
             // 커스텀 오버레이 내용 설정
             let content = `
-            <div class="wrap" style="background-color: #fbebec;border-radius: 20px;width: 300px;height: 188px;word-break: break-all;padding: 20px;">
+            <div class="wrap" style="background-color: #fff8f7;border-radius: 20px;border: 1px solid #ffbbb2;width: 300px;height: 188px;word-break: break-all;padding: 20px;">
                 <div class="info">
                     <div class="close" onclick="closeOverlay()" title="닫기"></div>
                     <div class="title" style="margin-bottom: 10px;">
@@ -119,7 +123,7 @@ function geocodeAddress(address, name, facilityType) {
                                 <p id="Custom_overlay_p" style="font-size: 15px !important;">${address}</p>
                                 <div class="jibun ellipsis">${facilityType}</div>
                                 <div>
-                                    <a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a>
+                                    <a href="/" target="_blank" class="link">홈페이지</a>
                                 </div>
                             </div>
                         </div>
@@ -140,11 +144,20 @@ function geocodeAddress(address, name, facilityType) {
                 // 지도 중심을 마커 위치로 이동
                 map.setCenter(coords);
                 // 모든 오버레이 닫기
-                markers.forEach(markerObj => markerObj.overlay.setMap(null));
+                markers.forEach(markerObj => {
+                    markerObj.overlay.setMap(null);
+                    // 마커 크기와 z-index 원래대로 되돌리기
+                    markerObj.marker.setImage(new kakao.maps.MarkerImage(imageSrc, originalImageSize, imageOption));
+                    markerObj.marker.setZIndex(-1);
+                });
                 // 현재 마커의 오버레이 열기
                 overlay.setMap(map);
-                // 오버레이의 위치를 다시 설정
-                overlay.setPosition(marker.getPosition());
+                // 클릭한 마커 크기와 z-index 변경
+                marker.setImage(new kakao.maps.MarkerImage(imageSrc, clickedImageSize, imageOption));
+                marker.setZIndex(10); // z-index를 높게 설정하여 앞으로 나오게 함
+                // 오버레이 위치 조정
+                const overlayPosition = new kakao.maps.LatLng(coords.getLat() - 0.0001, coords.getLng());
+                overlay.setPosition(overlayPosition);
             });
 
             // 마커와 오버레이를 배열에 저장

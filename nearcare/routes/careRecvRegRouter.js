@@ -38,25 +38,51 @@ router.post('/careRecvRegi', async (req, res) => {
     console.log('세션 아이디', req.session.userId);
 
     try {
-        const careRecvInfoData = req.body;
+        const { user_birth, care_receiver_gender, careWeeks, diseaseTypes } = req.body;
         let userId = req.session.userId;
-        const sql = sqlModule.careRecvInfoInsert(careRecvInfoData, userId);
+        const sql = sqlModule.careRecvInfoInsert(req.body, userId);
         console.log('end sql ', sql);
 
+        console.log(req.body);
         conn.query(sql, async (err, result) => {
             if (err) {
                 console.error('쿼리 실행 에러:', err);
                 return res.status(500).json({ success: false, message: 'Internal Server Error' });
             }
-            // 등록시 메세지
-            const message = `[니어케어] 요양대상자 등록 알림
-            👴 요양대상자 나이 : 75
-            👵 요양대상자 성별 : 남
-            ⏰ 요양 시간대 : 월, 화, 수
-            🏥 주요 질환 : 치매
 
-            ✅니어케어 바로가기
-            http://127.0.0.1:3098`;
+            // 성별 변환
+            const gender = care_receiver_gender === 'M' ? '남' : '여';
+
+            // 주요 질환 변환
+            let parsedDiseaseTypes;
+            try {
+                parsedDiseaseTypes = typeof diseaseTypes === 'string' 
+                    ? JSON.parse(diseaseTypes) 
+                    : diseaseTypes;
+            } catch (e) {
+                console.error('질환 정보 파싱 에러:', e);
+                return res.status(400).json({ success: false, message: '질환 정보가 올바르지 않습니다.' });
+            }
+            
+            const diseases = [];
+            if (parsedDiseaseTypes.dementia === 1) diseases.push('치매');
+            if (parsedDiseaseTypes.dialysis === 1) diseases.push('투석');
+            const diseaseList = diseases.length > 0 ? diseases.join(', ') : '없음';
+
+            // 만 나이 계산
+            const birthYear = parseInt(user_birth.substring(0, 4), 10);
+            const currentYear = new Date().getFullYear();
+            const age = currentYear - birthYear;
+
+            // 등록시 메세지
+            const message = `[니어케어] 요양대상자 등록 알림\n\n\n` +
+                            `👴 요양대상자 나이 : ${age}\n` +
+                            `👵 요양대상자 성별 : ${gender}\n` +
+                            `⏰ 요양 요일 : ${careWeeks}\n` +
+                            `🏥 주요 질환 : ${diseaseList}\n\n`+
+                            `✅니어케어 바로가기\n`+
+                            `http://127.0.0.1:3098`;
+
             try {
                 await sendKakaoMessage(userId, message);
                 console.log('카카오톡 메시지 전송 성공');

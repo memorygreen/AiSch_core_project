@@ -110,7 +110,9 @@
     text-decoration: none;
 } */
 
-.button-group{
+.matching_button-group{
+    display: flex;
+    flex-direction: column;
     align-content: center;
     justify-content: center;
 }

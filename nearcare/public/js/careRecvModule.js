@@ -2,7 +2,7 @@ const formatDate = require("./formatDate");
 
 const maskDatas = function maskDatas (rows){
     // console.log('rows', rows);
-    let nameSpl, nameData, phoneSpl, phoneNum, addSpl, addData, year, month, day, btdStr, btdSpl, btdSplDate, btdData, userPoint, userId = '';
+    let nameSpl, nameData, phoneSpl, phoneNum, addSpl, addData, year, month, day, btdStr, btdSpl, btdSplDate, btdData, userPoint, userId, gender, genderSet = '';
     let userArr = rows;
     let arrData = [];
     try {
@@ -32,12 +32,13 @@ const maskDatas = function maskDatas (rows){
             
             addSpl = rows[i].care_receiver_add.split(' ');
             addData = addSpl[0] + '*****';
-            
+            gender = rows[i].care_receiver_gender;
+            console.log('genderSet',genderSet);
             arrData.push({
                 userId : userId,
                 userName : nameData,
                 userBirth : '****년 **월 **일',
-                gender : '**',
+                gender : gender,
                 phone : phoneNum,
                 careLevel : '*',
                 userAdd : addData,

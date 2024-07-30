@@ -115,6 +115,7 @@ router.get('/careRecvList', (req, res) => {
             return res.status(500).send('데이터베이스 조회 중 에러가 발생했습니다.');
         }
         // 마스킹 처리 함수
+        console.log('rows', rows);
         let arrData = recvModule.maskDatas(rows);
         // 임시 포인트 조회를 위해 테스트 데이터 넣음 - 아인
         let point = rows[2].user_point;

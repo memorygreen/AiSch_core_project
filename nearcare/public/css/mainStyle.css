@@ -35,6 +35,9 @@ header {
     justify-content: center;
     align-items: center;
     background-color: #fff8f7;
+    font-weight: 800;
+    font-size: 20px;
+    color: dimgray;
 }
 
 button{
@@ -94,7 +97,11 @@ button:hover{
 
 a {
     text-decoration: none;
-    color: black;
+    color: dimgray;
+}
+
+a:hover {
+    color: #F47176;
 }
 
 #index_container_wrap {

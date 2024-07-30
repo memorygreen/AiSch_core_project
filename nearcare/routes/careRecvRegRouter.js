@@ -48,8 +48,15 @@ router.post('/careRecvRegi', async (req, res) => {
                 console.error('쿼리 실행 에러:', err);
                 return res.status(500).json({ success: false, message: 'Internal Server Error' });
             }
+            // 등록시 메세지
+            const message = `[니어케어] 요양대상자 등록 알림
+            👴 요양대상자 나이 : 75
+            👵 요양대상자 성별 : 남
+            ⏰ 요양 시간대 : 월, 화, 수
+            🏥 주요 질환 : 치매
 
-            const message = 'http://127.0.0.1:3098/ 현재 치매질환 보유 요양대상자가 등록되었습니다. 확인해 주세요.';
+            ✅니어케어 바로가기
+            http://127.0.0.1:3098`;
             try {
                 await sendKakaoMessage(userId, message);
                 console.log('카카오톡 메시지 전송 성공');

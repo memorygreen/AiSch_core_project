@@ -15,7 +15,6 @@
                         <div><span>전화번호 :</span></div>
                         <div><span>주　　소 :</span></div>
                         <!-- <div><span>이메일 :</span></div> -->
-                        <div><span>환자상태 :</span></div>
                     </div>
                     <div class="care_receive_reg_right_div">
                         <div>
@@ -34,38 +33,49 @@
                             <input type="text" name="user_phone" value="{{dbData.phone}}" readonly>
                         </div>
                         <div>
-                            <input type="text" name="care_receiver_user_add" placeholder="  주소를 입력해주세요" id="care_receiver_user_add">
+                            <input type="text" name="care_receiver_user_add" id="care_receiver_user_add" placeholder="  주소를 입력해주세요" value="">
                         </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="care_receive_reg_div4">
+                    <div class="care_receive_reg_left_div">
+                        <div><span>건강상태 :</span></div>
+                        <div><span>신체활동 :</span></div>
+                        <div><span>주요질환 :</span></div>
+                    </div>
+                    <div class="care_receive_reg_right_div">
                         <div>
-                            <input type="radio" name="care_level" value="3">상</input>
-                            <input type="radio" name="care_level" value="2">중</input>
-                            <input type="radio" name="care_level" value="1">하</input>
+                            <input type="radio" name="care_level" value="1">건강</input>
+                            <input type="radio" name="care_level" value="2">보통</input>
+                            <input type="radio" name="care_level" value="3">취약</input>
+                        </div>
+                        <div id="disease_type">
+                            <input type="checkbox" name="disease_type" value="dementia"><span>치매</span></input>
+                            <input type="checkbox" name="disease_type" value="dialusis"><span>투석</span></input>
+                            <input type="checkbox" name="disease_type" value="rehabiltation"><span>재활</span></input>
+                            <input type="checkbox" name="disease_type" value="cancer"><span>암</span></input>
+                        </div><div id="disease_type">
+                            <input type="checkbox" name="disease_type" value="meal"><span>식사도움</span></input>
+                            <input type="checkbox" name="disease_type" value="behavior"><span>이동도움</span></input>
+                            <input type="checkbox" name="disease_type" value="evacuation"><span>배변도움</span></input>
+                            <!-- <input type="checkbox" name="disease_type" value=""><span>병원동행</span></input> -->
+                            
                         </div>
                     </div>
                 </div>
                 
+                <!-- <div class="care_receive_border1"></div> -->
                 
-                    <!-- <div class="care_receive_border1"></div> -->
-            
                 
                 <div class="care_receive_reg_div2">
                     <div class="care_receive_reg_left_div">
-                        
-                        <div>주요질환 :</div>
-                        
                         <div>요　　일 :</div>
                         <div>시　　간 :</div>
                         <div>비　　고 :</div>
                     </div>
                     <div class="care_receive_reg_right_div">
-                        <div id="disease_type">
-                            
-                            <input type="checkbox" name="disease_type" value="dementia"><span>치매</span></input>
-                            <input type="checkbox" name="disease_type" value="meal"><span>식사도움</span></input>
-                            <input type="checkbox" name="disease_type" value="behavior"><span>이동도움</span></input>
-                            <input type="checkbox" name="disease_type" value="dialusis"><span>투석</span></input>
-                        </div>
-                        
                         <div id="care_week_div">
                             <input type="checkbox" name="care_week" value="일">일</input>
                             <input type="checkbox" name="care_week" value="월">월</input>
@@ -98,7 +108,7 @@
                                 <option value="17:30">17:30</option>
                                 <option value="18:00">18:00</option>
                             </select>
-                            ~
+                            &nbsp;&nbsp;~&nbsp;&nbsp;
                             <select name="care_end_time" id="care_end_time">
                                 <option selected value="">종료시간</option>
                                 <option value="09:30">09:30</option>
@@ -133,14 +143,11 @@
                     <div id="care_receive_cencell_btn_div"><button type="button" onclick="location.href='/'" id="care_receive_cencell_btn">취소</button></div>
                     
                 </div>
-            <!-- <div class="care_receive_textarea-btn_blankspace">
-
-            </div>
-            <div class="care_receive_reg_div4">
-            </div> -->
-            <!-- <div class="care_receive_reg_div"></div> -->
             </form>
         </div>
     </div>
+    <script src="/js/jusoPopupHandler.js"></script>
     <script src="/js/careRecvReg.js"></script>
+
+
 {% endblock %}

@@ -5,10 +5,11 @@ document.getElementById('care_recv_regi_form').addEventListener('submit', functi
 
         // 체크박스 값을 수집하여 배열로 변환
         // 모든 질환 타입 수집
-        const allDiseaseTypes = ['dementia', 'meal', 'behavior', 'dialusis'];
+        const allDiseaseTypes = ['dementia', 'dialusis', 'rehabiltation', 'cancer', 'meal', 'behavior', 'evacuation'];
         const diseaseTypes = allDiseaseTypes.reduce((acc, type) => {
-            const checkbox = document.querySelector(`#disease_type input[value="${type}"]`);
+            const checkbox = document.querySelector(`.disease_type input[value="${type}"]`);
             acc[type] = checkbox ? (checkbox.checked ? 1 : 0) : 0;
+            console.log('체크박스 값 ', acc);
             return acc;
         }, {});
         console.log('Collected disease types:', diseaseTypes);

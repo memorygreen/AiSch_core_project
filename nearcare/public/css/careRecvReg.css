@@ -126,7 +126,7 @@ textarea:focus {
     margin-top: 2.3%;
 }
 
-#disease_type{
+.disease_type{
     display: flex;
     justify-content: flex-start;
     text-align: center;
@@ -135,7 +135,7 @@ textarea:focus {
     align-items: baseline;;
     
 }
-#disease_type > div{
+.disease_type > div{
     width: 17%;
     height: 25px;
     border-radius: 20px;

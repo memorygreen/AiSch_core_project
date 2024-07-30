@@ -9,13 +9,36 @@
     border-radius: 20px;
     padding: 20px;
     height: max-content;
+    min-height: 2300px;
     box-sizing: border-box;
+    position: relative;
+}
+
+.main_center_textandbanner{
+    position: relative;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.main_center_text {
+    text-align: center;
+    margin-right: 110px;
+}
+
+.main_center_text h1{
+    color: #F47176;
+}
+
+.main_center_text h4{
+    color: rgb(56, 56, 56);
 }
 
 #banner {
     max-width: 80%;
     height: auto;
-
+    object-fit: contain;
 }
 
 .button-container {
@@ -40,4 +63,230 @@
 .btn:hover {
     background-color: #F47176;
     color: #ffffff;
+}
+
+/* .main_gradient{
+    background: linear-gradient(to bottom, rgb(255, 255, 255), #BFBFBB);
+} */
+
+.aichat_imgandtext{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 150px;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 800px; /* 원하는 최대 너비 설정 */
+    height: auto; /* 콘텐츠에 따라 높이 조정 */
+    object-fit: contain;
+}
+
+#aichatimg{
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.aichatimg_text{
+    position: absolute;
+    top: 25%;
+    left: 58%;
+    transform: translate(-50%, -50%); 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.aichatimg_text h1,
+.aichatimg_text h3 {
+    margin: 0;
+}
+
+.aichatimg_text h1{
+    color: #F47176;
+}
+
+.aichatimg_text h3 {
+    margin-top: 10px;
+    color: rgb(56, 56, 56);
+}
+
+.aichat_btn_area{
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+}
+
+.center_imgandtext{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 300px;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 800px; /* 원하는 최대 너비 설정 */
+    height: auto; /* 콘텐츠에 따라 높이 조정 */
+    object-fit: contain;
+}
+
+#centerimg{
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.centerimg_text{
+    position: absolute;
+    top: 25%;
+    left: 58%;
+    transform: translate(-50%, -50%); 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.centerimg_text h1,
+.centerimg_text h3 {
+    margin: 0; 
+}
+
+.centerimg_text h1{
+    color: #F47176;
+}
+
+.centerimg_text h3 {
+    margin-top: 10px; 
+    color: rgb(56, 56, 56);
+}
+
+.center_btn_area{
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+}
+
+.calculate_imgandtext{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 450px;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 800px; 
+    height: auto; 
+    object-fit: contain;
+}
+
+#calculateimg{
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.calculateimg_text{
+    position: absolute;
+    top: 25%;
+    left: 58%;
+    transform: translate(-50%, -50%); 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.calculateimg_text h1,
+.calculateimg_text h3 {
+    margin: 0; 
+}
+
+.calculateimg_text h1{
+    color: #F47176;
+}
+
+.calculateimg_text h3 {
+    margin-top: 10px; 
+    color: rgb(56, 56, 56);
+}
+
+.calculate_btn_area{
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+}
+
+.matching_imgandtext{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 600px;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 800px;
+    height: auto;
+    object-fit: contain;
+}
+
+#matchingimg{
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.matchingimg_text{
+    position: absolute;
+    top: 25%;
+    left: 58%;
+    transform: translate(-50%, -50%); 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.matchingimg_text h1,
+.matchingimg_text h3 {
+    margin: 0;
+}
+
+.matchingimg_text h1{
+    color: #F47176;
+}
+
+.matchingimg_text h3 {
+    margin-top: 10px;
+    color: rgb(56, 56, 56); 
+}
+
+.matching_btn_area{
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+}
+
+.main_bottom_button{
+    width: 100px;
+    height: 45px;
+    border-radius: 47%;
 }

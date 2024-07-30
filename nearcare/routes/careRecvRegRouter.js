@@ -4,7 +4,7 @@ const conn = require('../config/db');
 const recvModule = require('../public/js/careRecvModule');
 const sqlModule = require('../public/js/careRecvSqlModule');
 const formatDate = require('../public/js/formatDate');
-
+const sendKakaoMessage = require('../public/js/kakao');
 
 // 요양정보등록 라우터
 router.get('/careRecvRegconfrm', (req, res) => {
@@ -32,29 +32,41 @@ router.get('/careRecvRegconfrm', (req, res) => {
 
 });
 
-//요양대상자 등록 후 이동
-router.post('/careRecvRegi', (req, res) => {
-    // console.log('res', res);
+// 요양대상자 등록 후 이동
+router.post('/careRecvRegi', async (req, res) => {
     console.log('req.body', req.body);
     console.log('세션 아이디', req.session.userId);
+
     try {
         const careRecvInfoData = req.body;
         let userId = req.session.userId;
         const sql = sqlModule.careRecvInfoInsert(careRecvInfoData, userId);
         console.log('end sql ', sql);
-        //데이터베이스에 쿼리 실행
-        conn.query(sql, (err, result) => {
+
+        conn.query(sql, async (err, result) => {
             if (err) {
                 console.error('쿼리 실행 에러:', err);
                 return res.status(500).json({ success: false, message: 'Internal Server Error' });
             }
+
+            const message = 'http://127.0.0.1:3098/ 현재 치매질환 보유 요양대상자가 등록되었습니다. 확인해 주세요.';
+            try {
+                await sendKakaoMessage(userId, message);
+                console.log('카카오톡 메시지 전송 성공');
+            } catch (error) {
+                console.error('카카오톡 메시지 전송 실패:', error);
+                return res.status(500).json({ success: false, message: '카카오톡 메시지 전송 실패' });
+            }
+
             res.json({ success: true });
         });
     } catch (error) {
         console.error('서버 에러:', error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
-    };
+    }
 });
+
+
 
 // 요양 대상자 리스트 조회해와 마스킹 처리
 router.get('/careRecvList', (req, res) => {

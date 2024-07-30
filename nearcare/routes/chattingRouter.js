@@ -3,6 +3,7 @@ const router = express.Router();
 const conn = require('../config/db'); // db 연결
 const { callChatGPT } = require('../public/js/chatgpt'); // chat gpt api 함수 연결
 const bodyParser = require('body-parser'); // body-parser 추가
+const axios = require('axios'); // axios 추가 // flask 로 보내기 위한 axios
 
 
 router.use(bodyParser.json()); // JSON 데이터 파싱 설정
@@ -10,7 +11,6 @@ router.use(bodyParser.urlencoded({ extended: true })); // URL-encoded 데이터 
 
 
 let currentCroomIdx = null; // 채팅방 번호를 담기위한 변수
-
 
 // '/chatting'으로 요청이 들어왔을 때 실행될 것
 router.get('/', (req,res)=>{
@@ -41,16 +41,29 @@ router.post('/send', async (req,res)=>{ // async 추가
     let promptText = req.body.userInputText; // chatting.html의 input태그에 있는 값 받아오기
     console.log('Received user input(promptText):', promptText);// 데이터 수신 확인을 위한 로그 추가
 
-    // ChatGPT에 대화식으로 요청 보내기
-    const postText = promptText; // 예시 텍스트
-    console.log("질문내용(postText):", postText)
+    try {
+      // Flask 서버로 보내기 '127.0.0.1:5001/analyze' 여기로 promptText 값을 보내기
+      const flaskResponse = await axios.post('http://127.0.0.1:5001/analyze', {
+        text: promptText
+      });
 
-    // 질문 내용 4천자 이상인지 확인, 4000자 초과 시 4000자로 잘라서 보내기
-    let message = postText.length > 4000 ? postText.substring(0, 4000) : postText;
+      // Flask 서버 응답 처리
+      const analyzedData = flaskResponse.data;
+      console.log('Flask 서버 응답:', analyzedData);
+
+
+
+
     
-    // 질문 내용을 db에 저장하기(채팅방 idx 새로 생성, 해당 채팅방에 맞게 채팅내용 insert)
 
-     try {
+      // ChatGPT에 대화식으로 요청 보내기
+      const postText = promptText; // 예시 텍스트
+      console.log("질문내용(postText):", postText)
+
+      // 질문 내용 4천자 이상인지 확인, 4000자 초과 시 4000자로 잘라서 보내기
+      let message = postText.length > 4000 ? postText.substring(0, 4000) : postText;
+    
+     
       // 초기 요청을 ChatGPT에 보냄.
       // chat gpt api 함수 호출
          let gptResponse = await callChatGPT(message); // 대답을 받아올때까지 기다림 

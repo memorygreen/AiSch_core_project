@@ -163,6 +163,10 @@ router.get('/auth/kakao/callback',
         const user = req.user;
         console.log('Kakao user profile:', user);
 
+        // 인증 코드 출력
+        const authCode = req.query.code;
+        console.log('Received auth code:', authCode);
+
         if (user) {
             // 카카오 테이블에서 사용자 정보를 가져옴
             const sqlKakao = 'SELECT * FROM TB_USER_KAKAO WHERE USER_ID = ?';
@@ -208,6 +212,7 @@ router.get('/auth/kakao/callback',
         }
     }
 );
+
 
 
 

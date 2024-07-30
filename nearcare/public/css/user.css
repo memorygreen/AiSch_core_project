@@ -186,3 +186,13 @@ input[readonly] {
     color: #666;               /* 글자 색상 */
     cursor: not-allowed;       /* 커서 모양 변경 */
 }
+
+#loginlogo {
+    margin-top: 20px;
+    width: 100px;
+    height: 110px;
+}
+
+#loginbanner {
+    width: 106%;
+}

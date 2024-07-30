@@ -4,17 +4,17 @@ const conn = require('../config/db');
 const recvModule = require('../public/js/careRecvModule');
 const sqlModule = require('../public/js/careRecvSqlModule');
 const formatDate = require('../public/js/formatDate');
-
+const sendKakaoMessage = require('../public/js/kakao');
 
 // 요양정보등록 라우터
 router.get('/careRecvRegconfrm', (req, res) => {
 
     let loginUserId = req.session.userId
-    console.log('선택한 회원아이디',loginUserId);
+    console.log('선택한 회원아이디', loginUserId);
     let sql = sqlModule.careRecvRegconfrm(loginUserId);
     // 추후 선택한 대상자 정보 불러와 넣을 예정-아인
     conn.query(sql, (err, rows) => {
-        console.log('rows',rows[0]);
+        console.log('rows', rows[0]);
         if (err) {
             console.error('careRecvRegconfrm 에러');
         }
@@ -24,31 +24,82 @@ router.get('/careRecvRegconfrm', (req, res) => {
         let userBirth = birthDaySplt[0] + '년 ' + birthDaySplt[1] + '월 ' + birthDaySplt[2] + '일';
         let loginUserInfoData = recvModule.loginUserInfo(rows);
         req.session.userName = rows[0].userName;
-        
 
-        console.log('넘어온 데이터',loginUserInfoData);
+
+        console.log('넘어온 데이터', loginUserInfoData);
         res.render('careReceiverReg', { dbData: loginUserInfoData, userBirth }); // test CSRF 토큰 전달
     });
 
 });
 
-//요양대상자 등록 후 이동
-router.post('/careRecvRegi', (req,res)=>{
-    // console.log('res', res);
+// 요양대상자 등록 후 이동
+router.post('/careRecvRegi', async (req, res) => {
     console.log('req.body', req.body);
-    console.log('req.body', req.session.userId);
-    let userId = req.session.userId;
-    let userName = req.session.userName;
-    const diseaseTypes = JSON.parse(req.body.diseaseTypes);
-    const careWeeks = JSON.parse(req.body.careWeeks);
-    console.log('diseaseTypes', diseaseTypes);
-    console.log('careWeeks', careWeeks);
-    const careRecvInfoData = req.body;
-    // let careRecvInfoDataSql = careRecvInfoInsert(careRecvInfoData, userId, userName);
-    res.send({ success: true });
-    
+    console.log('세션 아이디', req.session.userId);
 
+    try {
+        const { user_birth, care_receiver_gender, careWeeks, diseaseTypes } = req.body;
+        let userId = req.session.userId;
+        const sql = sqlModule.careRecvInfoInsert(req.body, userId);
+        console.log('end sql ', sql);
+
+        console.log(req.body);
+        conn.query(sql, async (err, result) => {
+            if (err) {
+                console.error('쿼리 실행 에러:', err);
+                return res.status(500).json({ success: false, message: 'Internal Server Error' });
+            }
+
+            // 성별 변환
+            const gender = care_receiver_gender === 'M' ? '남' : '여';
+
+            // 주요 질환 변환
+            let parsedDiseaseTypes;
+            try {
+                parsedDiseaseTypes = typeof diseaseTypes === 'string' 
+                    ? JSON.parse(diseaseTypes) 
+                    : diseaseTypes;
+            } catch (e) {
+                console.error('질환 정보 파싱 에러:', e);
+                return res.status(400).json({ success: false, message: '질환 정보가 올바르지 않습니다.' });
+            }
+            
+            const diseases = [];
+            if (parsedDiseaseTypes.dementia === 1) diseases.push('치매');
+            if (parsedDiseaseTypes.dialysis === 1) diseases.push('투석');
+            const diseaseList = diseases.length > 0 ? diseases.join(', ') : '없음';
+
+            // 만 나이 계산
+            const birthYear = parseInt(user_birth.substring(0, 4), 10);
+            const currentYear = new Date().getFullYear();
+            const age = currentYear - birthYear;
+
+            // 등록시 메세지
+            const message = `[니어케어] 요양대상자 등록 알림\n\n\n` +
+                            `👴 요양대상자 나이 : ${age}\n` +
+                            `👵 요양대상자 성별 : ${gender}\n` +
+                            `⏰ 요양 요일 : ${careWeeks}\n` +
+                            `🏥 주요 질환 : ${diseaseList}\n\n`+
+                            `✅니어케어 바로가기\n`+
+                            `http://127.0.0.1:3098`;
+
+            try {
+                await sendKakaoMessage(userId, message);
+                console.log('카카오톡 메시지 전송 성공');
+            } catch (error) {
+                console.error('카카오톡 메시지 전송 실패:', error);
+                return res.status(500).json({ success: false, message: '카카오톡 메시지 전송 실패' });
+            }
+
+            res.json({ success: true });
+        });
+    } catch (error) {
+        console.error('서버 에러:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
 });
+
+
 
 // 요양 대상자 리스트 조회해와 마스킹 처리
 router.get('/careRecvList', (req, res) => {
@@ -57,7 +108,7 @@ router.get('/careRecvList', (req, res) => {
 
     let sql = sqlModule.careRecvListSql();
 
-    
+
     conn.query(sql, (err, rows) => {
         if (err) {
             console.error('careRecvList 에러');
@@ -90,18 +141,18 @@ router.get('/careRecvDetail', (req, res) => {
     // console.log('selUserInfSql',selUserInfSql);
     conn.query(selUserInfSql, (err, rows) => {
         if (err) {
-            console.error('selUserInfSql 에러났어..',err);
+            console.error('selUserInfSql 에러났어..', err);
             conn.end();
         };
         // console.log('rows', rows);
         // DB에서 넘어온 데이터를 userInfo()함수에 넣어 정제해서 userData에 할당
         let userData = recvModule.userInfo(rows);
         const styles = {
-            flex : 'flex',
-            active : 'active'
+            flex: 'flex',
+            active: 'active'
         };
         // 정제된 userData를 careRecvDetail 페이지에 넘겨줌
-        res.render('careRecvDetail', { userData , styles});
+        res.render('careRecvDetail', { userData, styles });
         // const {userInfo} = rows[0];
     });
 });
@@ -137,7 +188,7 @@ router.post('/selPoint', (req, res) => {
         req.session.userPoint = currentPoints;
         res.json({ success: true, userPoint: currentPoints });
     });
-    
+
 });
 
 // 결제
@@ -148,7 +199,7 @@ router.post('/pay', (req, res) => {
     // var userId = req.session.userId;
     let userId = req.session.userId;
     let selectedUserId = req.session.selectedUserId;
-    console.log('selectedUserId',selectedUserId);
+    console.log('selectedUserId', selectedUserId);
     // updateSql
     const currentPointsSql = sqlModule.updateUserPointSql(userPoint, userId);
 
@@ -191,13 +242,13 @@ router.post('/pay', (req, res) => {
             });
         });
     });
-    
+
 });
 
 
-router.post('/careRecvRegiForm', (req,res)=>{
+router.post('/careRecvRegiForm', (req, res) => {
     let selectedUserId2 = req.session.selectedUserId;
-    console.log('selectUserId2',selectedUserId2);
+    console.log('selectUserId2', selectedUserId2);
     console.log('왔늬?');
 });
 

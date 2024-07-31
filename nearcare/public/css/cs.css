@@ -415,6 +415,16 @@ input#queryTitle:focus{
     background-color: #fff7f8; /* 배경색 */
 }
 
+.csdetail_modal_btn_area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.csdetail_deletebutton{
+    margin-right: 50px;
+}
+
 
 /* Select box 스타일 초기화 
 select {
@@ -426,7 +436,7 @@ select {
 /* select박스 */
 #queryType{
     width: 25%;
-    height: 20px;
+    height: 27px;
     text-align: center;
     border: 1px solid #fff8f7;
     /* border: 1px solid #e9e9e9; */

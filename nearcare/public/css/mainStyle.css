@@ -27,6 +27,7 @@ p{
     align-items: center;
     margin-top: 50px;
     padding-bottom: 160px;
+    z-index: 0;
 }
 
 header {
@@ -38,12 +39,13 @@ header {
     font-weight: 800;
     font-size: 20px;
     color: dimgray;
+    z-index: 2;
 }
 
 button{
     width: 90px;
     height: 36px;
-    border: 1px solid #f4717557;
+    border: 1px solid #F47176;
     border-radius: 10px;
     text-align: center;
     justify-content: center;
@@ -81,6 +83,7 @@ button:hover{
     justify-content: center;
     align-items: center;
     /* margin-top: 20px;*/
+    
 }
 
 #header_div_wrap {

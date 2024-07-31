@@ -304,12 +304,13 @@ input[type="radio"]:checked::after {
     /* border: 1px solid #e9e9e9; */
     background-color: #fbebec;
     font-size: 80%;
-
+    
 }
 #care_start_time,#care_end_time:focus{
     outline: none;
     background-color: #fbebec;
     border-radius: 6px;
+    border: 1px solid #fff8f7;
 }
 
 #receiver_textarea{

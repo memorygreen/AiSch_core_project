@@ -66,7 +66,12 @@ router.post('/careRecvRegi', async (req, res) => {
             
             const diseases = [];
             if (parsedDiseaseTypes.dementia === 1) diseases.push('치매');
-            if (parsedDiseaseTypes.dialysis === 1) diseases.push('투석');
+            if (parsedDiseaseTypes.dialusis === 1) diseases.push('투석');
+            if (parsedDiseaseTypes.rehabiltation === 1) diseases.push('재활');
+            if (parsedDiseaseTypes.cancer === 1) diseases.push('암');
+            if (parsedDiseaseTypes.meal === 1) diseases.push('식사도움');
+            if (parsedDiseaseTypes.behavior === 1) diseases.push('이동도움');
+            if (parsedDiseaseTypes.evacuation === 1) diseases.push('배변도움');
             const diseaseList = diseases.length > 0 ? diseases.join(', ') : '없음';
 
             // 만 나이 계산

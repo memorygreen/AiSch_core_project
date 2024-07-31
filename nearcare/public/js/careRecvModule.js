@@ -2,7 +2,7 @@ const formatDate = require("./formatDate");
 
 const maskDatas = function maskDatas (rows){
     // console.log('rows', rows);
-    let nameSpl, nameData, phoneSpl, phoneNum, addSpl, addData, year, month, day, btdStr, btdSpl, btdSplDate, btdData, userPoint, userId = '';
+    let nameSpl, nameData, phoneSpl, phoneNum, addSpl, addData, year, month, day, btdStr, btdSpl, btdSplDate, btdData, userPoint, userId, gender, genderSet = '';
     let userArr = rows;
     let arrData = [];
     try {
@@ -32,12 +32,13 @@ const maskDatas = function maskDatas (rows){
             
             addSpl = rows[i].care_receiver_add.split(' ');
             addData = addSpl[0] + '*****';
-            
+            gender = rows[i].care_receiver_gender;
+            console.log('genderSet',genderSet);
             arrData.push({
                 userId : userId,
                 userName : nameData,
                 userBirth : '****년 **월 **일',
-                gender : '**',
+                gender : gender,
                 phone : phoneNum,
                 careLevel : '*',
                 userAdd : addData,
@@ -83,10 +84,14 @@ const userInfo = function userInfo (rows) {
         pay : rows[0].CARE_RECEIVER_PAY,
         careDays : rows[0].CARE_RECEIVER_DAYS,
         dementia: rows[0].CARE_RECEIVER_DEMENTIA,
-        meal : rows[0].CARE_RECEIVER,
+        meal : rows[0].CARE_RECEIVER_MEAL,
         behavior : rows[0].CARE_RECEIVER_BEHAVIOR,
         dialusis : rows[0].CARE_RECEIVER_DIALYSIS,
-        etc : rows[0].CARE_RECEIVER_ETC
+        etc : rows[0].CARE_RECEIVER_ETC,
+        cancer : rows[0].CARE_RECEIVER_CANCER,
+        rehabilitation : rows[0].CARE_RECEIVER_REHABILITATION,
+        dialysis : rows[0].CARE_RECEIVER_DIALYSIS,
+        evacuation : rows[0].CARE_RECEIVER_EVACUATION
     };
     return userInfo;
 };

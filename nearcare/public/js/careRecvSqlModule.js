@@ -31,7 +31,18 @@ const careRecviInfo2 = function careRecviInfo(selUserId){
 };
 
 const careRecvInfoInsert = function careRecvInfoInsert(data, userId){
-    console.log('sql 쪽 데이터 및 아이디', data, userId);
+    const userBtd =  data.user_birth;
+    // 입력을 문자열로 처리
+    const str = userBtd.toString();
+
+    // 년, 월, 일을 추출
+    const year = str.substring(0, 4);
+    const month = str.substring(4, 6);
+    const day = str.substring(6, 8);
+
+    // 형식에 맞춰 반환
+    const userBirth = `${year}-${month}-${day}T00:00:00`;
+    console.log('sql 쪽 데이터 및 아이디', data, userId, userBirth);
     let careWeeks = data.careWeeks;
     if (!Array.isArray(careWeeks)) {
         careWeeks = [careWeeks];
@@ -39,8 +50,10 @@ const careRecvInfoInsert = function careRecvInfoInsert(data, userId){
     let careWeeksStr = careWeeks.join(',');
     // console.log('sql 쪽 careWeeksStr', careWeeksStr);
     let careLevel = parseInt(data.care_level);
-    let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    let sql = `INSERT INTO TB_CARE_RECEIVER (USER_ID, CARE_RECEIVER_NAME, CARE_RECEIVER_BIRTH, CARE_RECEIVER_GENDER, CARE_RECEIVER_LEVEL, CARE_RECEIVER_PHONE, CARE_RECEIVER_ADD, CARE_RECEIVER_DAYS, CARE_RECEIVER_TIME_START, CARE_RECEIVER_TIME_END, CARE_RECEIVER_DEMENTIA, CARE_RECEIVER, CARE_RECEIVER_BEHAVIOR, CARE_RECEIVER_DIALYSIS, CARE_RECEIVER_ETC, CARE_RECEIVER_PAY , CARE_RECEIVER_CREATED_AT ) VALUES('${userId}', '${data.user_name}', '${data.user_birth}', '${data.care_receiver_gender}', '${careLevel}', '${data.user_phone}', '${data.care_receiver_user_add}', '${careWeeksStr}', '${data.care_start_time}', '${data.care_end_time}', '${data.diseaseTypes.dementia}', '${data.diseaseTypes.meal}', '${data.diseaseTypes.behavior}', '${data.diseaseTypes.dialusis}', '${data.text_area}', 0, '${date}')`;
+    // let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    // let sql = `INSERT INTO TB_CARE_RECEIVER (USER_ID, CARE_RECEIVER_NAME, CARE_RECEIVER_BIRTH, CARE_RECEIVER_GENDER, CARE_RECEIVER_LEVEL, CARE_RECEIVER_PHONE, CARE_RECEIVER_ADD, CARE_RECEIVER_DAYS, CARE_RECEIVER_TIME_START, CARE_RECEIVER_TIME_END, CARE_RECEIVER_DEMENTIA, CARE_RECEIVER, CARE_RECEIVER_BEHAVIOR, CARE_RECEIVER_DIALYSIS, CARE_RECEIVER_ETC, CARE_RECEIVER_PAY , CARE_RECEIVER_CREATED_AT ) VALUES('${userId}', '${data.user_name}', '${data.user_birth}', '${data.care_receiver_gender}', '${careLevel}', '${data.user_phone}', '${data.care_receiver_user_add}', '${careWeeksStr}', '${data.care_start_time}', '${data.care_end_time}', '${data.diseaseTypes.dementia}', '${data.diseaseTypes.meal}', '${data.diseaseTypes.behavior}', '${data.diseaseTypes.dialusis}', '${data.text_area}', 0, '${date}')`;
+
+    let sql = ` INSERT INTO TB_CARE_RECEIVER (USER_ID, CARE_RECEIVER_NAME, CARE_RECEIVER_BIRTH, CARE_RECEIVER_GENDER, CARE_RECEIVER_LEVEL, CARE_RECEIVER_PHONE, CARE_RECEIVER_ADD, CARE_RECEIVER_PAY, CARE_RECEIVER_DAYS, CARE_RECEIVER_TIME_START, CARE_RECEIVER_TIME_END, CARE_RECEIVER_DEMENTIA, CARE_RECEIVER_MEAL, CARE_RECEIVER_BEHAVIOR, CARE_RECEIVER_DIALYSIS, CARE_RECEIVER_ETC, CARE_RECEIVER_CANCER, CARE_RECEIVER_REHABILITATION, CARE_RECEIVER_EVACUATION) VALUES ('${userId}', '${data.user_name}', '${userBirth}', '${data.care_receiver_gender}', ${careLevel}, '${data.user_phone}', '${data.care_receiver_user_add}', 0, '${careWeeksStr}', '${data.care_start_time}', '${data.care_end_time}', '${data.diseaseTypes.dementia}', '${data.diseaseTypes.meal}', '${data.diseaseTypes.behavior}', '${data.diseaseTypes.dialusis}', '${data.text_area}', '${data.diseaseTypes.cancer}' , '${data.diseaseTypes.rehabiltation}', '${data.diseaseTypes.evacuation}')`;
     return sql;
 };
 

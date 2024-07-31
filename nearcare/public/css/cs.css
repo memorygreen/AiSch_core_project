@@ -271,7 +271,7 @@
 .form-section select,
 .form-section textarea {
     width: calc(100% - 22px); 
-    padding: 12px;
+    /* padding: 12px; */
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
@@ -386,4 +386,68 @@
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+/* input태그 제목파트 */
+input#queryTitle{
+    border: 0;
+    background-color: #fbebec; /* 배경색 */
+    border-radius: 6px 6px 0 0;
+    width: 96%;
+    height: 35px;
+    border-bottom: 1px solid #e9e9e9;
+}
+input#queryTitle:focus{
+    outline: none;
+}
+/* textarea 본문 */
+#queryContent{
+    border: 1px solid #e9e9e9;
+    resize: none;
+    width: 96%;
+    height: 20%;
+    border-radius: 6px;
+    margin-left: 0%;
+    background-color: #fbebec;
+}
+#queryContent:focus{
+    outline: none;
+    border-bottom: 1px solid #F47176;
+    background-color: #fff7f8; /* 배경색 */
+}
+
+
+/* Select box 스타일 초기화 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+            appearance: none;
+} */
+
+/* select박스 */
+#queryType{
+    width: 25%;
+    height: 20px;
+    text-align: center;
+    border: 1px solid #fff8f7;
+    /* border: 1px solid #e9e9e9; */
+    background-color: #fbebec;
+    font-size: 80%;
+}
+#queryType:focus{
+    text-align: center;
+    outline: none;
+    background-color: #fbebec;
+    border-radius: 6px;
+    border: 1px solid #fff8f7;
+}
+#queryType option{
+    text-align: center;
+    /* outline: none; */
+    background-color: #fbebec;
+    border-radius: 6px;
+    border: 1px solid #fff8f7;
+}
+
+#queryType option:hover{
+    background-color: #F47176;
 }

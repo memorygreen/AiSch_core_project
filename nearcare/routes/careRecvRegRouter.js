@@ -66,7 +66,12 @@ router.post('/careRecvRegi', async (req, res) => {
             
             const diseases = [];
             if (parsedDiseaseTypes.dementia === 1) diseases.push('치매');
-            if (parsedDiseaseTypes.dialysis === 1) diseases.push('투석');
+            if (parsedDiseaseTypes.dialusis === 1) diseases.push('투석');
+            if (parsedDiseaseTypes.rehabiltation === 1) diseases.push('재활');
+            if (parsedDiseaseTypes.cancer === 1) diseases.push('암');
+            if (parsedDiseaseTypes.meal === 1) diseases.push('식사도움');
+            if (parsedDiseaseTypes.behavior === 1) diseases.push('이동도움');
+            if (parsedDiseaseTypes.evacuation === 1) diseases.push('배변도움');
             const diseaseList = diseases.length > 0 ? diseases.join(', ') : '없음';
 
             // 만 나이 계산
@@ -115,6 +120,7 @@ router.get('/careRecvList', (req, res) => {
             return res.status(500).send('데이터베이스 조회 중 에러가 발생했습니다.');
         }
         // 마스킹 처리 함수
+        console.log('rows', rows);
         let arrData = recvModule.maskDatas(rows);
         // 임시 포인트 조회를 위해 테스트 데이터 넣음 - 아인
         let point = rows[2].user_point;
@@ -151,6 +157,7 @@ router.get('/careRecvDetail', (req, res) => {
             flex: 'flex',
             active: 'active'
         };
+        console.log('상세정보 넘어온 데이터 ',userData);
         // 정제된 userData를 careRecvDetail 페이지에 넘겨줌
         res.render('careRecvDetail', { userData, styles });
         // const {userInfo} = rows[0];

@@ -68,16 +68,19 @@ button:hover{
     justify-content: center;
     background-color: #fff8f7;
     position: fixed;
+    height: 17%;
     margin-top: 57px;
+    align-items: flex-end;
 }
 
 #header_inner_wrap {
     width: 35%;
+    height: 71%;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    /* margin-top: 20px;*/
 }
 
 #header_div_wrap {
@@ -100,9 +103,9 @@ a {
     color: dimgray;
 }
 
-a:hover {
+/* a:hover {
     color: #F47176;
-}
+} */
 
 #index_container_wrap {
     width: 100%;
@@ -158,7 +161,16 @@ a:hover {
     border: 1px solid cadetblue;
     align-items: center;
 }
+.header_menu_div{
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
 
+.header_menu_div:hover{
+    border-bottom: 4px solid #F47176;
+}
 .header_menu_div:nth-of-type(4) {
     margin-right: 70px;
     /* 고객문의, 요양대상자관리 간격*/
@@ -243,7 +255,7 @@ footer {
     text-align: center;
 }
 
-.header_menu_div1:hover {
+/* .header_menu_div1:hover {
     background-color: #F47176;
     color: #FFFFFF;
-}
+} */

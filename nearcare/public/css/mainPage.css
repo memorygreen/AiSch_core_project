@@ -9,7 +9,7 @@
     border-radius: 20px;
     padding: 20px;
     height: max-content;
-    min-height: 2300px;
+    min-height: 1400px;
     box-sizing: border-box;
     position: relative;
 }
@@ -17,6 +17,7 @@
 .main_center_textandbanner{
     position: relative;
     left: 10%;
+    top: -100px;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -25,6 +26,10 @@
 .main_center_text {
     text-align: center;
     margin-right: 110px;
+}
+
+.main_center_text h1,h4{
+    margin: 5px;
 }
 
 .main_center_text h1{
@@ -71,222 +76,197 @@
 
 .aichat_imgandtext{
     display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
-    top: 150px;
-    width: 80%;
+    top: -70px;
+    width: 100%;
     margin: 0 auto;
-    max-width: 800px; /* 원하는 최대 너비 설정 */
-    height: auto; /* 콘텐츠에 따라 높이 조정 */
-    object-fit: contain;
+    max-width: 800px;
+    height: auto;
 }
 
 #aichatimg{
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
+    flex-shrink: 0;
+    width: 60%;
+    height:200px;
 }
 
 .aichatimg_text{
-    position: absolute;
-    top: 25%;
-    left: 58%;
-    transform: translate(-50%, -50%); 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
-    text-align: left;
-    width: 100%;
-    height: 100%;
+    text-align: center; 
+    margin-bottom: 10%;
     padding: 20px;
+    width: 40%;
+    box-sizing: border-box;
+    white-space: nowrap;
 }
 
-.aichatimg_text h1,
-.aichatimg_text h3 {
+.aichatimg_text h2,
+.aichatimg_text h4 {
     margin: 0;
 }
 
-.aichatimg_text h1{
+.aichatimg_text h2{
     color: #F47176;
 }
 
-.aichatimg_text h3 {
+.aichatimg_text h4 {
     margin-top: 10px;
     color: rgb(56, 56, 56);
 }
 
 .aichat_btn_area{
     position: absolute;
-    bottom: 10%;
-    right: 10%;
+    bottom: 13%;
+    right: 12%;
 }
 
 .center_imgandtext{
     display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
-    top: 300px;
-    width: 80%;
+    top:-50px;
+    width: 100%;
     margin: 0 auto;
-    max-width: 800px; /* 원하는 최대 너비 설정 */
-    height: auto; /* 콘텐츠에 따라 높이 조정 */
-    object-fit: contain;
+    max-width: 800px;
+    height: auto;
 }
 
 #centerimg{
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
+    flex-shrink: 0;
+    width: 60%;
+    height:200px;
 }
 
 .centerimg_text{
-    position: absolute;
-    top: 25%;
-    left: 58%;
-    transform: translate(-50%, -50%); 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
-    text-align: left;
-    width: 100%;
-    height: 100%;
+    text-align: center; 
+    margin-bottom: 10%;
     padding: 20px;
+    width: 40%;
+    box-sizing: border-box;
+    white-space: nowrap;
 }
 
-.centerimg_text h1,
-.centerimg_text h3 {
+.centerimg_text h2,
+.centerimg_text h4 {
     margin: 0; 
 }
 
-.centerimg_text h1{
+.centerimg_text h2{
     color: #F47176;
 }
 
-.centerimg_text h3 {
+.centerimg_text h4 {
     margin-top: 10px; 
     color: rgb(56, 56, 56);
 }
 
 .center_btn_area{
     position: absolute;
-    bottom: 10%;
-    right: 10%;
+    bottom:13%;
+    left: 12%;
 }
 
 .calculate_imgandtext{
     display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
-    top: 450px;
-    width: 80%;
+    top: -30px;
+    width: 100%;
     margin: 0 auto;
-    max-width: 800px; 
-    height: auto; 
-    object-fit: contain;
+    max-width: 800px;
+    height: auto;
 }
 
 #calculateimg{
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
+    flex-shrink: 0;
+    width: 60%;
+    height:200px;
 }
 
 .calculateimg_text{
-    position: absolute;
-    top: 25%;
-    left: 58%;
-    transform: translate(-50%, -50%); 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
-    text-align: left;
-    width: 100%;
-    height: 100%;
+    text-align: center; 
+    margin-bottom: 10%;
     padding: 20px;
+    width: 40%;
+    box-sizing: border-box;
+    white-space: nowrap;
 }
 
-.calculateimg_text h1,
-.calculateimg_text h3 {
+.calculateimg_text h2,
+.calculateimg_text h4 {
     margin: 0; 
 }
 
-.calculateimg_text h1{
+.calculateimg_text h2{
     color: #F47176;
 }
 
-.calculateimg_text h3 {
+.calculateimg_text h4 {
     margin-top: 10px; 
     color: rgb(56, 56, 56);
 }
 
 .calculate_btn_area{
     position: absolute;
-    bottom: 10%;
-    right: 10%;
+    bottom: 13%;
+    right: 12%;
 }
 
 .matching_imgandtext{
     display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
-    top: 600px;
-    width: 80%;
+    top: -10px;
+    width: 100%;
     margin: 0 auto;
     max-width: 800px;
     height: auto;
-    object-fit: contain;
 }
 
 #matchingimg{
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
+    flex-shrink: 0;
+    width: 60%;
+    height:200px;
 }
 
 .matchingimg_text{
-    position: absolute;
-    top: 25%;
-    left: 58%;
-    transform: translate(-50%, -50%); 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     justify-content: center;
-    text-align: left;
-    width: 100%;
-    height: 100%;
+    text-align: center; 
+    margin-bottom: 10%;
     padding: 20px;
+    width: 40%;
+    box-sizing: border-box;
+    white-space: nowrap;
 }
 
-.matchingimg_text h1,
-.matchingimg_text h3 {
+.matchingimg_text h2,
+.matchingimg_text h4 {
     margin: 0;
 }
 
-.matchingimg_text h1{
+.matchingimg_text h2{
     color: #F47176;
 }
 
-.matchingimg_text h3 {
+.matchingimg_text h4 {
     margin-top: 10px;
     color: rgb(56, 56, 56); 
 }
 
 .matching_btn_area{
     position: absolute;
-    bottom: 10%;
-    right: 10%;
+    bottom:13%;
+    left: 12%;
 }
 
 .main_bottom_button{
-    width: 100px;
-    height: 45px;
-    border-radius: 47%;
+    background-color: #F47176;
+    color: #FFFFFF;
 }

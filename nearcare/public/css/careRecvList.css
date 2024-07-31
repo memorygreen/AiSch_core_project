@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -809px;
+    margin-top: -933px;
     /* padding: 20px;*/
 }
 #u_list_title{
@@ -41,7 +41,7 @@
 .list_form_div_wrap{
     /* display: flex; */
     width: 48%;
-    height: 15%;
+    height: 13%;
     margin: 1%;
 }
 .care_list_form{

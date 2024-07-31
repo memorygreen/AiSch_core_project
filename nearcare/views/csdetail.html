@@ -23,9 +23,9 @@
                     <p id="cs_answer_content">{{ csAnswer }}</p>
                 </div>
                 <span class="cs-comment_date">{{ asCreatedAt }}</span>
-                
+
             </div>
-            
+
             {% endif %}
         </div>
     </div>
@@ -41,7 +41,7 @@
     </div>
     {% endif %}
     <div class="cs-actions">
-        <a href="/cs/edit?csId={{ csId }}"><button class="writebutton" >수정</button></a>
+        <a href="/cs/edit?csId={{ csId }}"><button class="writebutton">수정</button></a>
         <button class="deletebutton" onclick="openModal()">삭제</button>
     </div>
 
@@ -53,8 +53,10 @@
         <p>정말로 삭제하시겠습니까?</p>
         <form id="deleteForm" action="/cs/delete" method="POST">
             <input type="hidden" name="csId" value="{{ csId }}">
-            <button type="submit" class="deletebutton">삭제</button>
-            <button type="button" class="writebutton" onclick="closeModal()">취소</button>
+            <div class="csdetail_modal_btn_area">
+                <button type="submit" class="csdetail_deletebutton">삭제</button>
+                <button type="button" class="writebutton" onclick="closeModal()">취소</button>
+            </div>
         </form>
     </div>
 </div>
@@ -69,7 +71,7 @@
     }
 
     // 모달 외부 클릭 시 모달 닫기
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == document.getElementById("deleteModal")) {
             closeModal();
         }

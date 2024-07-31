@@ -14,7 +14,7 @@ let currentCroomIdx = null; // 채팅방 번호를 담기위한 변수
 
 // '/chatting'으로 요청이 들어왔을 때 실행될 것
 router.get('/', (req,res)=>{
-  res.render('chatting');
+  res.render('chatting', {});
 });
 
 

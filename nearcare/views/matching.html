@@ -13,9 +13,9 @@
                 <p>상태 :
                     {% set status = i.matchStatus %}
                     {% if status == 1 %}
-                    기관연계중
+                    <span class="status-active">서비스 이용중</span>
                     {% elif status == 0 %}
-                    연계x
+                    <span class="status-waiting">대기중</span>
                     {% endif %}
                 </p>
             </div>
@@ -34,7 +34,6 @@
                     {% endif %}
                 </button>
                 </a>
-            
             </div>
         </div>
         {% endfor %}

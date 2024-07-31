@@ -76,5 +76,7 @@ button#calculate-button{
 
 #result {
     margin-top: 20px;
-    font-size: 18px;
+    font-weight: 700;
+    color: dimgray;
+    margin-left: 20px;
 }

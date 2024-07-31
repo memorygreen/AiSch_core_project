@@ -10,6 +10,7 @@
     padding: 20px;
     height: max-content;
     min-height: 700px;
+    color: #353535;;
 }
 
 #title {
@@ -96,23 +97,24 @@
     border: 2px solid #F47176;
 }
 
-/* .custom-button:hover {
-    background-color: #FFFF;
-    color: #F47176;
-} */
-
 .custom-button:focus {
     outline: none;
 }
 
-/* .custom-button a {
-    color: #F47176;
-    text-decoration: none;
-} */
-
-.matching_button-group{
+.matching_button-group {
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
+}
+
+/* 스타일링 추가 */
+.status-active {
+    color: green;
+    font-weight: bold;
+}
+
+.status-waiting {
+    color: red;
+    font-weight: bold;
 }

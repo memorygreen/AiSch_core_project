@@ -15,6 +15,7 @@ document.getElementById('chatForm').addEventListener('submit', async function(ev
         </div>
     `;
     userMessages.appendChild(userMessageDiv);
+
     // 스크롤을 아래로 내리는 함수 호출 (수정된 부분)
     scrollToBottom();
 
@@ -45,14 +46,17 @@ document.getElementById('chatForm').addEventListener('submit', async function(ev
                 </div>
             `;
             chatbotMessages.appendChild(chatbotMessageDiv);
+
             scrollToBottom();
             // 자영 타이핑 하는 효과 추가 
             const textElement = chatbotMessageDiv.querySelector('.span_text_gpt');
+
             let index = 0;
 
             function typeWriter() {
                 if (index < data.gptResponse.length) {
                     textElement.innerHTML += data.gptResponse.charAt(index);
+                    scrollToBottom();
                     index++;
                     setTimeout(typeWriter, 30); // 타이핑 속도 조절 (밀리초 단위)
                 }

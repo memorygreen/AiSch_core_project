@@ -84,10 +84,14 @@ const userInfo = function userInfo (rows) {
         pay : rows[0].CARE_RECEIVER_PAY,
         careDays : rows[0].CARE_RECEIVER_DAYS,
         dementia: rows[0].CARE_RECEIVER_DEMENTIA,
-        meal : rows[0].CARE_RECEIVER,
+        meal : rows[0].CARE_RECEIVER_MEAL,
         behavior : rows[0].CARE_RECEIVER_BEHAVIOR,
         dialusis : rows[0].CARE_RECEIVER_DIALYSIS,
-        etc : rows[0].CARE_RECEIVER_ETC
+        etc : rows[0].CARE_RECEIVER_ETC,
+        cancer : rows[0].CARE_RECEIVER_CANCER,
+        rehabilitation : rows[0].CARE_RECEIVER_REHABILITATION,
+        dialysis : rows[0].CARE_RECEIVER_DIALYSIS,
+        evacuation : rows[0].CARE_RECEIVER_EVACUATION
     };
     return userInfo;
 };

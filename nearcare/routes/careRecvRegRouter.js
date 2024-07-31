@@ -157,6 +157,7 @@ router.get('/careRecvDetail', (req, res) => {
             flex: 'flex',
             active: 'active'
         };
+        console.log('상세정보 넘어온 데이터 ',userData);
         // 정제된 userData를 careRecvDetail 페이지에 넘겨줌
         res.render('careRecvDetail', { userData, styles });
         // const {userInfo} = rows[0];

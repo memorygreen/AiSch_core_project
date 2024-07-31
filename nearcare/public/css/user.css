@@ -28,13 +28,6 @@
     margin-bottom: 5px;
 }
 
-.form-group input {
-    width: 93%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 18px;
-}
 
 .form-group select {
     width: 100%;
@@ -124,10 +117,26 @@
 }
 
 .form-group input {
-    width: 93%;
+    width: 94%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 18px;
+}
+
+input#userId, input#userPw{
+    border: 0;
+    background-color: #fbebec; /* 배경색 */
+    border-radius: 6px 6px 0 0;
+    width: 94%;
+    height: 28px;
+    border-bottom: 1px solid #e9e9e9;
+}
+input#userId:focus, input#userPw:focus{
+    outline: none;
+    border-bottom: 1px solid #F47176;
+    background-color: #fff7f8; /* 배경색 */
+    border-radius: 6px 6px 0 0;
 }
 
 .form-actions {

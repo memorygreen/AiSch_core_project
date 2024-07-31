@@ -19,8 +19,8 @@
                         <p class="detail_p">성　　별 : </p>
                         <p class="detail_p">생년월일 : </p>
                         <p class="detail_p">전화번호 : </p>
-                        <p class="detail_p">지불시급 : </p>
                         <p class="detail_p">이용요일 : </p>
+                        <p class="detail_p">신체활동 :</p>
                         <p class="detail_p">주요질환 : </p>
                         <p class="detail_p2">비　　고 : </p>
                         <!-- <div class="detail_blankspace1">
@@ -46,60 +46,94 @@
                         </p>
                         <p class="detail_p2">{{userInfo.userBirth}}</p>
                         <p class="detail_p2">{{userInfo.phone}}</p>
-                        <p class="detail_p2">{{userInfo.pay}}원</p>
                         <p class="detail_p2">{{userInfo.careDays}}</p>
-                        <p class="detail_p2">  
-                            {% if userInfo.dementia == 'Y' %}
+                        <p class="detail_p2 detail_p2_spen">
+                            {% if userInfo.meal == 1 %}
+                            <span class="visible  {{active}}" style="display: '{{flex}}';">
+                                    식사도움
+                            </span>
+                            {% elif userInfo.meal == 0 %}
+                            <span class="invisible  {{active}}" style="display: '{{flex}}';">
+                                식사도움
+                            </span>
+
+                            {% endif %}
+
+                            {% if userInfo.behavior == 1 %}
+                            <span class="visible '{{styles.active}}'" style="display: '{{styles.flex}}';">
+                                이동도움
+                            </span>
+                            {% elif userInfo.behavior == 0 %}
+                            <span class="invisible "  style="display: '{{styles.flex}}';">
+                                이동도움
+                            </span>
+                            {% else %}
+                            <span class="invisible '{{styles.active}}'" style="display: '{{styles.flex}}';">
+                                이동도움
+                            </span>
+                            
+                            {% endif %}
+
+                            {% if userInfo.evacuation == 1 %}
+                            <span class="visible {{active}}" style="display: '{{flex}}';">
+                                배변도움
+                            </span>
+                            {% elif userInfo.evacuation == 0 %}
+                            <span class="invisible {{active}}" style="display: '{{flex}}';">
+                                배변도움
+                            </span>
+                            {% endif %}
+
+                        </p>
+                        <p class="detail_p2  detail_p2_spen">  
+                            {% if userInfo.dementia == 1 %}
                             <span class="visible  {{active}}" style="display: '{{flex}}';">
                                     치매
                             </span>
-                            {% elif userInfo.dementia == 'N' %}
+                            {% elif userInfo.dementia == 0 %}
                             <span class="invisible  {{active}}" style="display: '{{flex}}';">
                                     치매
                             </span>
 
                             {% endif %}
 
-                            {% if userInfo.meal == 'Y' %}
+                            {% if userInfo.cancer == 1 %}
                             <span class="visible '{{styles.active}}'" style="display: '{{styles.flex}}';">
-                                식사도움
+                                암
                             </span>
-                            {% elif userInfo.meal == 'N' %}
+                            {% elif userInfo.cancer == 0 %}
                             <span class="invisible "  style="display: '{{styles.flex}}';">
-                                식사도움
+                                암
                             </span>
                             {% else %}
-                            <span class="invisible '{{styles.active}}'" style="display: '{{styles.flex}}';">
-                                식사도움
-                            </span>
+                            <span class="invisible '{{styles.active}}'" style="display: '{{styles.flex}}';">암</span>
                             
                             {% endif %}
-                            {% if userInfo.behavior == 'A' %}
+                            {% if userInfo.dialusis == 1 %}
+                            <span class="visible {{active}}" style="display: '{{flex}}';">
+                                투석
+                            </span>
+                            {% elif userInfo.dialusis == 0 %}
                             <span class="invisible {{active}}" style="display: '{{flex}}';">
-                                거동도움
-                            </span>
-                            {% elif userInfo.behavior == 'B' %}
-                            <span class="visible {{active}}" style="display: '{{flex}}';">
-                                거동도움
-                            </span>
-                            {% elif userInfo.behavior == 'C' %}
-                            <span class="visible {{active}}" style="display: '{{flex}}';">
-                                거동도움
+                                투석
                             </span>
                             {% endif %}
-                            {% if userInfo.dialusis == 'Y' %}
+                            {% if userInfo.rehabiltation == 1 %}
                             <span class="visible {{active}}" style="display: '{{flex}}';">
-                                투석
+                                재활
                             </span>
-                            {% elif userInfo.dialusis == 'N' %}
+                            {% elif userInfo.rehabiltation == 0 %}
                             <span class="invisible {{active}}" style="display: '{{flex}}';">
-                                투석
+                                재활
                             </span>
-                                
+                            {% else %}
+                            <span class="invisible {{active}}" style="display: '{{flex}}'; ">
+                                재활
+                            </span>
                             {% endif %}
                         </p> 
                         
-                        <p class="detail_p2">{{userInfo.etc}}</p>
+                        <p class="detail_p2 detail_p2_etc">{{userInfo.etc}}</p>
                         <div class="detail_blankspace3">
 
                         </div>

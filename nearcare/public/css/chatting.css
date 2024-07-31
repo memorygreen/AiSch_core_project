@@ -8,7 +8,7 @@
   width: 100%;
   background-color: #FFFFFF;
   border: 2px solid #FFFFFF;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   padding: 20px;
   /* height: max-content; */
   /* min-height: 350%;
@@ -282,12 +282,14 @@ input#input_chat:focus {
 
 
 
- #btn_chat {
+
+#btn_chat {
   width: 46px; /* 버튼 크기와 입력 필드 높이에 맞춤 */
   height: 46px;
   display: flex; /* 버튼 내용 중앙 정렬을 위해 flex 사용 */
-  background: rgba(244,113,118,1);
-  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  border-color: #ffffff;
   /* margin-left: 90%; */
   /* margin-left: 10px;  */
   /* 버튼과 입력 필드 사이 여백 */
@@ -299,8 +301,8 @@ input#input_chat:focus {
  }
  
  .btn_chat_airplane {
-   width: 100%;
-   height: 100%;
+   width: 95%;
+   /* height: 100%; */
    background-repeat: no-repeat;
    background-position: center center;
    background-size: cover;
@@ -308,6 +310,6 @@ input#input_chat:focus {
  
 
  #btn_chat:hover {
-  background: #ffffff;
-  border: 1px solid  #F47176;
+  background: #fbebec; 
+  /* border-radius: 20px; */
  }

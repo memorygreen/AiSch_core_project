@@ -7,7 +7,10 @@ const conn = mysql.createConnection({
     port: 3307,
     user: 'Insa5_JSB_hacksim_2',
     password: 'aischool2',
-    database: 'Insa5_JSB_hacksim_2'
+    database: 'Insa5_JSB_hacksim_2',
+    connectTimeout: 60000, // 60초로 설정
+    acquireTimeout: 60000, // 60초로 설정
+    timeout: 60000 // 60초로 설정
 });
 
 

@@ -258,6 +258,7 @@ router.post('/pay', (req, res) => {
                 const reUserPoint = results[0].USER_POINT;
                 // 세션에 담아줌
                 req.session.userPoint =  reUserPoint;
+                
                 let selectUserSql = sqlModule.selectUserInfo(selectedUserId);
                 conn.query(selectUserSql, (err, results)=>{
                     if(err){

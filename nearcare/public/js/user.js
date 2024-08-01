@@ -1,3 +1,22 @@
+// 회원가입 라디오버튼 클릭시 이벤트함수
+let radioBtn = document.querySelectorAll('input[name="user_type"]');
+radioBtn.forEach(function(radio){
+    radio.addEventListener('change',function(){
+        let selectOption = document.querySelector('input[name="user_type"]:checked').value;
+        console.log('selectOption',selectOption);
+        let centerDiv = document.querySelectorAll('.center_info');
+        if(selectOption == 'center'){
+            centerDiv.forEach(function(element){
+                element.style.display = 'flex';
+            });
+        }else{
+            centerDiv.forEach(function(element){
+                element.style.display = 'none';
+            });
+        };
+    });
+});
+
 document.getElementById('login-form').addEventListener('submit', function(e){
     e.preventDefault(); // 폼 제출 막기
     const userId = document.getElementById('userId').value;
@@ -31,4 +50,5 @@ document.getElementById('login-form').addEventListener('submit', function(e){
         console.error('로그인 마지막단 에러:', error);
     });
 });
+
 

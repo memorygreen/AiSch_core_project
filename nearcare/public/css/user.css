@@ -18,6 +18,8 @@
     padding: 20px;
 }
 
+
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -235,4 +237,19 @@ input[readonly] {
 
 #loginbanner {
     width: 106%;
+}
+
+/* 08/01 일반, 기관 사용자 분류 수정 */
+#join_radio_div{
+    display: flex;
+    width: 93%;
+    height: 100%;
+    /* border: 1px solid #F47176; */
+    padding: 3%;
+    background-color: #fbebec;
+    border-radius: 6px 6px 0 0;
+}
+
+.center_info{
+    display: none;
 }

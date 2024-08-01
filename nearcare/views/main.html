@@ -54,10 +54,13 @@
                 <h2>요양 대상자 찾기</h2>
                 <h4 class="main_h4_l">요양 서비스를 제공하는<br> 개인 및 기관에 <br> 요양 대상자를 <br>매칭해드려요</h4>
                 
+            {%if userId and userType == 2 %}
                 <a href="/careRecvReg/careRecvList"><button class="main_bottom_button main_bottom_button_l">바로가기</button></a>
-            </div>
+            
+            {% endif %}
+        </div>
             <img id="matchingimg" src="/images/tkdeka.png" alt="">
-            <div class="matching_btn_area">
+            
             </div>
             
         </div>

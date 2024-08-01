@@ -50,7 +50,7 @@ document.getElementById('care_recv_regi_form').addEventListener('submit', functi
             if (data.success) {
                 // 성공 처리
                 console.log('성공 :', data);
-                window.location.href = '/'; // 페이지 이동
+                window.location.href = '/careRecvReg/regsuccess'; // 페이지 이동
             } else {
                 // 실패 처리
                 console.error('실패 :', data);

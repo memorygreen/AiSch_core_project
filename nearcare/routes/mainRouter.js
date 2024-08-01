@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('main', {
-    });
+    let userId = req.session.userId;
+    let userType = req.session.userType;
+    res.render('main', {userId, userType});
 });
 
 module.exports = router;

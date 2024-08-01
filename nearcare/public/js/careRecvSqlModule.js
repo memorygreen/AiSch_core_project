@@ -67,5 +67,5 @@ const paymentInsert = function paymentInsert(paymentInfo){
         console.log(sql);
     return sql;
 };
-
+ 
 module.exports = {careRecvListSql, careRecvRegconfrm, selectPoint, updateUserPointSql, careRecviInfo, careRecviInfo2, careRecvInfoInsert, paymentInsert, selectUserInfo};

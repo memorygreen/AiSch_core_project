@@ -263,7 +263,7 @@ router.post('/pay', (req, res) => {
                     if(err){
                         console.error('유저 조회 실패!',err);
                         conn.end();
-                    }
+                    } 
                     // console.log('selectUserInfo results', results[0].CARE_RECEIVER_ID);
                     // console.log('selectUserInfo results', results[0].USER_ID);
                     let careRecvUserId = results[0].CARE_RECEIVER_ID;

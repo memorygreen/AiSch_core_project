@@ -236,3 +236,7 @@ input[readonly] {
 #loginbanner {
     width: 106%;
 }
+
+h2 {
+    color: dimgray;
+}

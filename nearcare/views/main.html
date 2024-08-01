@@ -14,53 +14,55 @@
             <img id="aichatimg" src="/images/aichatbotguide.png" alt="">
             <div class="aichatimg_text">
                 <h2>AI 챗봇 서비스</h2>
-                <h4>빠르고 간편하게<br>
-                    요양 정보에 대해 <br>
+                <h4 class="main_h4_r">빠르고 간편하게<br>
+                    요양 정보에 대해<br>
                     질문해보세요</h4>
+                    <a href="/chatting"><button class="main_bottom_button main_bottom_button_r">바로가기</button></a>
             </div>
 
             <div class="aichat_btn_area">
-                <a href="/chatting"><button class="main_bottom_button">바로가기</button></a>
             </div>
 
         </div>
         <div class="center_imgandtext">
 
+            <div class="center_btn_area">
+            </div>
             <div class="centerimg_text">
                 <h2>요양시설 찾기</h2>
-                <h4>위치를 기반으로
-                    <br> 요양 시설을 찾아보세요
+                <h4 class="main_h4_l">현재 계신<br>위치를 기반으로
+                    <br>요양 시설을 찾아보세요
                 </h4>
+                <a href="/map"><button class="main_bottom_button main_bottom_button_l">바로가기</button></a>
             </div>
             <img id="centerimg" src="/images/center.png" alt="">
-            <div class="center_btn_area">
-                <a href="/map"><button class="main_bottom_button">바로가기</button></a>
-            </div>
         </div>
         <div class="calculate_imgandtext">
             <img id="calculateimg" src="/images/calculate.png" alt="">
             <div class="calculateimg_text">
                 <h2>요양 지원금 계산기</h2>
-                <h4>요양 등급에 따른 <br>지원금을 계산해보세요</h4>
+                <h4 class="main_h4_r">요양 등급에 따른 <br>장기요양급여를<br> 계산해보세요</h4>
+                <a href="/cal"><button class="main_bottom_button main_bottom_button_r">바로가기</button></a>
                 
             </div>
             <div class="calculate_btn_area">
-                <a href="/cal"><button class="main_bottom_button">바로가기</button></a>
             </div>
         </div>
         <div class="matching_imgandtext">
             
             <div class="matchingimg_text">
                 <h2>요양 대상자 찾기</h2>
-                <h4>요양서비스를 제공하는<br> 개인 및 기관에 사람을 <br> 매칭해드립니다</h4>
+                <h4 class="main_h4_l">요양 서비스를 제공하는<br> 개인 및 기관에 <br> 요양 대상자를 <br>매칭해드려요</h4>
                 
             </div>
             {%if userId and userType == 2 %}
             <div class="matching_btn_area">
-                <a href="/careRecvReg/careRecvList"><button class="main_bottom_button">바로가기</button></a>
+                <a href="/careRecvReg/careRecvList"><button class="main_bottom_button main_bottom_button_l">바로가기</button></a>
             </div>
             {% endif %}
             <img id="matchingimg" src="/images/tkdeka.png" alt="">
+            <div class="matching_btn_area">
+            </div>
             
         </div>
 

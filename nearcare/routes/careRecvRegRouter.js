@@ -86,7 +86,7 @@ router.post('/careRecvRegi', async (req, res) => {
                             `⏰ 요양 요일 : ${careWeeks}\n` +
                             `🏥 주요 질환 : ${diseaseList}\n\n`+
                             `✅니어케어 바로가기\n`+
-                            `http://127.0.0.1:3098`;
+                            `http://nearcare.com`;
 
             try {
                 await sendKakaoMessage(userId, message);
@@ -104,6 +104,10 @@ router.post('/careRecvRegi', async (req, res) => {
     }
 });
 
+// 요양대상자 등록 성공 페이지
+router.get('/regsuccess', (req, res) => {
+    res.render('regsuccess'); 
+});
 
 
 // 요양 대상자 리스트 조회해와 마스킹 처리

@@ -47,9 +47,11 @@ router.post('/send', async (req,res)=>{ // async 추가
         text: promptText
       });
 
-      // Flask 서버 응답 처리
-      const analyzedData = flaskResponse.data;
-      console.log('Flask 서버 응답:', analyzedData);
+      console.log("age:",flaskResponse.data.age);
+      
+    //   // Flask 서버 응답 처리
+    //   const analyzedData = flaskResponse.data;
+    //   console.log('Flask 서버 응답:', analyzedData);
 
 
 
@@ -66,7 +68,7 @@ router.post('/send', async (req,res)=>{ // async 추가
      
       // 초기 요청을 ChatGPT에 보냄.
       // chat gpt api 함수 호출
-         let gptResponse = await callChatGPT(message); // 대답을 받아올때까지 기다림 
+         let gptResponse = await callChatGPT(flaskResponse); // 대답을 받아올때까지 기다림 
           if (gptResponse) {
             console.log('ChatGPT API 응답: ' + gptResponse);
           

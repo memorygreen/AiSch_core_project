@@ -5,13 +5,20 @@ radioBtn.forEach(function(radio){
         let selectOption = document.querySelector('input[name="user_type"]:checked').value;
         console.log('selectOption',selectOption);
         let centerDiv = document.querySelectorAll('.center_info');
+        let userDiv = document.querySelectorAll('.join_user_info');
         if(selectOption == 'center'){
             centerDiv.forEach(function(element){
                 element.style.display = 'flex';
             });
+            userDiv.forEach(function(element){
+                element.style.display = 'none';
+            });
         }else{
             centerDiv.forEach(function(element){
                 element.style.display = 'none';
+            });
+            userDiv.forEach(function(element){
+                element.style.display = 'flex';
             });
         };
     });

@@ -208,9 +208,12 @@ router.post('/pay', (req, res) => {
     let userPoint = req.session.userPoint;
     // 로그인한 유저 (test로 넣어둠- careRecvList 부분 하단에 있음) 아인
     // var userId = req.session.userId;
+    // let {userId} = req.body;
     let userId = req.session.userId;
+    console.log('req.session userId' , userId);
     let selectedUserId = req.session.selectedUserId;
-    console.log('selectedUserId', selectedUserId);
+
+    console.log('selectedUserId',selectedUserId);
     // updateSql
     const currentPointsSql = sqlModule.updateUserPointSql(userPoint, userId);
 
@@ -239,21 +242,58 @@ router.post('/pay', (req, res) => {
                 // conn.end();
             });
             // 커밋 후 잔여 포인트 안내를 위해 다시 조회
+            console.log('커밋 후 userId', userId);
             let selectPointSql = sqlModule.selectPoint(userId);
             conn.query(selectPointSql, (err, results) => {
+                console.log('results  : ', results);
                 if (err) {
                     console.error('커밋 후 조회 실패!!');
                     conn.end();
                 };
+                if (results.length === 0) {
+                    console.log('포인트 조회 에러');
+                    return res.status(404).send('User not found');
+                }
                 // 차감 후 저장된 포인트
                 const reUserPoint = results[0].USER_POINT;
                 // 세션에 담아줌
-                req.session.userPoint = reUserPoint;
-                res.json({ success: true, reUserPoint: reUserPoint });
+                req.session.userPoint =  reUserPoint;
+                let selectUserSql = sqlModule.selectUserInfo(selectedUserId);
+                conn.query(selectUserSql, (err, results)=>{
+                    if(err){
+                        console.error('유저 조회 실패!',err);
+                        conn.end();
+                    }
+                    // console.log('selectUserInfo results', results[0].CARE_RECEIVER_ID);
+                    // console.log('selectUserInfo results', results[0].USER_ID);
+                    let careRecvUserId = results[0].CARE_RECEIVER_ID;
+                    let tbCareRecerverUserId = results[0].USER_ID;
+                    const createDateTime = new Date();
+                    let paymentDateTime = formatDate(createDateTime);
+                    // console.log('paymentDateTime',paymentDateTime);
+                    const paymentInfo = {
+                    careRecvUserId : careRecvUserId,
+                    userId : tbCareRecerverUserId,
+                    payMethod : 'point',
+                    payAmount : 500,
+                    payStatus : 'Y',
+                    payEtc : 'N/A',
+                    payUnpaidAmount : 0,
+                    };
+                    // 걀제한 날짜 시간 db에 저장하기 위한 sql
+                    let paymentInsertSql = sqlModule.paymentInsert(paymentInfo);
+                    // 결제한 날짜 및 열람한 회원 id db에 저장
+                    conn.query(paymentInsertSql, (err)=>{
+                        if(err){
+                            console.log('결제내용 db저장 에러',err);
+                        };
+                    });
+                    res.json({ success: true, reUserPoint : reUserPoint});
+                });
             });
         });
     });
-
+    
 });
 
 

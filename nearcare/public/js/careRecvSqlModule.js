@@ -1,3 +1,7 @@
+const selectUserInfo = function selectUserInfo(selectedUserId){
+    let sql = `select * from TB_CARE_RECEIVER where USER_ID = '${selectedUserId}'`;
+    return sql;
+}
 
 const careRecvListSql = function careRecvListSql(){
     let sql = 'select care_receiver_name, care_receiver_birth, care_receiver_gender, care_receiver_phone, user_email, care_receiver_level, care_receiver_add, user_point, u.USER_ID from TB_USER as u inner join TB_CARE_RECEIVER as r where u.user_id = r.user_id';
@@ -57,4 +61,11 @@ const careRecvInfoInsert = function careRecvInfoInsert(data, userId){
     return sql;
 };
 
-module.exports = {careRecvListSql, careRecvRegconfrm, selectPoint, updateUserPointSql, careRecviInfo, careRecviInfo2, careRecvInfoInsert};
+const paymentInsert = function paymentInsert(paymentInfo){
+    console.log('sql쪽 paymentInfo', paymentInfo);
+    let sql = `INSERT INTO TB_PAYMENT (CARE_RECEIVER_ID, USER_ID, PAY_PAIED_AT, PAY_METHOD, PAY_AMOUNT, PAY_STATUS, PAY_ETC, PAY_UNPAID_AMOUNT) VALUES(${paymentInfo.careRecvUserId}, '${paymentInfo.userId}', NOW(), '${paymentInfo.payMethod}', ${paymentInfo.payAmount}, '${paymentInfo.payStatus}', '${paymentInfo.payEtc}', ${paymentInfo.payUnpaidAmount})`;
+        console.log(sql);
+    return sql;
+};
+
+module.exports = {careRecvListSql, careRecvRegconfrm, selectPoint, updateUserPointSql, careRecviInfo, careRecviInfo2, careRecvInfoInsert, paymentInsert, selectUserInfo};

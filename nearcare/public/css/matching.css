@@ -29,18 +29,16 @@
 
 #mlist {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: flex-start;
     width: 100%;
-    overflow-x: auto;
+    overflow-x: hidden;
 }
 
 .inner_mlist1 {
-    width: 100%;
-    max-width: 300px; /* 원하는 크기로 조절 */
-    height: auto;
+    width: calc(50% - 70px); 
+    max-width: 300px;
     margin: 10px;
     border: 2px solid #F47176;
     border-radius: 20px;
@@ -74,16 +72,16 @@
 
 .matchinggroup {
     display: flex;
-    flex-direction: column; /* 수직 정렬을 위해 column 사용 */
+    flex-direction: column;
     width: 100%;
-    align-items: center; /* 버튼을 중앙 정렬 */
-    gap: 10px; /* 버튼 사이의 간격 */
+    align-items: center;
+    gap: 10px;
     align-items: center;
 }
 
 .custom-button {
     display: inline-block;
-    width: 200px; /* 버튼 너비 조절 */
+    width: 200px;
     height: 50px;
     margin: 5px 0;
     font-size: 16px;

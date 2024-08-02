@@ -11,7 +11,7 @@ router.post('/setSelectedUid', (req, res) => {
     req.session.selectedUserId = selectedUserId;
     console.log('Session saved selectedUserId:', req.session.selectedUserId);  // 디버깅용 로그 추가
     req.session.save(() => {
-        res.redirect('/careRecvReg/careRecvDetail');
+        res.redirect('/matching/careRecvDetail');
     });
 });
 
@@ -49,38 +49,35 @@ router.get("/", (req, res) => {
     });
 });
 
-// 요양 대상자 상세 정보 페이지 이동
 router.get('/careRecvDetail', (req, res) => {
     const selUserId = req.session.selectedUserId;
-    console.log('Session retrieved selectedUserId:', selUserId);  // 디버깅용 로그 추가
+    console.log('Session retrieved selectedUserId:', selUserId);
 
     if (!selUserId) {
         return res.redirect('/matching');
     }
 
-    //sql문 작성하는 함수
-    const selUserInfSql = sqlModule.careRecviInfo(selUserId);
-    // db실행
+    const selUserInfSql = sqlModule.careRecviInfo2(selUserId);
     conn.query(selUserInfSql, (err, rows) => {
         if (err) {
-            console.error('selUserInfSql 에러났어..', err);
+            console.error('Database query error:', err);
             return res.status(500).send('Internal Server Error');
         }
 
         if (rows.length === 0) {
+            console.error('No data found for selectedUserId:', selUserId);
             return res.status(404).send('No data found for the selected user');
         }
 
-        // DB에서 넘어온 데이터를 userInfo()함수에 넣어 정제해서 userData에 할당
         let userData = recvModule.userInfo(rows);
         const styles = {
             flex: 'flex',
             active: 'active'
         };
-        // 정제된 userData를 careRecvDetail 페이지에 넘겨줌
         res.render('careRecvDetail', { userData, styles });
     });
 });
+
 
 // 매칭 상태 바꾸기
 router.get("/update-status", (req, res) => {

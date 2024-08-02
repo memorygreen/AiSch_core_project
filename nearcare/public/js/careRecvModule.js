@@ -68,6 +68,16 @@ const loginUserInfo = function loginUserInfo(rows){
 };
 
 const userInfo = function userInfo (rows) {
+    console.log('Raw data from DB:', rows); // 추가된 로그
+
+    // 예시: 데이터를 처리하는 로직 (수정 필요)
+    if (!rows || rows.length === 0) {
+        throw new Error('Invalid rows data');
+    }
+
+    let data = rows[0]; // 단일 레코드가 반환됨
+    console.log('Processed user data:', data);
+    
     let birthDay = rows[0].CARE_RECEIVER_BIRTH;
     let birthDayFormet = formatDate(birthDay);
     let birthDaySplt = birthDayFormet.split('-');

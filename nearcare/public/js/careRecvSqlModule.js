@@ -1,41 +1,42 @@
-const selectUserInfo = function selectUserInfo(selectedUserId){
+const selectUserInfo = function selectUserInfo(selectedUserId) {
     let sql = `select * from TB_CARE_RECEIVER where USER_ID = '${selectedUserId}'`;
     return sql;
 }
 
-const careRecvListSql = function careRecvListSql(){
+const careRecvListSql = function careRecvListSql() {
     let sql = 'select care_receiver_name, care_receiver_birth, care_receiver_gender, care_receiver_phone, user_email, care_receiver_level, care_receiver_add, user_point, u.USER_ID from TB_USER as u inner join TB_CARE_RECEIVER as r where u.user_id = r.user_id';
     return sql;
 };
-const careRecvRegconfrm = function careRecvRegconfrm(loginUserId){
+const careRecvRegconfrm = function careRecvRegconfrm(loginUserId) {
     let sql = `select * from TB_USER where USER_ID = "${loginUserId}" `;
     return sql;
 };
 
-const selectPoint = function selectPoint(userId){
+const selectPoint = function selectPoint(userId) {
     let sql = `select USER_POINT from TB_USER where USER_ID = '${userId}'`
     return sql;
 };
 
-const updateUserPointSql = function updateUserPointSql(userPoint,userId){
+const updateUserPointSql = function updateUserPointSql(userPoint, userId) {
     let pointsToDeduct = 500;
     let sql = `update TB_USER set USER_POINT = ${userPoint} - ${pointsToDeduct} where USER_ID = '${userId}'`;
-    
+
     return sql;
 };
 
-const careRecviInfo = function careRecviInfo(selUserId){
+const careRecviInfo = function careRecviInfo(selUserId) {
     let sql = `select * from TB_CARE_RECEIVER where USER_ID = '${selUserId}'`;
     return sql;
 };
 
-const careRecviInfo2 = function careRecviInfo(selUserId){
-    let sql = `select * from TB_CARE_RECEIVER AS A, TB_MATCHING AS B where CARE_RECEIVER_ID = '${selUserId}'`;
+const careRecviInfo2 = function careRecviInfo2(selUserId) {
+    let sql = `SELECT * FROM TB_CARE_RECEIVER WHERE CARE_RECEIVER_ID = '${selUserId}'`;
     return sql;
 };
 
-const careRecvInfoInsert = function careRecvInfoInsert(data, userId){
-    const userBtd =  data.user_birth;
+
+const careRecvInfoInsert = function careRecvInfoInsert(data, userId) {
+    const userBtd = data.user_birth;
     // 입력을 문자열로 처리
     const str = userBtd.toString();
 
@@ -61,11 +62,16 @@ const careRecvInfoInsert = function careRecvInfoInsert(data, userId){
     return sql;
 };
 
-const paymentInsert = function paymentInsert(paymentInfo){
+const paymentInsert = function paymentInsert(paymentInfo) {
     console.log('sql쪽 paymentInfo', paymentInfo);
     let sql = `INSERT INTO TB_PAYMENT (CARE_RECEIVER_ID, USER_ID, PAY_PAIED_AT, PAY_METHOD, PAY_AMOUNT, PAY_STATUS, PAY_ETC, PAY_UNPAID_AMOUNT) VALUES(${paymentInfo.careRecvUserId}, '${paymentInfo.userId}', NOW(), '${paymentInfo.payMethod}', ${paymentInfo.payAmount}, '${paymentInfo.payStatus}', '${paymentInfo.payEtc}', ${paymentInfo.payUnpaidAmount})`;
-        console.log(sql);
+    console.log(sql);
     return sql;
 };
- 
-module.exports = {careRecvListSql, careRecvRegconfrm, selectPoint, updateUserPointSql, careRecviInfo, careRecviInfo2, careRecvInfoInsert, paymentInsert, selectUserInfo};
+
+const insertMatching = function insertMatching(userId, careRecvUserId) {
+    let sql = `INSERT INTO TB_MATCHING (USER_ID, CARE_RECEIVER_ID, MATCH_MATCHED_AT, MATCH_STATUS) VALUES (?, ?, NOW(), 0)`;
+    return sql;
+}
+
+module.exports = { careRecvListSql, careRecvRegconfrm, selectPoint, updateUserPointSql, careRecviInfo, careRecviInfo2, careRecvInfoInsert, paymentInsert, selectUserInfo, insertMatching };

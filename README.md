@@ -49,10 +49,14 @@ Figma<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&log
 
 7.유스케이스
 
+
+
 8.서비스 흐름도
 ![슬라이드13](https://github.com/user-attachments/assets/639803d4-68fa-4282-a3bf-e3e15fd27613)
 
 9.ER 다이어그램
+
+
 
 10.화면구성
 ![슬라이드28](https://github.com/user-attachments/assets/00916a04-10dd-49ff-b628-2efe7a55f144)
@@ -65,3 +69,7 @@ Figma<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&log
 ![슬라이드42](https://github.com/user-attachments/assets/bf89d14f-618c-4c2d-b509-006c58afa78d)
 
 12.트러블슈팅
+![8  발표자료_따숨(김자영)_수정_깃허브용 수정_240805_2](https://github.com/user-attachments/assets/12d4216c-5048-4b23-b5b4-608c08ab4026)
+![8  발표자료_따숨(김자영)_수정_깃허브용 수정_240805](https://github.com/user-attachments/assets/99ad362c-f02f-44b7-8e10-2432b62a37c2)
+
+

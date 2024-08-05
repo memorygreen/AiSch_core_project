@@ -71,5 +71,6 @@ Figma<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&log
 12.트러블슈팅
 ![8  발표자료_따숨(김자영)_수정_깃허브용 수정_240805_2](https://github.com/user-attachments/assets/12d4216c-5048-4b23-b5b4-608c08ab4026)
 ![8  발표자료_따숨(김자영)_수정_깃허브용 수정_240805](https://github.com/user-attachments/assets/99ad362c-f02f-44b7-8e10-2432b62a37c2)
+![8  발표자료_따숨(김자영)_수정_깃허브용 수정_240805](https://github.com/user-attachments/assets/dd9e8141-ee27-4a12-8a57-77c3818a4316)
 
 
